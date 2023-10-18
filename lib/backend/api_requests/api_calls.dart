@@ -124,6 +124,27 @@ class ListuserbyidCall {
       cache: false,
     );
   }
+
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$[:].id''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$[:].created_at''',
+      );
+  dynamic nickname(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Nickname''',
+      );
+  dynamic memberOfTeam(dynamic response) => getJsonField(
+        response,
+        r'''$[:].MemberOfTeam''',
+      );
+  dynamic avatar(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Avatar''',
+      );
 }
 
 /// End USER Group Code

@@ -82,6 +82,16 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInUsers(int _index, UserStruct _value) {
     _Users.insert(_index, _value);
   }
+
+  UserStruct _User = UserStruct();
+  UserStruct get User => _User;
+  set User(UserStruct _value) {
+    _User = _value;
+  }
+
+  void updateUserStruct(Function(UserStruct) updateFn) {
+    updateFn(_User);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
