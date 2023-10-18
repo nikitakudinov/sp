@@ -45,7 +45,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
           automaticallyImplyLeading: false,
           title: Text(
             'Page Title',
@@ -68,7 +68,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryText,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: FutureBuilder<List<TeamRow>>(
