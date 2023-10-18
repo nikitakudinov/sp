@@ -104,50 +104,14 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  FutureBuilder<List<UserRow>>(
-                    future: _model.teamMembers(
-                      uniqueQueryKey: valueOrDefault<String>(
-                        vIEWTeamTeamRow?.id?.toString(),
-                        '0',
-                      ),
-                      requestFn: () => UserTable().queryRows(
-                        queryFn: (q) => q.in_(
-                          'id',
-                          vIEWTeamTeamRow!.members,
-                        ),
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      _model.uploadedFileUrl,
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover,
                     ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                      List<UserRow> listViewUserRowList = snapshot.data!;
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: listViewUserRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewUserRow =
-                              listViewUserRowList[listViewIndex];
-                          return Text(
-                            listViewUserRow.nickname!,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          );
-                        },
-                      );
-                    },
                   ),
                   FFButtonWidget(
                     onPressed: () async {
@@ -227,6 +191,8 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                         },
                         matchingRows: (rows) => rows,
                       );
+
+                      context.pushNamed('LIST_team');
                     },
                     text: 'Button',
                     options: FFButtonOptions(
@@ -249,14 +215,50 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      _model.uploadedFileUrl,
-                      width: 150.0,
-                      height: 150.0,
-                      fit: BoxFit.cover,
+                  FutureBuilder<List<UserRow>>(
+                    future: _model.teamMembers(
+                      uniqueQueryKey: valueOrDefault<String>(
+                        vIEWTeamTeamRow?.id?.toString(),
+                        '0',
+                      ),
+                      requestFn: () => UserTable().queryRows(
+                        queryFn: (q) => q.in_(
+                          'id',
+                          vIEWTeamTeamRow!.members,
+                        ),
+                      ),
                     ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<UserRow> listViewUserRowList = snapshot.data!;
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewUserRowList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewUserRow =
+                              listViewUserRowList[listViewIndex];
+                          return Text(
+                            listViewUserRow.nickname!,
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          );
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
