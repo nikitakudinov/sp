@@ -92,26 +92,40 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                     itemBuilder: (context, listViewIndex) {
                       final listViewTeamRow =
                           listViewTeamRowList[listViewIndex];
-                      return InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'VIEW_team',
-                            queryParameters: {
-                              'teamId': serializeParam(
-                                listViewTeamRow.id,
-                                ParamType.int,
-                              ),
-                            }.withoutNulls,
-                          );
-                        },
-                        child: Text(
-                          listViewTeamRow.name!,
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                        ),
+                      return Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              'https://picsum.photos/seed/683/600',
+                              width: 50.0,
+                              height: 50.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'VIEW_team',
+                                queryParameters: {
+                                  'teamId': serializeParam(
+                                    listViewTeamRow.id,
+                                    ParamType.int,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Text(
+                              listViewTeamRow.name!,
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            ),
+                          ),
+                        ],
                       );
                     },
                   );
