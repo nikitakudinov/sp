@@ -2,6 +2,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/request_manager.dart';
 
 import 'v_i_e_w_team_widget.dart' show VIEWTeamWidget;
@@ -13,6 +14,10 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
 
   /// Query cache managers for this widget.
 
