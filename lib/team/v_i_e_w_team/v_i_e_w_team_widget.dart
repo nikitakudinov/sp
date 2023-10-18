@@ -178,7 +178,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                               .toList();
 
                           downloadUrls = await uploadSupabaseStorageFiles(
-                            bucketName: vIEWTeamTeamRow!.name!,
+                            bucketName: 'some',
                             selectedFiles: selectedMedia,
                           );
                         } finally {
