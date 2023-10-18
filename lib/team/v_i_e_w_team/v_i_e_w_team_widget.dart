@@ -1,4 +1,5 @@
 import '/backend/supabase/supabase.dart';
+import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -267,6 +268,15 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                         },
                       );
                     },
+                  ),
+                  Expanded(
+                    child: wrapWithModel(
+                      model: _model.teamMemberPickerModel,
+                      updateCallback: () => setState(() {}),
+                      child: TeamMemberPickerWidget(
+                        docId: widget.teamId!,
+                      ),
+                    ),
                   ),
                 ],
               ),

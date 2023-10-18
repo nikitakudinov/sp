@@ -1,4 +1,5 @@
 import '/backend/supabase/supabase.dart';
+import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -25,6 +26,8 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
 
   // Stores action output result for [Backend Call - Update Row] action in Button widget.
   List<TeamRow>? logo;
+  // Model for TeamMemberPicker component.
+  late TeamMemberPickerModel teamMemberPickerModel;
 
   /// Query cache managers for this widget.
 
@@ -60,10 +63,13 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    teamMemberPickerModel = createModel(context, () => TeamMemberPickerModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
+    teamMemberPickerModel.dispose();
 
     /// Dispose query cache managers for this widget.
 
