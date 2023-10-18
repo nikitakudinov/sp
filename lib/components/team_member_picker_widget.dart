@@ -405,16 +405,24 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                       return Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.network(
-                              valueOrDefault<String>(
-                                membersUserRow.avatar,
-                                'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                          Container(
+                            width: 45.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5.0),
+                              child: Image.network(
+                                valueOrDefault<String>(
+                                  membersUserRow.avatar,
+                                  'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                                ),
+                                width: 45.0,
+                                height: 45.0,
+                                fit: BoxFit.cover,
                               ),
-                              width: 45.0,
-                              height: 45.0,
-                              fit: BoxFit.cover,
                             ),
                           ),
                           Column(
