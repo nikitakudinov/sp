@@ -68,6 +68,62 @@ class ListteambyidCall {
 
 /// End TEAM Group Code
 
+/// Start UPLOADS Group Code
+
+class UploadsGroup {
+  static String baseUrl = 'https://supabase.proplayclub.ru/rest/v1/';
+  static Map<String, String> headers = {
+    'apikey':
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+  };
+  static CreatbucketCall creatbucketCall = CreatbucketCall();
+}
+
+class CreatbucketCall {
+  Future<ApiCallResponse> call() {
+    final ffApiRequestBody = '''
+{
+  "schema": {
+    "description": "Successful response",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "examples": [
+          "avatars"
+        ]
+      }
+    },
+    "required": [
+      "name"
+    ]
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'CREATBUCKET',
+      apiUrl: '${UploadsGroup.baseUrl}bucket/',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+/// End UPLOADS Group Code
+
 class TeamsCall {
   static Future<ApiCallResponse> call({
     String? idList = '',

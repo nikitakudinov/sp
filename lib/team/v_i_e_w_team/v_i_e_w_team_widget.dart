@@ -152,7 +152,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                   FFButtonWidget(
                     onPressed: () async {
                       final selectedMedia = await selectMedia(
-                        storageFolderPath: 'Logo',
+                        storageFolderPath: 'logos',
                         maxWidth: 150.00,
                         maxHeight: 150.00,
                         imageQuality: 100,
@@ -178,7 +178,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                               .toList();
 
                           downloadUrls = await uploadSupabaseStorageFiles(
-                            bucketName: 'some',
+                            bucketName: 'playground',
                             selectedFiles: selectedMedia,
                           );
                         } finally {
@@ -198,7 +198,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                         }
                       }
                     },
-                    text: 'Button',
+                    text: 'Загрузить',
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
@@ -247,6 +247,15 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                         width: 1.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      _model.uploadedFileUrl,
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ],
