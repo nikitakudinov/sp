@@ -98,7 +98,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Visibility(
-                    visible: _model.imagePath == 'false',
+                    visible: _model.imagePath != 'false',
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5.0),
                       child: Image.network(
