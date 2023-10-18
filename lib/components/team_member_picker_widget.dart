@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -61,8 +62,13 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
               ),
               if (_model.addbuttonVISIBILITY)
                 FFButtonWidget(
-                  onPressed: () {
-                    print('addbutton pressed ...');
+                  onPressed: () async {
+                    setState(() {
+                      _model.addbuttonVISIBILITY = false;
+                      _model.membersVISIBILITY = false;
+                      _model.searchVISIBILITY = true;
+                      _model.messageVISIBILITY = false;
+                    });
                   },
                   text: 'Button',
                   options: FFButtonOptions(
@@ -87,109 +93,142 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
             ],
           ),
         if (_model.messageVISIBILITY)
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Hello World',
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+          FutureBuilder<List<UserRow>>(
+            future: UserTable().querySingleRow(
+              queryFn: (q) => q.eq(
+                'id',
+                int.tryParse(_model.textController.text),
+              ),
+            ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
-                    Row(
+                  ),
+                );
+              }
+              List<UserRow> messageUserRowList = snapshot.data!;
+              final messageUserRow = messageUserRowList.isNotEmpty
+                  ? messageUserRowList.first
+                  : null;
+              return Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/204/600',
-                            width: 45.0,
-                            height: 45.0,
-                            fit: BoxFit.cover,
-                          ),
+                        Text(
+                          'Hello World',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
-                        Column(
+                        Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Text(
-                              'Hello World',
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(5.0),
+                              child: Image.network(
+                                messageUserRow!.avatar!,
+                                width: 45.0,
+                                height: 45.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            Text(
-                              'Hello World',
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  messageUserRow!.nickname!,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    messageUserRow?.createdAt?.toString(),
+                                    '0',
+                                  ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ],
                             ),
                           ],
                         ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: FFButtonWidget(
+                                onPressed: () {
+                                  print('Button pressed ...');
+                                },
+                                text: 'Button',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: FFButtonWidget(
+                                onPressed: () {
+                                  print('Button pressed ...');
+                                },
+                                text: 'Button',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                          ].divide(SizedBox(width: 10.0)),
+                        ),
                       ],
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Button',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Button',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                      ].divide(SizedBox(width: 10.0)),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                ],
+              );
+            },
           ),
         if (_model.searchVISIBILITY)
           Row(
@@ -243,8 +282,10 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
               ),
               Expanded(
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    setState(() {
+                      _model.messageVISIBILITY = true;
+                    });
                   },
                   text: 'Button',
                   options: FFButtonOptions(
