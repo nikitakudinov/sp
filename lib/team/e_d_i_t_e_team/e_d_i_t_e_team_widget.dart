@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -5,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'e_d_i_t_e_team_model.dart';
@@ -31,6 +33,21 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EDITETeamModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.apiResultegc = await TeamGroup.listteambyidCall.call(
+        idList: widget.teamId?.toString(),
+      );
+      if ((_model.apiResultegc?.succeeded ?? true)) {
+        setState(() {
+          _model.imagePath = getJsonField(
+            (_model.apiResultegc?.jsonBody ?? ''),
+            r'''$[:].Logo''',
+          );
+        });
+      }
+    });
   }
 
   @override
@@ -118,7 +135,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5.0),
                         child: Image.network(
-                          _model.uploadedFileUrl,
+                          _model.imagePath!,
                           width: 150.0,
                           height: 150.0,
                           fit: BoxFit.cover,
