@@ -88,14 +88,6 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
         );
       }
     });
-
-    _model.textController ??= TextEditingController(
-        text: UserGroup.listuserbyidCall
-            .nickname(
-              (_model.apiResulthr2?.jsonBody ?? ''),
-            )
-            .toString()
-            .toString());
   }
 
   @override
@@ -284,7 +276,10 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
-                            controller: _model.textController,
+                            controller: _model.textController ??=
+                                TextEditingController(
+                              text: columnUserRow?.nickname,
+                            ),
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Никнейм',
