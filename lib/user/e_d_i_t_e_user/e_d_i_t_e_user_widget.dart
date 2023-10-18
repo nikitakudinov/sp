@@ -89,8 +89,13 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
       }
     });
 
-    _model.textController ??=
-        TextEditingController(text: FFAppState().User.nickname);
+    _model.textController ??= TextEditingController(
+        text: UserGroup.listuserbyidCall
+            .nickname(
+              (_model.apiResulthr2?.jsonBody ?? ''),
+            )
+            .toString()
+            .toString());
   }
 
   @override
@@ -330,7 +335,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                         Expanded(
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 0.0),
+                                10.0, 15.0, 10.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 _model.updateUserData =
