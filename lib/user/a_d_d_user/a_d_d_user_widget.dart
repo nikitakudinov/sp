@@ -104,7 +104,7 @@ class _ADDUserWidgetState extends State<ADDUserWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if (_model.avatar == 'false')
+                          if (_model.avatar != 'false')
                             Align(
                               alignment: AlignmentDirectional(0.00, 0.00),
                               child: Padding(
