@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -46,46 +45,6 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
             r'''$[:].Avatar''',
           );
         });
-        setState(() {
-          FFAppState().updateUserStruct(
-            (e) => e
-              ..id = UserGroup.listuserbyidCall.id(
-                (_model.apiResulthr2?.jsonBody ?? ''),
-              )
-              ..createdAt = UserGroup.listuserbyidCall
-                  .createdat(
-                    (_model.apiResulthr2?.jsonBody ?? ''),
-                  )
-                  .toString()
-                  .toString()
-              ..nickname = UserGroup.listuserbyidCall
-                  .nickname(
-                    (_model.apiResulthr2?.jsonBody ?? ''),
-                  )
-                  .toString()
-                  .toString()
-              ..memberOfTeam = UserGroup.listuserbyidCall.memberOfTeam(
-                (_model.apiResulthr2?.jsonBody ?? ''),
-              )
-              ..avatar = UserGroup.listuserbyidCall.avatar(
-                (_model.apiResulthr2?.jsonBody ?? ''),
-              ),
-          );
-        });
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('1'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
       }
     });
   }
