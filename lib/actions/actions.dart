@@ -14,7 +14,11 @@ Future loadTeams(BuildContext context) async {
   jsonTeamsList = await TeamGroup.listteamCall.call();
   if ((jsonTeamsList?.succeeded ?? true)) {
     teamsConvertedData = await actions.jsonToDataTypeTeam(
-      (jsonTeamsList?.jsonBody ?? ''),
+      getJsonField(
+        (jsonTeamsList?.jsonBody ?? ''),
+        r'''$''',
+        true,
+      ),
     );
     FFAppState().update(() {
       FFAppState().Teams = teamsConvertedData!.toList().cast<TeamStruct>();
