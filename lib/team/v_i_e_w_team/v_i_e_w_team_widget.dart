@@ -193,57 +193,16 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                       ),
                     ),
                   ),
-                  FutureBuilder<List<UserRow>>(
-                    future: _model.teamMembers(
-                      uniqueQueryKey: valueOrDefault<String>(
-                        vIEWTeamTeamRow?.id?.toString(),
-                        '0',
-                      ),
-                      requestFn: () => UserTable().queryRows(
-                        queryFn: (q) => q.in_(
-                          'id',
-                          vIEWTeamTeamRow!.members,
-                        ),
-                      ),
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                      List<UserRow> listViewUserRowList = snapshot.data!;
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: listViewUserRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewUserRow =
-                              listViewUserRowList[listViewIndex];
-                          return Text(
-                            listViewUserRow.nickname!,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          );
-                        },
-                      );
-                    },
-                  ),
                   Expanded(
-                    child: wrapWithModel(
-                      model: _model.teamMemberPickerModel,
-                      updateCallback: () => setState(() {}),
-                      child: TeamMemberPickerWidget(
-                        docId: widget.teamId!,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          15.0, 15.0, 15.0, 15.0),
+                      child: wrapWithModel(
+                        model: _model.teamMemberPickerModel,
+                        updateCallback: () => setState(() {}),
+                        child: TeamMemberPickerWidget(
+                          docId: widget.teamId!,
+                        ),
                       ),
                     ),
                   ),

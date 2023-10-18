@@ -29,21 +29,6 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
 
   /// Query cache managers for this widget.
 
-  final _teamMembersManager = FutureRequestManager<List<UserRow>>();
-  Future<List<UserRow>> teamMembers({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<List<UserRow>> Function() requestFn,
-  }) =>
-      _teamMembersManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearTeamMembersCache() => _teamMembersManager.clear();
-  void clearTeamMembersCacheKey(String? uniqueKey) =>
-      _teamMembersManager.clearRequest(uniqueKey);
-
   final _teamItemDataManager = FutureRequestManager<List<TeamRow>>();
   Future<List<TeamRow>> teamItemData({
     String? uniqueQueryKey,
@@ -70,8 +55,6 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
     teamMemberPickerModel.dispose();
 
     /// Dispose query cache managers for this widget.
-
-    clearTeamMembersCache();
 
     clearTeamItemDataCache();
   }

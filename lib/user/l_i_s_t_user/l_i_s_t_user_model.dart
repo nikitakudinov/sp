@@ -2,13 +2,12 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'l_i_s_t_team_widget.dart' show LISTTeamWidget;
+import 'l_i_s_t_user_widget.dart' show LISTUserWidget;
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LISTTeamModel extends FlutterFlowModel<LISTTeamWidget> {
+class LISTUserModel extends FlutterFlowModel<LISTUserWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

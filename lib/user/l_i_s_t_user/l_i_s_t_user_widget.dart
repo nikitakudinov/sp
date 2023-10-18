@@ -3,28 +3,27 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'l_i_s_t_team_model.dart';
-export 'l_i_s_t_team_model.dart';
+import 'l_i_s_t_user_model.dart';
+export 'l_i_s_t_user_model.dart';
 
-class LISTTeamWidget extends StatefulWidget {
-  const LISTTeamWidget({Key? key}) : super(key: key);
+class LISTUserWidget extends StatefulWidget {
+  const LISTUserWidget({Key? key}) : super(key: key);
 
   @override
-  _LISTTeamWidgetState createState() => _LISTTeamWidgetState();
+  _LISTUserWidgetState createState() => _LISTUserWidgetState();
 }
 
-class _LISTTeamWidgetState extends State<LISTTeamWidget> {
-  late LISTTeamModel _model;
+class _LISTUserWidgetState extends State<LISTUserWidget> {
+  late LISTUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LISTTeamModel());
+    _model = createModel(context, () => LISTUserModel());
   }
 
   @override
@@ -72,8 +71,8 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: FutureBuilder<List<TeamRow>>(
-                    future: TeamTable().queryRows(
+                  child: FutureBuilder<List<UserRow>>(
+                    future: UserTable().queryRows(
                       queryFn: (q) => q,
                     ),
                     builder: (context, snapshot) {
@@ -91,15 +90,15 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                           ),
                         );
                       }
-                      List<TeamRow> listViewTeamRowList = snapshot.data!;
+                      List<UserRow> listViewUserRowList = snapshot.data!;
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: listViewTeamRowList.length,
+                        itemCount: listViewUserRowList.length,
                         itemBuilder: (context, listViewIndex) {
-                          final listViewTeamRow =
-                              listViewTeamRowList[listViewIndex];
+                          final listViewUserRow =
+                              listViewUserRowList[listViewIndex];
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -110,10 +109,10 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   context.pushNamed(
-                                    'VIEW_team',
+                                    'EDITE_User',
                                     queryParameters: {
-                                      'teamId': serializeParam(
-                                        listViewTeamRow.id,
+                                      'userId': serializeParam(
+                                        listViewUserRow.id,
                                         ParamType.int,
                                       ),
                                     }.withoutNulls,
@@ -130,7 +129,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                             BorderRadius.circular(5.0),
                                         child: Image.network(
                                           valueOrDefault<String>(
-                                            listViewTeamRow.logo,
+                                            listViewUserRow.avatar,
                                             'false',
                                           ),
                                           width: 50.0,
@@ -140,7 +139,10 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                       ),
                                     ),
                                     Text(
-                                      listViewTeamRow.name!,
+                                      valueOrDefault<String>(
+                                        listViewUserRow.nickname,
+                                        '0',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),

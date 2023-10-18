@@ -80,13 +80,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? LISTTeamWidget() : AuthPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? LISTTeamWidget() : AuthPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : AuthPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -106,7 +106,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'LIST_team',
           path: '/lISTTeam',
-          builder: (context, params) => LISTTeamWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'LIST_team')
+              : LISTTeamWidget(),
         ),
         FFRoute(
           name: 'VIEW_team',
@@ -114,6 +116,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => VIEWTeamWidget(
             teamId: params.getParam('teamId', ParamType.int),
           ),
+        ),
+        FFRoute(
+          name: 'EDITE_User',
+          path: '/eDITEUser',
+          builder: (context, params) => EDITEUserWidget(
+            userId: params.getParam('userId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'LIST_user',
+          path: '/lISTUser',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'LIST_user')
+              : LISTUserWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

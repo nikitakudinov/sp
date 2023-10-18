@@ -2,16 +2,24 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'l_i_s_t_team_widget.dart' show LISTTeamWidget;
+import '/flutter_flow/upload_data.dart';
+import 'e_d_i_t_e_user_widget.dart' show EDITEUserWidget;
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LISTTeamModel extends FlutterFlowModel<LISTTeamWidget> {
+class EDITEUserModel extends FlutterFlowModel<EDITEUserWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
+  // State field(s) for TextField widget.
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -19,6 +27,7 @@ class LISTTeamModel extends FlutterFlowModel<LISTTeamWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    textController?.dispose();
   }
 
   /// Action blocks are added here.
