@@ -148,7 +148,10 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(5.0),
                                     child: Image.network(
-                                      messageUserRow!.avatar!,
+                                      valueOrDefault<String>(
+                                        messageUserRow?.avatar,
+                                        'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                                      ),
                                       width: 35.0,
                                       height: 35.0,
                                       fit: BoxFit.cover,
