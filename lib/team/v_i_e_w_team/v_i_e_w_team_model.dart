@@ -31,6 +31,21 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
   void clearTeamMembersCacheKey(String? uniqueKey) =>
       _teamMembersManager.clearRequest(uniqueKey);
 
+  final _teamItemDataManager = FutureRequestManager<List<TeamRow>>();
+  Future<List<TeamRow>> teamItemData({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<List<TeamRow>> Function() requestFn,
+  }) =>
+      _teamItemDataManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearTeamItemDataCache() => _teamItemDataManager.clear();
+  void clearTeamItemDataCacheKey(String? uniqueKey) =>
+      _teamItemDataManager.clearRequest(uniqueKey);
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
@@ -41,6 +56,8 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
     /// Dispose query cache managers for this widget.
 
     clearTeamMembersCache();
+
+    clearTeamItemDataCache();
   }
 
   /// Action blocks are added here.

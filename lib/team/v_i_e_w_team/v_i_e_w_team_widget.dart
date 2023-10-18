@@ -43,10 +43,16 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<List<TeamRow>>(
-      future: TeamTable().querySingleRow(
-        queryFn: (q) => q.eq(
-          'id',
-          widget.teamId,
+      future: _model.teamItemData(
+        uniqueQueryKey: valueOrDefault<String>(
+          widget.teamId?.toString(),
+          '0',
+        ),
+        requestFn: () => TeamTable().querySingleRow(
+          queryFn: (q) => q.eq(
+            'id',
+            widget.teamId,
+          ),
         ),
       ),
       builder: (context, snapshot) {
