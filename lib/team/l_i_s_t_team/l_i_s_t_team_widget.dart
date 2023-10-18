@@ -1,8 +1,11 @@
-import '/backend/supabase/supabase.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +28,23 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => LISTTeamModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.apiResult0sy = await TeamGroup.listteamCall.call();
+      if ((_model.apiResult0sy?.succeeded ?? true)) {
+        _model.dTTeams = await actions.jsonDTTeam(
+          getJsonField(
+            (_model.apiResult0sy?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
+        setState(() {
+          FFAppState().Teams = _model.dTTeams!.toList().cast<TeamStruct>();
+        });
+      }
+    });
   }
 
   @override
@@ -72,34 +92,16 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: FutureBuilder<List<TeamRow>>(
-                    future: TeamTable().queryRows(
-                      queryFn: (q) => q,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                      List<TeamRow> listViewTeamRowList = snapshot.data!;
+                  child: Builder(
+                    builder: (context) {
+                      final teamsList = FFAppState().Teams.toList();
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: listViewTeamRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewTeamRow =
-                              listViewTeamRowList[listViewIndex];
+                        itemCount: teamsList.length,
+                        itemBuilder: (context, teamsListIndex) {
+                          final teamsListItem = teamsList[teamsListIndex];
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -113,7 +115,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                     'VIEW_team',
                                     queryParameters: {
                                       'teamId': serializeParam(
-                                        listViewTeamRow.id,
+                                        teamsListItem.id,
                                         ParamType.int,
                                       ),
                                     }.withoutNulls,
@@ -129,10 +131,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                         borderRadius:
                                             BorderRadius.circular(5.0),
                                         child: Image.network(
-                                          valueOrDefault<String>(
-                                            listViewTeamRow.logo,
-                                            'false',
-                                          ),
+                                          teamsListItem.logo,
                                           width: 50.0,
                                           height: 50.0,
                                           fit: BoxFit.cover,
@@ -140,7 +139,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                       ),
                                     ),
                                     Text(
-                                      listViewTeamRow.name!,
+                                      teamsListItem.name,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
