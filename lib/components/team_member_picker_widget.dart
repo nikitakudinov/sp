@@ -133,23 +133,21 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(5.0),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  messageUserRow?.avatar,
-                                  '0',
-                                ),
-                                width: 45.0,
-                                height: 45.0,
-                                fit: BoxFit.cover,
+                            Container(
+                              width: 35.0,
+                              height: 35.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  messageUserRow!.nickname!,
+                                  valueOrDefault<String>(
+                                    messageUserRow?.nickname,
+                                    '0',
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 ),
