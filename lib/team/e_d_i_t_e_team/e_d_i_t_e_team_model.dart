@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   ///  Local state fields for this page.
 
-  String? imagePath;
+  String? imagePath = 'false';
 
   ///  State fields for stateful widgets in this page.
 

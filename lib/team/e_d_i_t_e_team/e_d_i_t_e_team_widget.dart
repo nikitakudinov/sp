@@ -97,13 +97,19 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: Image.network(
-                      _model.imagePath!,
-                      width: 150.0,
-                      height: 150.0,
-                      fit: BoxFit.cover,
+                  child: Visibility(
+                    visible: _model.imagePath == 'false',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5.0),
+                      child: Image.network(
+                        valueOrDefault<String>(
+                          _model.imagePath,
+                          '0',
+                        ),
+                        width: 150.0,
+                        height: 150.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
