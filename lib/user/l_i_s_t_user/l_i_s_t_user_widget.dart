@@ -121,20 +121,30 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          15.0, 7.0, 15.0, 7.0),
-                                      child: ClipRRect(
+                                    Container(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                         borderRadius:
                                             BorderRadius.circular(5.0),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            listViewUserRow.avatar,
-                                            'false',
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 7.0, 15.0, 7.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              listViewUserRow.avatar,
+                                              'false',
+                                            ),
+                                            width: 50.0,
+                                            height: 50.0,
+                                            fit: BoxFit.cover,
                                           ),
-                                          width: 50.0,
-                                          height: 50.0,
-                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
