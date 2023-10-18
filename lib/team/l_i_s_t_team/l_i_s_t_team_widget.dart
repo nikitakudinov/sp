@@ -123,7 +123,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          15.0, 15.0, 15.0, 15.0),
+                                          15.0, 7.0, 15.0, 7.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(5.0),
