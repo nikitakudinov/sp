@@ -20,6 +20,8 @@ class EDITEUserModel extends FlutterFlowModel<EDITEUserWidget> {
   // State field(s) for TextField widget.
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  List<UserRow>? updateUserData;
 
   /// Initialization and disposal methods.
 

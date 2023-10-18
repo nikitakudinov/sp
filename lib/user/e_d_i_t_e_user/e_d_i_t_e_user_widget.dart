@@ -264,8 +264,24 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              _model.updateUserData = await UserTable().update(
+                                data: {
+                                  'created_at': supaSerialize<DateTime>(
+                                      getCurrentTimestamp),
+                                  'Nickname': _model.textController.text,
+                                  'Avatar': _model.uploadedFileUrl,
+                                },
+                                matchingRows: (rows) => rows.eq(
+                                  'id',
+                                  widget.userId,
+                                ),
+                                returnRows: true,
+                              );
+
+                              context.pushNamed('LIST_user');
+
+                              setState(() {});
                             },
                             text: 'Сохранить',
                             options: FFButtonOptions(
