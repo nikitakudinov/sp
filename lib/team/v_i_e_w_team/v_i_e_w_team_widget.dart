@@ -99,6 +99,10 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                 children: [
                   FutureBuilder<List<UserRow>>(
                     future: _model.teamMembers(
+                      uniqueQueryKey: valueOrDefault<String>(
+                        vIEWTeamTeamRow?.id?.toString(),
+                        '0',
+                      ),
                       requestFn: () => UserTable().queryRows(
                         queryFn: (q) => q.in_(
                           'id',
