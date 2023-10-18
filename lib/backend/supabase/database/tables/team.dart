@@ -25,4 +25,7 @@ class TeamRow extends SupabaseDataRow {
 
   String? get tag => getField<String>('Tag');
   set tag(String? value) => setField<String>('Tag', value);
+
+  List<int> get members => getListField<int>('Members');
+  set members(List<int>? value) => setListField<int>('Members', value);
 }

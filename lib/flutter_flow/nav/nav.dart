@@ -111,7 +111,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'VIEW_team',
           path: '/vIEWTeam',
-          builder: (context, params) => VIEWTeamWidget(),
+          builder: (context, params) => VIEWTeamWidget(
+            teamId: params.getParam('teamId', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

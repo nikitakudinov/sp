@@ -92,9 +92,26 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                     itemBuilder: (context, listViewIndex) {
                       final listViewTeamRow =
                           listViewTeamRowList[listViewIndex];
-                      return Text(
-                        listViewTeamRow.name!,
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                      return InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'VIEW_team',
+                            queryParameters: {
+                              'teamId': serializeParam(
+                                listViewTeamRow.id,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        child: Text(
+                          listViewTeamRow.name!,
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        ),
                       );
                     },
                   );
