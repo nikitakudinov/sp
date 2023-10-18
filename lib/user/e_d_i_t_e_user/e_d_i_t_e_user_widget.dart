@@ -113,7 +113,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).secondary,
-              automaticallyImplyLeading: false,
+              automaticallyImplyLeading: true,
               title: Text(
                 'Page Title',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
