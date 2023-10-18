@@ -79,7 +79,7 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Encode Sans Semi Condensed',
                           color: Colors.white,
                         ),
                     elevation: 3.0,
@@ -182,7 +182,8 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily:
+                                            'Encode Sans Semi Condensed',
                                         color: Colors.white,
                                       ),
                                   elevation: 3.0,
@@ -210,7 +211,8 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        fontFamily:
+                                            'Encode Sans Semi Condensed',
                                         color: Colors.white,
                                       ),
                                   elevation: 3.0,
@@ -297,7 +299,7 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Encode Sans Semi Condensed',
                           color: Colors.white,
                         ),
                     elevation: 3.0,

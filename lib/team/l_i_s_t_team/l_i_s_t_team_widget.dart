@@ -50,7 +50,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
           title: Text(
             'Page Title',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Roboto Condensed',
                   color: Colors.white,
                   fontSize: 22.0,
                 ),

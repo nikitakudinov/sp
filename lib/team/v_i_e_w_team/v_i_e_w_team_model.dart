@@ -24,8 +24,6 @@ class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
-  List<TeamRow>? logo;
   // Model for TeamMemberPicker component.
   late TeamMemberPickerModel teamMemberPickerModel;
 

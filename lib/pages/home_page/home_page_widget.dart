@@ -50,7 +50,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           title: Text(
             'Page Title',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
+                  fontFamily: 'Roboto Condensed',
                   color: Colors.white,
                   fontSize: 22.0,
                 ),
@@ -91,7 +91,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
+                        fontFamily: 'Encode Sans Semi Condensed',
                         color: Colors.white,
                       ),
                   elevation: 3.0,

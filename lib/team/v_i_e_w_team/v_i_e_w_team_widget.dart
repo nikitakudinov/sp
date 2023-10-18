@@ -86,12 +86,12 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primary,
+              backgroundColor: FlutterFlowTheme.of(context).secondary,
               automaticallyImplyLeading: true,
               title: Text(
                 'Page Title',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
+                      fontFamily: 'Roboto Condensed',
                       color: Colors.white,
                       fontSize: 22.0,
                     ),
@@ -114,114 +114,83 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      final selectedMedia = await selectMedia(
-                        storageFolderPath: 'logos',
-                        maxWidth: 150.00,
-                        maxHeight: 150.00,
-                        imageQuality: 100,
-                        mediaSource: MediaSource.photoGallery,
-                        multiImage: false,
-                      );
-                      if (selectedMedia != null &&
-                          selectedMedia.every((m) =>
-                              validateFileFormat(m.storagePath, context))) {
-                        setState(() => _model.isDataUploading = true);
-                        var selectedUploadedFiles = <FFUploadedFile>[];
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        final selectedMedia = await selectMedia(
+                          storageFolderPath: 'logos',
+                          maxWidth: 150.00,
+                          maxHeight: 150.00,
+                          imageQuality: 100,
+                          mediaSource: MediaSource.photoGallery,
+                          multiImage: false,
+                        );
+                        if (selectedMedia != null &&
+                            selectedMedia.every((m) =>
+                                validateFileFormat(m.storagePath, context))) {
+                          setState(() => _model.isDataUploading = true);
+                          var selectedUploadedFiles = <FFUploadedFile>[];
 
-                        var downloadUrls = <String>[];
-                        try {
-                          selectedUploadedFiles = selectedMedia
-                              .map((m) => FFUploadedFile(
-                                    name: m.storagePath.split('/').last,
-                                    bytes: m.bytes,
-                                    height: m.dimensions?.height,
-                                    width: m.dimensions?.width,
-                                    blurHash: m.blurHash,
-                                  ))
-                              .toList();
+                          var downloadUrls = <String>[];
+                          try {
+                            selectedUploadedFiles = selectedMedia
+                                .map((m) => FFUploadedFile(
+                                      name: m.storagePath.split('/').last,
+                                      bytes: m.bytes,
+                                      height: m.dimensions?.height,
+                                      width: m.dimensions?.width,
+                                      blurHash: m.blurHash,
+                                    ))
+                                .toList();
 
-                          downloadUrls = await uploadSupabaseStorageFiles(
-                            bucketName: 'playground',
-                            selectedFiles: selectedMedia,
-                          );
-                        } finally {
-                          _model.isDataUploading = false;
+                            downloadUrls = await uploadSupabaseStorageFiles(
+                              bucketName: 'playground',
+                              selectedFiles: selectedMedia,
+                            );
+                          } finally {
+                            _model.isDataUploading = false;
+                          }
+                          if (selectedUploadedFiles.length ==
+                                  selectedMedia.length &&
+                              downloadUrls.length == selectedMedia.length) {
+                            setState(() {
+                              _model.uploadedLocalFile =
+                                  selectedUploadedFiles.first;
+                              _model.uploadedFileUrl = downloadUrls.first;
+                            });
+                          } else {
+                            setState(() {});
+                            return;
+                          }
                         }
-                        if (selectedUploadedFiles.length ==
-                                selectedMedia.length &&
-                            downloadUrls.length == selectedMedia.length) {
-                          setState(() {
-                            _model.uploadedLocalFile =
-                                selectedUploadedFiles.first;
-                            _model.uploadedFileUrl = downloadUrls.first;
-                          });
-                        } else {
-                          setState(() {});
-                          return;
-                        }
-                      }
 
-                      setState(() {
-                        _model.imagePath = _model.uploadedFileUrl;
-                      });
-                    },
-                    text: 'Загрузить',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      _model.logo = await TeamTable().update(
-                        data: {
-                          'Logo': _model.imagePath,
-                        },
-                        matchingRows: (rows) => rows.eq(
-                          'id',
-                          widget.teamId,
+                        setState(() {
+                          _model.imagePath = _model.uploadedFileUrl;
+                        });
+                      },
+                      text: 'Загрузить',
+                      options: FFButtonOptions(
+                        width: 100.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 10.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .bodyMedium
+                            .override(
+                              fontFamily: 'Encode Sans Semi Condensed',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
                         ),
-                        returnRows: true,
-                      );
-
-                      setState(() {});
-                    },
-                    text: 'Button',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                        borderRadius: BorderRadius.circular(3.0),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   FutureBuilder<List<UserRow>>(
