@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<List<TeamStruct>?> jsonToDataTypeTeam(List<dynamic>? jsonArra) async {
+Future<List<TeamStruct>?> jsonToDataTypeTeam(List<dynamic>? jsonArray) async {
   // Add your function code here!
   List<TeamStruct> listOfStruct = [];
   var jsonArray;
