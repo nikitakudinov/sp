@@ -68,9 +68,9 @@ class ListteambyidCall {
 
 /// End TEAM Group Code
 
-/// Start UPLOADS Group Code
+/// Start USER Group Code
 
-class UploadsGroup {
+class UserGroup {
   static String baseUrl = 'https://supabase.proplayclub.ru/rest/v1/';
   static Map<String, String> headers = {
     'apikey':
@@ -78,33 +78,16 @@ class UploadsGroup {
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
   };
-  static CreatbucketCall creatbucketCall = CreatbucketCall();
+  static ListuserCall listuserCall = ListuserCall();
+  static ListuserbyidCall listuserbyidCall = ListuserbyidCall();
 }
 
-class CreatbucketCall {
+class ListuserCall {
   Future<ApiCallResponse> call() {
-    final ffApiRequestBody = '''
-{
-  "schema": {
-    "description": "Successful response",
-    "type": "object",
-    "properties": {
-      "name": {
-        "type": "string",
-        "examples": [
-          "avatars"
-        ]
-      }
-    },
-    "required": [
-      "name"
-    ]
-  }
-}''';
     return ApiManager.instance.makeApiCall(
-      callName: 'CREATBUCKET',
-      apiUrl: '${UploadsGroup.baseUrl}bucket/',
-      callType: ApiCallType.POST,
+      callName: 'LISTUSER',
+      apiUrl: '${UserGroup.baseUrl}User?',
+      callType: ApiCallType.GET,
       headers: {
         'apikey':
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
@@ -112,8 +95,6 @@ class CreatbucketCall {
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
       },
       params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -122,16 +103,13 @@ class CreatbucketCall {
   }
 }
 
-/// End UPLOADS Group Code
-
-class TeamsCall {
-  static Future<ApiCallResponse> call({
+class ListuserbyidCall {
+  Future<ApiCallResponse> call({
     String? idList = '',
   }) {
     return ApiManager.instance.makeApiCall(
-      callName: 'Teams',
-      apiUrl:
-          'https://supabase.proplayclub.ru/rest/v1/Team?id=in.%28${idList}%29',
+      callName: 'LISTUSERBYID',
+      apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -148,25 +126,7 @@ class TeamsCall {
   }
 }
 
-class TEstCall {
-  static Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'TEst',
-      apiUrl:
-          'https://supabase.proplayclub.ru/rest/v1/Team?select=id,Name,User(id)',
-      callType: ApiCallType.GET,
-      headers: {
-        'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
+/// End USER Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;
