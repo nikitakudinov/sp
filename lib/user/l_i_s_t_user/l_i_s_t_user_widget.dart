@@ -1,8 +1,11 @@
-import '/backend/supabase/supabase.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'l_i_s_t_user_model.dart';
@@ -24,6 +27,23 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => LISTUserModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.jsonUsersData = await UserGroup.listuserCall.call();
+      if ((_model.jsonUsersData?.succeeded ?? true)) {
+        _model.dTUsers = await actions.jsonDTUser(
+          getJsonField(
+            (_model.jsonUsersData?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
+        setState(() {
+          FFAppState().Users = _model.dTUsers!.toList().cast<UserStruct>();
+        });
+      }
+    });
   }
 
   @override
@@ -71,34 +91,16 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: FutureBuilder<List<UserRow>>(
-                    future: UserTable().queryRows(
-                      queryFn: (q) => q,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                      List<UserRow> listViewUserRowList = snapshot.data!;
+                  child: Builder(
+                    builder: (context) {
+                      final usersList = FFAppState().Users.toList();
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: listViewUserRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewUserRow =
-                              listViewUserRowList[listViewIndex];
+                        itemCount: usersList.length,
+                        itemBuilder: (context, usersListIndex) {
+                          final usersListItem = usersList[usersListIndex];
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -112,7 +114,7 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                     'EDITE_User',
                                     queryParameters: {
                                       'userId': serializeParam(
-                                        listViewUserRow.id,
+                                        usersListItem.id,
                                         ParamType.int,
                                       ),
                                     }.withoutNulls,
@@ -130,29 +132,19 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                         borderRadius:
                                             BorderRadius.circular(5.0),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 7.0, 15.0, 7.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
-                                          child: Image.network(
-                                            valueOrDefault<String>(
-                                              listViewUserRow.avatar,
-                                              'false',
-                                            ),
-                                            width: 50.0,
-                                            height: 50.0,
-                                            fit: BoxFit.cover,
-                                          ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                        child: Image.network(
+                                          usersListItem.avatar,
+                                          width: 50.0,
+                                          height: 50.0,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
                                     Text(
-                                      valueOrDefault<String>(
-                                        listViewUserRow.nickname,
-                                        '0',
-                                      ),
+                                      usersListItem.nickname,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),

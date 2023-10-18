@@ -207,6 +207,10 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                                 return;
                               }
                             }
+
+                            setState(() {
+                              _model.avatar = _model.uploadedFileUrl;
+                            });
                           },
                           text: 'Загрузить',
                           options: FFButtonOptions(
