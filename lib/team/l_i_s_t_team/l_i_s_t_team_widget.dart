@@ -1,11 +1,8 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'l_i_s_t_team_model.dart';
@@ -27,51 +24,6 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => LISTTeamModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultek8 = await TeamGroup.listteamCall.call();
-      if ((_model.apiResultek8?.succeeded ?? true)) {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('1'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-      }
-      _model.data = await actions.jsonToDataTypeTeam(
-        getJsonField(
-          (_model.apiResultek8?.jsonBody ?? ''),
-          r'''$''',
-          true,
-        ),
-      );
-      FFAppState().update(() {
-        FFAppState().Teams = _model.data!.toList().cast<TeamStruct>();
-      });
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('11'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-    });
   }
 
   @override
@@ -112,18 +64,36 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Builder(
-                builder: (context) {
-                  final temsList = FFAppState().Teams.toList();
+              FutureBuilder<List<TeamRow>>(
+                future: TeamTable().queryRows(
+                  queryFn: (q) => q,
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  List<TeamRow> listViewTeamRowList = snapshot.data!;
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: temsList.length,
-                    itemBuilder: (context, temsListIndex) {
-                      final temsListItem = temsList[temsListIndex];
+                    itemCount: listViewTeamRowList.length,
+                    itemBuilder: (context, listViewIndex) {
+                      final listViewTeamRow =
+                          listViewTeamRowList[listViewIndex];
                       return Text(
-                        temsListItem.name,
+                        listViewTeamRow.name!,
                         style: FlutterFlowTheme.of(context).bodyMedium,
                       );
                     },
