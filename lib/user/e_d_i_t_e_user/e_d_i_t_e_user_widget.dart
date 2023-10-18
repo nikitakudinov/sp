@@ -176,7 +176,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(5.0),
                                   child: Image.network(
-                                    _model.uploadedFileUrl,
+                                    _model.avatar,
                                     width: 100.0,
                                     height: 100.0,
                                     fit: BoxFit.cover,
