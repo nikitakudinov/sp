@@ -11,6 +11,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
+  ///  Local state fields for this page.
+
+  String imagePath = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

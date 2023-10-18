@@ -161,6 +161,10 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                           return;
                         }
                       }
+
+                      setState(() {
+                        _model.imagePath = _model.uploadedFileUrl;
+                      });
                     },
                     text: 'Загрузить',
                     options: FFButtonOptions(
@@ -187,7 +191,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                     onPressed: () async {
                       _model.logo = await TeamTable().update(
                         data: {
-                          'Logo': _model.uploadedFileUrl,
+                          'Logo': _model.imagePath,
                         },
                         matchingRows: (rows) => rows.eq(
                           'id',
