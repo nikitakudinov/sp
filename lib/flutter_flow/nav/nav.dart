@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '../../auth/base_auth_user_provider.dart';
 
@@ -101,6 +102,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Reg_Page',
           path: '/regPage',
           builder: (context, params) => RegPageWidget(),
+        ),
+        FFRoute(
+          name: 'LIST_team',
+          path: '/lISTTeam',
+          builder: (context, params) => LISTTeamWidget(),
+        ),
+        FFRoute(
+          name: 'VIEW_team',
+          path: '/vIEWTeam',
+          builder: (context, params) => VIEWTeamWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
