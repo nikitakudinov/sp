@@ -99,32 +99,32 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                         itemBuilder: (context, listViewIndex) {
                           final listViewTeamRow =
                               listViewTeamRowList[listViewIndex];
-                          return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                15.0, 15.0, 15.0, 15.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'VIEW_team',
-                                      queryParameters: {
-                                        'teamId': serializeParam(
-                                          listViewTeamRow.id,
-                                          ParamType.int,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      ClipRRect(
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'VIEW_team',
+                                    queryParameters: {
+                                      'teamId': serializeParam(
+                                        listViewTeamRow.id,
+                                        ParamType.int,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 15.0, 15.0, 15.0),
+                                      child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(5.0),
                                         child: Image.network(
@@ -137,27 +137,22 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          listViewTeamRow.name!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    Text(
+                                      listViewTeamRow.name!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ],
                                 ),
-                                Container(
-                                  height: 1.0,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
+                              ),
+                              Container(
+                                height: 1.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).secondary,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           );
                         },
                       );
