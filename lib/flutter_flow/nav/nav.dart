@@ -130,6 +130,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'LIST_user')
               : LISTUserWidget(),
+        ),
+        FFRoute(
+          name: 'ADD_User',
+          path: '/aDDUser',
+          builder: (context, params) => ADDUserWidget(
+            userId: params.getParam('userId', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -111,6 +111,17 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   context.pushNamed(
+                                    'ADD_User',
+                                    queryParameters: {
+                                      'userId': serializeParam(
+                                        usersListItem.id,
+                                        ParamType.int,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                onLongPress: () async {
+                                  context.pushNamed(
                                     'EDITE_User',
                                     queryParameters: {
                                       'userId': serializeParam(

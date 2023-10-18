@@ -1,18 +1,16 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'e_d_i_t_e_user_model.dart';
-export 'e_d_i_t_e_user_model.dart';
+import 'a_d_d_user_model.dart';
+export 'a_d_d_user_model.dart';
 
-class EDITEUserWidget extends StatefulWidget {
-  const EDITEUserWidget({
+class ADDUserWidget extends StatefulWidget {
+  const ADDUserWidget({
     Key? key,
     required this.userId,
   }) : super(key: key);
@@ -20,33 +18,20 @@ class EDITEUserWidget extends StatefulWidget {
   final int? userId;
 
   @override
-  _EDITEUserWidgetState createState() => _EDITEUserWidgetState();
+  _ADDUserWidgetState createState() => _ADDUserWidgetState();
 }
 
-class _EDITEUserWidgetState extends State<EDITEUserWidget> {
-  late EDITEUserModel _model;
+class _ADDUserWidgetState extends State<ADDUserWidget> {
+  late ADDUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EDITEUserModel());
+    _model = createModel(context, () => ADDUserModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResulthr2 = await UserGroup.listuserbyidCall.call(
-        idList: widget.userId?.toString(),
-      );
-      if ((_model.apiResulthr2?.succeeded ?? true)) {
-        setState(() {
-          _model.avatar = getJsonField(
-            (_model.apiResulthr2?.jsonBody ?? ''),
-            r'''$[:].Avatar''',
-          );
-        });
-      }
-    });
+    _model.textController ??= TextEditingController();
   }
 
   @override
@@ -71,7 +56,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondary,
           automaticallyImplyLeading: true,
           title: Text(
-            'Пользователи',
+            'Добавить профиль',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Roboto Condensed',
                   color: Colors.white,
@@ -132,13 +117,20 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Image.network(
-                                    _model.avatar,
-                                    width: 100.0,
-                                    height: 100.0,
-                                    fit: BoxFit.cover,
+                                child: Visibility(
+                                  visible: _model.avatar == null ||
+                                      _model.avatar == '',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: Image.network(
+                                      valueOrDefault<String>(
+                                        _model.avatar,
+                                        '0',
+                                      ),
+                                      width: 100.0,
+                                      height: 100.0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -240,10 +232,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: TextFormField(
-                              controller: _model.textController ??=
-                                  TextEditingController(
-                                text: columnUserRow?.nickname,
-                              ),
+                              controller: _model.textController,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Никнейм',
@@ -299,19 +288,12 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   _model.updateUserData =
-                                      await UserTable().update(
-                                    data: {
-                                      'created_at': supaSerialize<DateTime>(
-                                          getCurrentTimestamp),
-                                      'Nickname': _model.textController.text,
-                                      'Avatar': _model.avatar,
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'id',
-                                      widget.userId,
-                                    ),
-                                    returnRows: true,
-                                  );
+                                      await UserTable().insert({
+                                    'created_at': supaSerialize<DateTime>(
+                                        getCurrentTimestamp),
+                                    'Nickname': _model.textController.text,
+                                    'Avatar': _model.avatar,
+                                  });
 
                                   context.pushNamed('LIST_user');
 
