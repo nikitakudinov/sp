@@ -339,7 +339,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                                     'created_at': supaSerialize<DateTime>(
                                         getCurrentTimestamp),
                                     'Nickname': _model.textController.text,
-                                    'Avatar': _model.uploadedFileUrl,
+                                    'Avatar': _model.avatar,
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'id',
