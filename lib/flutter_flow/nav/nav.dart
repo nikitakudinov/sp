@@ -80,13 +80,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : AuthPageWidget(),
+          appStateNotifier.loggedIn ? LISTTeamWidget() : AuthPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : AuthPageWidget(),
+              appStateNotifier.loggedIn ? LISTTeamWidget() : AuthPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
