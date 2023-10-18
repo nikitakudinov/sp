@@ -98,7 +98,10 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(5.0),
                             child: Image.network(
-                              listViewTeamRow.logo!,
+                              valueOrDefault<String>(
+                                listViewTeamRow.logo,
+                                'false',
+                              ),
                               width: 50.0,
                               height: 50.0,
                               fit: BoxFit.cover,
