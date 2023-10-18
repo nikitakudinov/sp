@@ -92,21 +92,9 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                     itemBuilder: (context, listViewIndex) {
                       final listViewTeamRow =
                           listViewTeamRowList[listViewIndex];
-                      return Row(
+                      return Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.network(
-                              valueOrDefault<String>(
-                                listViewTeamRow.logo,
-                                'false',
-                              ),
-                              width: 50.0,
-                              height: 50.0,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
                           InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -123,9 +111,33 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                 }.withoutNulls,
                               );
                             },
-                            child: Text(
-                              listViewTeamRow.name!,
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  child: Image.network(
+                                    valueOrDefault<String>(
+                                      listViewTeamRow.logo,
+                                      'false',
+                                    ),
+                                    width: 50.0,
+                                    height: 50.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Text(
+                                  listViewTeamRow.name!,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 1.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).secondary,
                             ),
                           ),
                         ],
