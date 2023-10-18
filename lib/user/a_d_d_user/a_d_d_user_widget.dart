@@ -104,22 +104,20 @@ class _ADDUserWidgetState extends State<ADDUserWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(0.00, 0.00),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Container(
-                                width: 100.0,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                child: Visibility(
-                                  visible: _model.avatar == null ||
-                                      _model.avatar == '',
+                          if (_model.avatar == 'false')
+                            Align(
+                              alignment: AlignmentDirectional(0.00, 0.00),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(5.0),
                                     child: Image.network(
@@ -135,7 +133,6 @@ class _ADDUserWidgetState extends State<ADDUserWidget> {
                                 ),
                               ),
                             ),
-                          ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
