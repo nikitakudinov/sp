@@ -98,10 +98,12 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   FutureBuilder<List<UserRow>>(
-                    future: UserTable().queryRows(
-                      queryFn: (q) => q.in_(
-                        'id',
-                        vIEWTeamTeamRow!.members,
+                    future: _model.teamMembers(
+                      requestFn: () => UserTable().queryRows(
+                        queryFn: (q) => q.in_(
+                          'id',
+                          vIEWTeamTeamRow!.members,
+                        ),
                       ),
                     ),
                     builder: (context, snapshot) {
