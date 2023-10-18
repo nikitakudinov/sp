@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/flutter_flow/request_manager.dart';
-
 import 'e_d_i_t_e_team_widget.dart' show EDITETeamWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -31,23 +29,6 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   // Model for TeamMemberPicker component.
   late TeamMemberPickerModel teamMemberPickerModel;
 
-  /// Query cache managers for this widget.
-
-  final _teamItemDataManager = FutureRequestManager<List<TeamRow>>();
-  Future<List<TeamRow>> teamItemData({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<List<TeamRow>> Function() requestFn,
-  }) =>
-      _teamItemDataManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearTeamItemDataCache() => _teamItemDataManager.clear();
-  void clearTeamItemDataCacheKey(String? uniqueKey) =>
-      _teamItemDataManager.clearRequest(uniqueKey);
-
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
@@ -57,10 +38,6 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   void dispose() {
     unfocusNode.dispose();
     teamMemberPickerModel.dispose();
-
-    /// Dispose query cache managers for this widget.
-
-    clearTeamItemDataCache();
   }
 
   /// Action blocks are added here.
