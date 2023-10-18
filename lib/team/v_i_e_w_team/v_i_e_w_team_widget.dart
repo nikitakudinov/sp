@@ -185,14 +185,18 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      await TeamTable().update(
+                      _model.logo = await TeamTable().update(
                         data: {
                           'Logo': _model.uploadedFileUrl,
                         },
-                        matchingRows: (rows) => rows,
+                        matchingRows: (rows) => rows.eq(
+                          'id',
+                          widget.teamId,
+                        ),
+                        returnRows: true,
                       );
 
-                      context.pushNamed('LIST_team');
+                      setState(() {});
                     },
                     text: 'Button',
                     options: FFButtonOptions(
