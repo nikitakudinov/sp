@@ -50,9 +50,23 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
       _model.data = await actions.jsonToDataTypeTeam(
         (_model.apiResultek8?.jsonBody ?? ''),
       );
-      setState(() {
+      FFAppState().update(() {
         FFAppState().Teams = _model.data!.toList().cast<TeamStruct>();
       });
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('11'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
     });
   }
 
