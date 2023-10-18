@@ -1,7 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,6 +47,12 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
           },
         );
       }
+      _model.data = await actions.jsonToDataTypeTeam(
+        (_model.apiResultek8?.jsonBody ?? ''),
+      );
+      setState(() {
+        FFAppState().Teams = _model.data!.toList().cast<TeamStruct>();
+      });
     });
   }
 
