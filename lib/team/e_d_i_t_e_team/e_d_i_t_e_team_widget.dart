@@ -7,11 +7,11 @@ import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'v_i_e_w_team_model.dart';
-export 'v_i_e_w_team_model.dart';
+import 'e_d_i_t_e_team_model.dart';
+export 'e_d_i_t_e_team_model.dart';
 
-class VIEWTeamWidget extends StatefulWidget {
-  const VIEWTeamWidget({
+class EDITETeamWidget extends StatefulWidget {
+  const EDITETeamWidget({
     Key? key,
     required this.teamId,
   }) : super(key: key);
@@ -19,18 +19,18 @@ class VIEWTeamWidget extends StatefulWidget {
   final int? teamId;
 
   @override
-  _VIEWTeamWidgetState createState() => _VIEWTeamWidgetState();
+  _EDITETeamWidgetState createState() => _EDITETeamWidgetState();
 }
 
-class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
-  late VIEWTeamModel _model;
+class _EDITETeamWidgetState extends State<EDITETeamWidget> {
+  late EDITETeamModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => VIEWTeamModel());
+    _model = createModel(context, () => EDITETeamModel());
   }
 
   @override
@@ -75,9 +75,9 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
             ),
           );
         }
-        List<TeamRow> vIEWTeamTeamRowList = snapshot.data!;
-        final vIEWTeamTeamRow =
-            vIEWTeamTeamRowList.isNotEmpty ? vIEWTeamTeamRowList.first : null;
+        List<TeamRow> eDITETeamTeamRowList = snapshot.data!;
+        final eDITETeamTeamRow =
+            eDITETeamTeamRowList.isNotEmpty ? eDITETeamTeamRowList.first : null;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -105,13 +105,25 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      _model.uploadedFileUrl,
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 15.0),
+                    child: Container(
                       width: 150.0,
                       height: 150.0,
-                      fit: BoxFit.cover,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                        child: Image.network(
+                          _model.uploadedFileUrl,
+                          width: 150.0,
+                          height: 150.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                   Padding(

@@ -112,7 +112,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
                                   context.pushNamed(
-                                    'VIEW_team',
+                                    'EDITE_team',
                                     queryParameters: {
                                       'teamId': serializeParam(
                                         teamsListItem.id,

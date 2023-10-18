@@ -6,12 +6,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/request_manager.dart';
 
-import 'v_i_e_w_team_widget.dart' show VIEWTeamWidget;
+import 'e_d_i_t_e_team_widget.dart' show EDITETeamWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class VIEWTeamModel extends FlutterFlowModel<VIEWTeamWidget> {
+class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   ///  Local state fields for this page.
 
   String imagePath = '';

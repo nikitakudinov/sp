@@ -111,9 +111,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : LISTTeamWidget(),
         ),
         FFRoute(
-          name: 'VIEW_team',
-          path: '/vIEWTeam',
-          builder: (context, params) => VIEWTeamWidget(
+          name: 'EDITE_team',
+          path: '/eDITETeam',
+          builder: (context, params) => EDITETeamWidget(
             teamId: params.getParam('teamId', ParamType.int),
           ),
         ),
