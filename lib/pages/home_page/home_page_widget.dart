@@ -279,6 +279,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 Expanded(
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
+                                                      // Обновляем данные пользователя
                                                       _model.updateUserData =
                                                           await UserTable()
                                                               .update(
@@ -305,6 +306,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             listViewRequestRow
                                                                 .toUser,
                                                       );
+                                                      setState(() {
+                                                        FFAppState()
+                                                            .updateTeamStruct(
+                                                          (e) => e
+                                                            ..members =
+                                                                messageTeamRow!
+                                                                    .members
+                                                                    .toList(),
+                                                        );
+                                                      });
                                                       setState(() {
                                                         FFAppState()
                                                             .updateTeamStruct(
