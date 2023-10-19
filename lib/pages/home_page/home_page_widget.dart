@@ -502,7 +502,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Text(
-                    FFAppState().User.nickname,
+                    FFAppState().authenticatedUser.nickname,
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                 ],
