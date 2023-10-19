@@ -56,7 +56,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           FFAppState().Team = _model.teamData!.toList().cast<TeamStruct>();
         });
         await UserGroup.listuserbyidCall.call(
-          idList: widget.teamId?.toString(),
+          idList: '\"1\",\"2\"',
         );
         await showDialog(
           context: context,
