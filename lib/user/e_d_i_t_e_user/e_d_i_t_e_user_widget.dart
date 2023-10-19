@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'e_d_i_t_e_user_model.dart';
@@ -47,6 +48,8 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
         });
       }
     });
+
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -58,6 +61,15 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -244,6 +256,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                                   TextEditingController(
                                 text: columnUserRow?.nickname,
                               ),
+                              focusNode: _model.textFieldFocusNode,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Никнейм',

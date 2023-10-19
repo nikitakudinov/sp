@@ -8,6 +8,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'team_member_picker_widget.dart' show TeamMemberPickerWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,7 @@ class TeamMemberPickerModel extends FlutterFlowModel<TeamMemberPickerWidget> {
   // Stores action output result for [Custom Action - jsonDTUser] action in TeamMemberPicker widget.
   List<UserStruct>? dTMembers;
   // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
 
@@ -48,6 +50,7 @@ class TeamMemberPickerModel extends FlutterFlowModel<TeamMemberPickerWidget> {
   void initState(BuildContext context) {}
 
   void dispose() {
+    textFieldFocusNode?.dispose();
     textController?.dispose();
   }
 

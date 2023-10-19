@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'auth_page_widget.dart' show AuthPageWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,11 @@ class AuthPageModel extends FlutterFlowModel<AuthPageWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for email widget.
+  FocusNode? emailFocusNode;
   TextEditingController? emailController;
   String? Function(BuildContext, String?)? emailControllerValidator;
   // State field(s) for password widget.
+  FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
@@ -27,7 +30,10 @@ class AuthPageModel extends FlutterFlowModel<AuthPageWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    emailFocusNode?.dispose();
     emailController?.dispose();
+
+    passwordFocusNode?.dispose();
     passwordController?.dispose();
   }
 

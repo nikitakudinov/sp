@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'auth_page_model.dart';
@@ -26,7 +27,9 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
     _model = createModel(context, () => AuthPageModel());
 
     _model.emailController ??= TextEditingController();
+    _model.emailFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
   }
 
   @override
@@ -38,6 +41,15 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -71,6 +83,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.emailController,
+                  focusNode: _model.emailFocusNode,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -115,6 +128,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.passwordController,
+                  focusNode: _model.passwordFocusNode,
                   autofocus: true,
                   obscureText: !_model.passwordVisibility,
                   decoration: InputDecoration(

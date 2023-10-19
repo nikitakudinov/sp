@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -24,7 +24,7 @@ class TeamGroup {
 }
 
 class ListteamCall {
-  Future<ApiCallResponse> call() {
+  Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTTEAM',
       apiUrl: '${TeamGroup.baseUrl}Team?',
@@ -47,7 +47,7 @@ class ListteamCall {
 class ListteambyidCall {
   Future<ApiCallResponse> call({
     String? idList = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTTEAMBYID',
       apiUrl: '${TeamGroup.baseUrl}Team?id=in.%28${idList}%29',
@@ -70,7 +70,7 @@ class ListteambyidCall {
 class LISTTEAMBYIDCopyCall {
   Future<ApiCallResponse> call({
     String? idList = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTTEAMBYID Copy',
       apiUrl: '${TeamGroup.baseUrl}Team?id=in.%28${idList}%29',
@@ -108,7 +108,7 @@ class UserGroup {
 }
 
 class ListuserCall {
-  Future<ApiCallResponse> call() {
+  Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTUSER',
       apiUrl: '${UserGroup.baseUrl}User?',
@@ -131,7 +131,7 @@ class ListuserCall {
 class ListuserbyidCall {
   Future<ApiCallResponse> call({
     String? idList = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTUSERBYID',
       apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',
@@ -175,7 +175,7 @@ class ListuserbyidCall {
 class ListuserbyidintCall {
   Future<ApiCallResponse> call({
     String? idList = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTUSERBYIDINT',
       apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',

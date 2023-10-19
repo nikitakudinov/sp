@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'reg_page_model.dart';
@@ -26,8 +27,11 @@ class _RegPageWidgetState extends State<RegPageWidget> {
     _model = createModel(context, () => RegPageModel());
 
     _model.emailController ??= TextEditingController();
+    _model.emailFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
     _model.repasswordController ??= TextEditingController();
+    _model.repasswordFocusNode ??= FocusNode();
   }
 
   @override
@@ -39,6 +43,15 @@ class _RegPageWidgetState extends State<RegPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -72,6 +85,7 @@ class _RegPageWidgetState extends State<RegPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.emailController,
+                  focusNode: _model.emailFocusNode,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -116,6 +130,7 @@ class _RegPageWidgetState extends State<RegPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.passwordController,
+                  focusNode: _model.passwordFocusNode,
                   autofocus: true,
                   obscureText: !_model.passwordVisibility,
                   decoration: InputDecoration(
@@ -173,6 +188,7 @@ class _RegPageWidgetState extends State<RegPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
                   controller: _model.repasswordController,
+                  focusNode: _model.repasswordFocusNode,
                   autofocus: true,
                   obscureText: !_model.repasswordVisibility,
                   decoration: InputDecoration(

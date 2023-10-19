@@ -7,6 +7,7 @@ import '/flutter_flow/upload_data.dart';
 import 'e_d_i_t_e_user_widget.dart' show EDITEUserWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,7 @@ class EDITEUserModel extends FlutterFlowModel<EDITEUserWidget> {
   String uploadedFileUrl = '';
 
   // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - Update Row] action in Button widget.
@@ -37,6 +39,7 @@ class EDITEUserModel extends FlutterFlowModel<EDITEUserWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
     textController?.dispose();
   }
 
