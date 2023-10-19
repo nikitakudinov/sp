@@ -5,7 +5,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -38,8 +37,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       );
       if ((_model.apiResulta5r?.succeeded ?? true)) {
         setState(() {
-          FFAppState().authenticatedUser =
-              UserStruct.fromMap((_model.apiResulta5r?.jsonBody ?? ''));
+          FFAppState().updateAuthenticatedUserStruct(
+            (e) => e
+              ..id = UserGroup.listuserbyuidCall.id(
+                (_model.apiResulta5r?.jsonBody ?? ''),
+              )
+              ..createdAt = UserGroup.listuserbyuidCall
+                  .createdat(
+                    (_model.apiResulta5r?.jsonBody ?? ''),
+                  )
+                  .toString()
+                  .toString()
+              ..nickname = UserGroup.listuserbyuidCall
+                  .nickname(
+                    (_model.apiResulta5r?.jsonBody ?? ''),
+                  )
+                  .toString()
+                  .toString()
+              ..memberOfTeam = UserGroup.listuserbyuidCall.memberOfTeam(
+                (_model.apiResulta5r?.jsonBody ?? ''),
+              )
+              ..avatar = UserGroup.listuserbyuidCall.avatar(
+                (_model.apiResulta5r?.jsonBody ?? ''),
+              ),
+          );
         });
       }
     });
