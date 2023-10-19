@@ -20,6 +20,7 @@ class TeamGroup {
   };
   static ListteamCall listteamCall = ListteamCall();
   static ListteambyidCall listteambyidCall = ListteambyidCall();
+  static LISTTEAMBYIDCopyCall lISTTEAMBYIDCopyCall = LISTTEAMBYIDCopyCall();
 }
 
 class ListteamCall {
@@ -66,6 +67,29 @@ class ListteambyidCall {
   }
 }
 
+class LISTTEAMBYIDCopyCall {
+  Future<ApiCallResponse> call({
+    String? idList = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'LISTTEAMBYID Copy',
+      apiUrl: '${TeamGroup.baseUrl}Team?id=in.%28${idList}%29',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 /// End TEAM Group Code
 
 /// Start USER Group Code
@@ -80,6 +104,7 @@ class UserGroup {
   };
   static ListuserCall listuserCall = ListuserCall();
   static ListuserbyidCall listuserbyidCall = ListuserbyidCall();
+  static ListuserbyidintCall listuserbyidintCall = ListuserbyidintCall();
 }
 
 class ListuserCall {
@@ -109,6 +134,52 @@ class ListuserbyidCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTUSERBYID',
+      apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$[:].id''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$[:].created_at''',
+      );
+  dynamic nickname(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Nickname''',
+      );
+  dynamic memberOfTeam(dynamic response) => getJsonField(
+        response,
+        r'''$[:].MemberOfTeam''',
+      );
+  dynamic avatar(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Avatar''',
+      );
+}
+
+class ListuserbyidintCall {
+  Future<ApiCallResponse> call({
+    List<int>? idListList,
+  }) {
+    final idList = _serializeList(idListList);
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'LISTUSERBYIDINT',
       apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',
       callType: ApiCallType.GET,
       headers: {

@@ -25,7 +25,7 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   ApiCallResponse? apiResultkiz;
   // Stores action output result for [Custom Action - jsonDTTeam] action in EDITE_team widget.
   List<TeamStruct>? teamData;
-  // Stores action output result for [Backend Call - API (LISTUSERBYID)] action in EDITE_team widget.
+  // Stores action output result for [Backend Call - API (LISTUSERBYIDINT)] action in EDITE_team widget.
   ApiCallResponse? jsonUsersData;
   // Stores action output result for [Custom Action - jsonDTUser] action in EDITE_team widget.
   List<UserStruct>? dTUsersData;
