@@ -19,3 +19,11 @@ String? cleanResponse(String? input) {
   }
   return input.replaceAll(RegExp(r'[^\w\s]+'), '');
 }
+
+String? newCustomFunction(List<int>? input) {
+  // list input to string by comma
+  if (input == null || input.isEmpty) {
+    return null;
+  }
+  return input.join(',');
+}
