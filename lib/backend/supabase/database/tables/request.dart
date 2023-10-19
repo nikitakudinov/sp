@@ -23,8 +23,8 @@ class RequestRow extends SupabaseDataRow {
   int? get fromTeam => getField<int>('FromTeam');
   set fromTeam(int? value) => setField<int>('FromTeam', value);
 
-  int? get toUser => getField<int>('ToUser');
-  set toUser(int? value) => setField<int>('ToUser', value);
+  String? get toUser => getField<String>('ToUser');
+  set toUser(String? value) => setField<String>('ToUser', value);
 
   String? get type => getField<String>('Type');
   set type(String? value) => setField<String>('Type', value);

@@ -282,7 +282,8 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                         _model.creatRequest =
                                             await RequestTable().insert({
                                           'Type': 'Приглашение в команду',
-                                          'ToUser': messageUserRow?.id,
+                                          'ToUser':
+                                              messageUserRow?.id?.toString(),
                                           'FromTeam': widget.docId,
                                           'created_at': supaSerialize<DateTime>(
                                               getCurrentTimestamp),
