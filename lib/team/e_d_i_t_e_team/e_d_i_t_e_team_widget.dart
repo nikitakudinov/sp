@@ -47,10 +47,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           );
         });
         _model.apiResultdek = await UserGroup.listuserbyidCall.call(
-          idList: getJsonField(
-            (_model.apiResultegc?.jsonBody ?? ''),
-            r'''$[:].Members''',
-          ).toString().toString(),
+          idList: '1,2',
         );
         if ((_model.apiResultdek?.succeeded ?? true)) {
           await showDialog(
