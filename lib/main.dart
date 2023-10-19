@@ -128,6 +128,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
+      'HomePage': HomePageWidget(),
       'LIST_team': LISTTeamWidget(),
       'LIST_user': LISTUserWidget(),
     };
@@ -164,14 +165,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  FontAwesomeIcons.themeco,
+                  Icons.home_outlined,
                   color: currentIndex == 0
                       ? FlutterFlowTheme.of(context).primary
                       : FlutterFlowTheme.of(context).tertiary,
                   size: 24.0,
                 ),
                 Text(
-                  'Команды',
+                  'Home',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 0
@@ -188,8 +189,32 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.person,
+                  FontAwesomeIcons.themeco,
                   color: currentIndex == 1
+                      ? FlutterFlowTheme.of(context).primary
+                      : FlutterFlowTheme.of(context).tertiary,
+                  size: 24.0,
+                ),
+                Text(
+                  'Команды',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 1
+                        ? FlutterFlowTheme.of(context).primary
+                        : FlutterFlowTheme.of(context).tertiary,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.person,
+                  color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
                       : FlutterFlowTheme.of(context).tertiary,
                   size: 24.0,
@@ -198,7 +223,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   'Игроки',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 1
+                    color: currentIndex == 2
                         ? FlutterFlowTheme.of(context).primary
                         : FlutterFlowTheme.of(context).tertiary,
                     fontSize: 11.0,
