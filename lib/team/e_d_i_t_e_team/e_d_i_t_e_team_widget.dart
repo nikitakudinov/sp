@@ -1,13 +1,11 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'e_d_i_t_e_team_model.dart';
@@ -34,46 +32,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EDITETeamModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultegc = await TeamGroup.listteambyidCall.call(
-        idList: widget.teamId?.toString(),
-      );
-      if ((_model.apiResultegc?.succeeded ?? true)) {
-        setState(() {
-          _model.imagePath = getJsonField(
-            (_model.apiResultegc?.jsonBody ?? ''),
-            r'''$[:].Logo''',
-          );
-        });
-        _model.apiResultdek = await UserGroup.listuserbyidCall.call(
-          idList: valueOrDefault<String>(
-            functions.cleanResponse(getJsonField(
-              (_model.apiResultegc?.jsonBody ?? ''),
-              r'''$[:].Members''',
-            ).toString().toString()),
-            '0',
-          ),
-        );
-        if ((_model.apiResultdek?.succeeded ?? true)) {
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                title: Text('pizda'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
-        }
-      }
-    });
   }
 
   @override
@@ -230,12 +188,21 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ),
                 ),
               ),
-              Text(
-                getJsonField(
-                  (_model.apiResultegc?.jsonBody ?? ''),
-                  r'''$[:].Members''',
-                ).toString(),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await action_blocks.loadTeam(
+                    context,
+                    teamId: widget.teamId,
+                  );
+                },
+                child: Text(
+                  'Hello World',
+                  style: FlutterFlowTheme.of(context).bodyMedium,
+                ),
               ),
             ],
           ),
