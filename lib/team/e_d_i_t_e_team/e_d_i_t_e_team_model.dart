@@ -21,6 +21,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (LISTTEAMBYID)] action in EDITE_team widget.
   ApiCallResponse? apiResultegc;
+  // Stores action output result for [Backend Call - API (LISTUSERBYID)] action in EDITE_team widget.
+  ApiCallResponse? apiResultdek;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));

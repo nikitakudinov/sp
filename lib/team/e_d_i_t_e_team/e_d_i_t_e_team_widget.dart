@@ -46,6 +46,28 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             r'''$[:].Logo''',
           );
         });
+        _model.apiResultdek = await UserGroup.listuserbyidCall.call(
+          idList: getJsonField(
+            (_model.apiResultegc?.jsonBody ?? ''),
+            r'''$[:].Members''',
+          ).toString().toString(),
+        );
+        if ((_model.apiResultdek?.succeeded ?? true)) {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: Text('pizda'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
       }
     });
   }

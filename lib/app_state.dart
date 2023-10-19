@@ -92,6 +92,35 @@ class FFAppState extends ChangeNotifier {
   void updateUserStruct(Function(UserStruct) updateFn) {
     updateFn(_User);
   }
+
+  List<UserStruct> _TeamMembers = [];
+  List<UserStruct> get TeamMembers => _TeamMembers;
+  set TeamMembers(List<UserStruct> _value) {
+    _TeamMembers = _value;
+  }
+
+  void addToTeamMembers(UserStruct _value) {
+    _TeamMembers.add(_value);
+  }
+
+  void removeFromTeamMembers(UserStruct _value) {
+    _TeamMembers.remove(_value);
+  }
+
+  void removeAtIndexFromTeamMembers(int _index) {
+    _TeamMembers.removeAt(_index);
+  }
+
+  void updateTeamMembersAtIndex(
+    int _index,
+    UserStruct Function(UserStruct) updateFn,
+  ) {
+    _TeamMembers[_index] = updateFn(_TeamMembers[_index]);
+  }
+
+  void insertAtIndexInTeamMembers(int _index, UserStruct _value) {
+    _TeamMembers.insert(_index, _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
