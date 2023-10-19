@@ -44,22 +44,39 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
         idList: widget.teamId?.toString(),
       );
       if ((_model.apiResultkiz?.succeeded ?? true)) {
-        _model.teamData = await actions.jsonDTTeam(
-          getJsonField(
-            (_model.apiResultkiz?.jsonBody ?? ''),
-            r'''$[:]''',
-            true,
-          ),
-        );
         setState(() {
-          FFAppState().Team = _model.teamData!.toList().cast<TeamStruct>();
+          FFAppState().updateTeamStruct(
+            (e) => e
+              ..id = getJsonField(
+                (_model.apiResultkiz?.jsonBody ?? ''),
+                r'''$[:].id''',
+              )
+              ..createdAt = getJsonField(
+                (_model.apiResultkiz?.jsonBody ?? ''),
+                r'''$[:].created_at''',
+              ).toString().toString()
+              ..name = getJsonField(
+                (_model.apiResultkiz?.jsonBody ?? ''),
+                r'''$[:].Name''',
+              ).toString().toString()
+              ..members = getJsonField(
+                (_model.apiResultkiz?.jsonBody ?? ''),
+                r'''$[:].Members''',
+                true,
+              )!
+                  .toList()
+              ..tag = getJsonField(
+                (_model.apiResultkiz?.jsonBody ?? ''),
+                r'''$[:].Tag''',
+              ).toString().toString()
+              ..logo = getJsonField(
+                (_model.apiResultkiz?.jsonBody ?? ''),
+                r'''$[:].Logo''',
+              ),
+          );
         });
         _model.jsonUsersData = await UserGroup.listuserbyidintCall.call(
-          idListList: getJsonField(
-            (_model.apiResultkiz?.jsonBody ?? ''),
-            r'''$[:].Members''',
-            true,
-          ),
+          idListList: FFAppState().Team.members,
         );
         _model.dTUsersData = await actions.jsonDTUser(
           getJsonField(

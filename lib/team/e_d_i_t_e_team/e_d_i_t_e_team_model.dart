@@ -23,8 +23,6 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (LISTTEAMBYID)] action in EDITE_team widget.
   ApiCallResponse? apiResultkiz;
-  // Stores action output result for [Custom Action - jsonDTTeam] action in EDITE_team widget.
-  List<TeamStruct>? teamData;
   // Stores action output result for [Backend Call - API (LISTUSERBYIDINT)] action in EDITE_team widget.
   ApiCallResponse? jsonUsersData;
   // Stores action output result for [Custom Action - jsonDTUser] action in EDITE_team widget.
