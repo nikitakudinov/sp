@@ -104,6 +104,7 @@ class UserGroup {
   };
   static ListuserCall listuserCall = ListuserCall();
   static ListuserbyidCall listuserbyidCall = ListuserbyidCall();
+  static ListuserbyuidCall listuserbyuidCall = ListuserbyuidCall();
   static ListuserbyidintCall listuserbyidintCall = ListuserbyidintCall();
 }
 
@@ -135,6 +136,50 @@ class ListuserbyidCall {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTUSERBYID',
       apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$[:].id''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$[:].created_at''',
+      );
+  dynamic nickname(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Nickname''',
+      );
+  dynamic memberOfTeam(dynamic response) => getJsonField(
+        response,
+        r'''$[:].MemberOfTeam''',
+      );
+  dynamic avatar(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Avatar''',
+      );
+}
+
+class ListuserbyuidCall {
+  Future<ApiCallResponse> call({
+    String? idList = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'LISTUSERBYUID',
+      apiUrl: '${UserGroup.baseUrl}User?UID=in.%28${idList}%29',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -217,6 +262,37 @@ class ListuserbyidintCall {
 }
 
 /// End USER Group Code
+
+class RegisterCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+    String? password = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "email": "${email}",
+  "password": "${password}",
+  "email_confirm": true
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'REGISTER',
+      apiUrl: 'https://supabase.proplayclub.ru/auth/v1/signup',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
 
 class ApiPagingParams {
   int nextPageNumber = 0;

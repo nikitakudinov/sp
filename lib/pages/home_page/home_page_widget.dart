@@ -1,4 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -106,9 +108,308 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     itemBuilder: (context, listViewIndex) {
                       final listViewRequestRow =
                           listViewRequestRowList[listViewIndex];
-                      return Text(
-                        'Hello World',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                      return Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 15.0, 15.0, 15.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          child: FutureBuilder<List<TeamRow>>(
+                            future: TeamTable().querySingleRow(
+                              queryFn: (q) => q.eq(
+                                'id',
+                                listViewRequestRow.fromTeam,
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<TeamRow> messageTeamRowList = snapshot.data!;
+                              final messageTeamRow =
+                                  messageTeamRowList.isNotEmpty
+                                      ? messageTeamRowList.first
+                                      : null;
+                              return Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 10.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            'Команда предлагает вступить в ее ряды вы согласны?',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 10.0, 0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 5.0, 0.0),
+                                                  child: Container(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0),
+                                                      child: Image.network(
+                                                        messageTeamRow!.logo!,
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        messageTeamRow?.name,
+                                                        '0',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    ),
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        messageTeamRow?.tag,
+                                                        '0',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 10.0, 0.0, 10.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: FFButtonWidget(
+                                                    onPressed: () {
+                                                      print(
+                                                          'Button pressed ...');
+                                                    },
+                                                    text: 'НЕТ',
+                                                    options: FFButtonOptions(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Encode Sans Semi Condensed',
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                      elevation: 3.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      _model.updateUserData =
+                                                          await UserTable()
+                                                              .update(
+                                                        data: {
+                                                          'Tag': messageTeamRow
+                                                              ?.tag,
+                                                          'MemberOfTeam':
+                                                              messageTeamRow
+                                                                  ?.id,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'UID',
+                                                          listViewRequestRow
+                                                              .toUser,
+                                                        ),
+                                                        returnRows: true,
+                                                      );
+                                                      _model.userData =
+                                                          await UserGroup
+                                                              .listuserbyuidCall
+                                                              .call(
+                                                        idList:
+                                                            listViewRequestRow
+                                                                .toUser,
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                            .updateTeamStruct(
+                                                          (e) => e
+                                                            ..updateMembers(
+                                                              (e) => e.add(
+                                                                  getJsonField(
+                                                                (_model.userData
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[:].id''',
+                                                              )),
+                                                            ),
+                                                        );
+                                                      });
+                                                      _model.apiResultxsb =
+                                                          await TeamTable()
+                                                              .update(
+                                                        data: {
+                                                          'Members':
+                                                              FFAppState()
+                                                                  .Team
+                                                                  .members,
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'id',
+                                                          messageTeamRow?.id,
+                                                        ),
+                                                        returnRows: true,
+                                                      );
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text('done'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+
+                                                      setState(() {});
+                                                    },
+                                                    text: 'ДА',
+                                                    options: FFButtonOptions(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Encode Sans Semi Condensed',
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                      elevation: 3.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ].divide(SizedBox(width: 10.0)),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
                       );
                     },
                   );
