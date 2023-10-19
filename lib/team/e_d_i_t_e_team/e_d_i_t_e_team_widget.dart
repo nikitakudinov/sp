@@ -44,10 +44,11 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       );
       if ((_model.apiResult3ba?.succeeded ?? true)) {
         setState(() {
-          _model.members = functions.cleanResponse(getJsonField(
+          _model.members = functions.newCustomFunction(getJsonField(
             (_model.apiResult3ba?.jsonBody ?? ''),
             r'''$[:].Members''',
-          ).toString().toString())!;
+            true,
+          ))!;
         });
       }
     });
@@ -207,9 +208,15 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ),
                 ),
               ),
-              Text(
-                _model.members,
-                style: FlutterFlowTheme.of(context).bodyMedium,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                child: Text(
+                  _model.members,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Encode Sans Semi Condensed',
+                        fontSize: 30.0,
+                      ),
+                ),
               ),
             ],
           ),
