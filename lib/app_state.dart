@@ -131,6 +131,16 @@ class FFAppState extends ChangeNotifier {
   void updateTeamStruct(Function(TeamStruct) updateFn) {
     updateFn(_Team);
   }
+
+  UserStruct _authenticatedUser = UserStruct();
+  UserStruct get authenticatedUser => _authenticatedUser;
+  set authenticatedUser(UserStruct _value) {
+    _authenticatedUser = _value;
+  }
+
+  void updateAuthenticatedUserStruct(Function(UserStruct) updateFn) {
+    updateFn(_authenticatedUser);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

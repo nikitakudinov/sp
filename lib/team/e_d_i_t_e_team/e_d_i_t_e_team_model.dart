@@ -1,7 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
-import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -45,18 +44,12 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
-  // Model for TeamMemberPicker component.
-  late TeamMemberPickerModel teamMemberPickerModel;
-
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {
-    teamMemberPickerModel = createModel(context, () => TeamMemberPickerModel());
-  }
+  void initState(BuildContext context) {}
 
   void dispose() {
     unfocusNode.dispose();
-    teamMemberPickerModel.dispose();
   }
 
   /// Action blocks are added here.

@@ -138,6 +138,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ADD_User',
           path: '/aDDUser',
           builder: (context, params) => ADDUserWidget(),
+        ),
+        FFRoute(
+          name: 'ADD_team',
+          path: '/aDDTeam',
+          builder: (context, params) => ADDTeamWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

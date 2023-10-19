@@ -1,7 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
-import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -219,17 +218,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       width: 1.0,
                     ),
                     borderRadius: BorderRadius.circular(3.0),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
-                child: wrapWithModel(
-                  model: _model.teamMemberPickerModel,
-                  updateCallback: () => setState(() {}),
-                  child: TeamMemberPickerWidget(
-                    docId: widget.teamId!,
-                    members: _model.members,
                   ),
                 ),
               ),
