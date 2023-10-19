@@ -266,7 +266,7 @@ class _RegPageWidgetState extends State<RegPageWidget> {
                     return;
                   }
 
-                  context.goNamedAuth('LIST_team', context.mounted);
+                  context.pushNamedAuth('ADD_User', context.mounted);
                 },
                 text: 'Сохранить',
                 options: FFButtonOptions(
