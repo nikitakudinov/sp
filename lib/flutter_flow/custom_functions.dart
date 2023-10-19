@@ -12,18 +12,11 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
-String? cleanResponse(String? input) {
-  // get string input and return without symbols [ ]
-  if (input == null) {
-    return null;
-  }
-  return input.replaceAll(RegExp(r'[^\w\s]+'), '');
-}
-
-String? newCustomFunction(List<int>? input) {
-  // list input to string by comma
+String? cleanResponse(List<dynamic>? input) {
+  // array of integer to string by comma
   if (input == null || input.isEmpty) {
     return null;
   }
-  return input.join(',');
+  final List<String> stringList = input.map((e) => e.toString()).toList();
+  return stringList.join(',');
 }

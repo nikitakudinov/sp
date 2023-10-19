@@ -47,7 +47,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           _model.members = functions.cleanResponse(getJsonField(
             (_model.apiResult3ba?.jsonBody ?? ''),
             r'''$[:].Members''',
-          ).toString().toString())!;
+            true,
+          ))!;
         });
       }
     });
