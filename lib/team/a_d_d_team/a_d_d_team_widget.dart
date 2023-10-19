@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -296,6 +297,7 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                               'Tag': _model.textController2.text,
                               'Logo': _model.uploadedFileUrl,
                               'Members': FFAppState().Team.members,
+                              'Creator': currentUserUid,
                             });
 
                             context.pushNamed('LIST_team');

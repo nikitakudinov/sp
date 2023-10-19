@@ -13,12 +13,14 @@ class TeamStruct extends BaseStruct {
     List<int>? members,
     String? tag,
     String? logo,
+    String? creator,
   })  : _id = id,
         _createdAt = createdAt,
         _name = name,
         _members = members,
         _tag = tag,
-        _logo = logo;
+        _logo = logo,
+        _creator = creator;
 
   // "id" field.
   int? _id;
@@ -58,6 +60,12 @@ class TeamStruct extends BaseStruct {
   set logo(String? val) => _logo = val;
   bool hasLogo() => _logo != null;
 
+  // "Creator" field.
+  String? _creator;
+  String get creator => _creator ?? '';
+  set creator(String? val) => _creator = val;
+  bool hasCreator() => _creator != null;
+
   static TeamStruct fromMap(Map<String, dynamic> data) => TeamStruct(
         id: castToType<int>(data['id']),
         createdAt: data['created_at'] as String?,
@@ -65,6 +73,7 @@ class TeamStruct extends BaseStruct {
         members: getDataList(data['Members']),
         tag: data['Tag'] as String?,
         logo: data['Logo'] as String?,
+        creator: data['Creator'] as String?,
       );
 
   static TeamStruct? maybeFromMap(dynamic data) =>
@@ -77,6 +86,7 @@ class TeamStruct extends BaseStruct {
         'Members': _members,
         'Tag': _tag,
         'Logo': _logo,
+        'Creator': _creator,
       }.withoutNulls;
 
   @override
@@ -104,6 +114,10 @@ class TeamStruct extends BaseStruct {
         ),
         'Logo': serializeParam(
           _logo,
+          ParamType.String,
+        ),
+        'Creator': serializeParam(
+          _creator,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -140,6 +154,11 @@ class TeamStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        creator: deserializeParam(
+          data['Creator'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -154,12 +173,13 @@ class TeamStruct extends BaseStruct {
         name == other.name &&
         listEquality.equals(members, other.members) &&
         tag == other.tag &&
-        logo == other.logo;
+        logo == other.logo &&
+        creator == other.creator;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, createdAt, name, members, tag, logo]);
+  int get hashCode => const ListEquality()
+      .hash([id, createdAt, name, members, tag, logo, creator]);
 }
 
 TeamStruct createTeamStruct({
@@ -168,6 +188,7 @@ TeamStruct createTeamStruct({
   String? name,
   String? tag,
   String? logo,
+  String? creator,
 }) =>
     TeamStruct(
       id: id,
@@ -175,4 +196,5 @@ TeamStruct createTeamStruct({
       name: name,
       tag: tag,
       logo: logo,
+      creator: creator,
     );
