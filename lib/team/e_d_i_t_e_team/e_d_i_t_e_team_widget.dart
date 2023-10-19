@@ -44,11 +44,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       );
       if ((_model.apiResult3ba?.succeeded ?? true)) {
         setState(() {
-          _model.members = functions.newCustomFunction(getJsonField(
+          _model.members = functions.cleanResponse(getJsonField(
             (_model.apiResult3ba?.jsonBody ?? ''),
             r'''$[:].Members''',
-            true,
-          ))!;
+          ).toString().toString())!;
         });
       }
     });
