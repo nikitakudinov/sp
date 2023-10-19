@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -65,17 +64,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             '0',
           ),
         );
-        _model.dTUsersData = await actions.jsonDTUser(
-          getJsonField(
-            (_model.jsonUsersData?.jsonBody ?? ''),
-            r'''$[:]''',
-            true,
-          ),
-        );
-        setState(() {
-          FFAppState().TeamMembers =
-              _model.dTUsersData!.toList().cast<UserStruct>();
-        });
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
@@ -90,6 +78,17 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             );
           },
         );
+        _model.dTUsersData = await actions.jsonDTUser(
+          getJsonField(
+            (_model.jsonUsersData?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
+        setState(() {
+          FFAppState().TeamMembers =
+              _model.dTUsersData!.toList().cast<UserStruct>();
+        });
       }
     });
   }
@@ -246,22 +245,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       docId: widget.teamId!,
                     ),
                   ),
-                ),
-              ),
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await action_blocks.loadTeam(
-                    context,
-                    teamId: widget.teamId,
-                  );
-                },
-                child: Text(
-                  FFAppState().TeamMembers.first.nickname,
-                  style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
             ],
