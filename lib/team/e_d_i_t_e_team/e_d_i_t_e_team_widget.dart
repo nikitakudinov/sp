@@ -88,32 +88,33 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 15.0),
-                child: Container(
-                  width: 150.0,
-                  height: 150.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: Visibility(
-                    visible: _model.imagePath != 'false',
-                    child: ClipRRect(
+              if (_model.imagePath != 'false')
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 15.0),
+                  child: Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(5.0),
-                      child: Image.network(
-                        valueOrDefault<String>(
-                          _model.imagePath,
-                          '0',
+                    ),
+                    child: Visibility(
+                      visible: _model.imagePath != 'false',
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                        child: Image.network(
+                          valueOrDefault<String>(
+                            _model.imagePath,
+                            '0',
+                          ),
+                          width: 150.0,
+                          height: 150.0,
+                          fit: BoxFit.cover,
                         ),
-                        width: 150.0,
-                        height: 150.0,
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
-              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: FFButtonWidget(
