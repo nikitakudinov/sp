@@ -10,14 +10,14 @@ class TeamStruct extends BaseStruct {
     int? id,
     String? createdAt,
     String? name,
+    List<int>? members,
     String? tag,
-    String? members,
     String? logo,
   })  : _id = id,
         _createdAt = createdAt,
         _name = name,
-        _tag = tag,
         _members = members,
+        _tag = tag,
         _logo = logo;
 
   // "id" field.
@@ -39,17 +39,18 @@ class TeamStruct extends BaseStruct {
   set name(String? val) => _name = val;
   bool hasName() => _name != null;
 
+  // "Members" field.
+  List<int>? _members;
+  List<int> get members => _members ?? const [];
+  set members(List<int>? val) => _members = val;
+  void updateMembers(Function(List<int>) updateFn) => updateFn(_members ??= []);
+  bool hasMembers() => _members != null;
+
   // "Tag" field.
   String? _tag;
   String get tag => _tag ?? '';
   set tag(String? val) => _tag = val;
   bool hasTag() => _tag != null;
-
-  // "Members" field.
-  String? _members;
-  String get members => _members ?? '';
-  set members(String? val) => _members = val;
-  bool hasMembers() => _members != null;
 
   // "Logo" field.
   String? _logo;
@@ -61,8 +62,8 @@ class TeamStruct extends BaseStruct {
         id: castToType<int>(data['id']),
         createdAt: data['created_at'] as String?,
         name: data['Name'] as String?,
+        members: getDataList(data['Members']),
         tag: data['Tag'] as String?,
-        members: data['Members'] as String?,
         logo: data['Logo'] as String?,
       );
 
@@ -73,8 +74,8 @@ class TeamStruct extends BaseStruct {
         'id': _id,
         'created_at': _createdAt,
         'Name': _name,
-        'Tag': _tag,
         'Members': _members,
+        'Tag': _tag,
         'Logo': _logo,
       }.withoutNulls;
 
@@ -92,12 +93,13 @@ class TeamStruct extends BaseStruct {
           _name,
           ParamType.String,
         ),
-        'Tag': serializeParam(
-          _tag,
-          ParamType.String,
-        ),
         'Members': serializeParam(
           _members,
+          ParamType.int,
+          true,
+        ),
+        'Tag': serializeParam(
+          _tag,
           ParamType.String,
         ),
         'Logo': serializeParam(
@@ -123,13 +125,13 @@ class TeamStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        members: deserializeParam<int>(
+          data['Members'],
+          ParamType.int,
+          true,
+        ),
         tag: deserializeParam(
           data['Tag'],
-          ParamType.String,
-          false,
-        ),
-        members: deserializeParam(
-          data['Members'],
           ParamType.String,
           false,
         ),
@@ -145,18 +147,19 @@ class TeamStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
+    const listEquality = ListEquality();
     return other is TeamStruct &&
         id == other.id &&
         createdAt == other.createdAt &&
         name == other.name &&
+        listEquality.equals(members, other.members) &&
         tag == other.tag &&
-        members == other.members &&
         logo == other.logo;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([id, createdAt, name, tag, members, logo]);
+      const ListEquality().hash([id, createdAt, name, members, tag, logo]);
 }
 
 TeamStruct createTeamStruct({
@@ -164,7 +167,6 @@ TeamStruct createTeamStruct({
   String? createdAt,
   String? name,
   String? tag,
-  String? members,
   String? logo,
 }) =>
     TeamStruct(
@@ -172,6 +174,5 @@ TeamStruct createTeamStruct({
       createdAt: createdAt,
       name: name,
       tag: tag,
-      members: members,
       logo: logo,
     );
