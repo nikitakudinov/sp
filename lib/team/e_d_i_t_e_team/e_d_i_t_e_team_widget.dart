@@ -226,6 +226,13 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ),
                 ),
               ),
+              Text(
+                getJsonField(
+                  (_model.apiResultegc?.jsonBody ?? ''),
+                  r'''$[:].Members''',
+                ).toString(),
+                style: FlutterFlowTheme.of(context).bodyMedium,
+              ),
             ],
           ),
         ),
