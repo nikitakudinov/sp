@@ -18,16 +18,6 @@ Future loadTeam(
     idList: teamId?.toString(),
   );
   if ((apiResultbwq?.succeeded ?? true)) {
-    dTTeam = await actions.jsonDTTeam(
-      getJsonField(
-        (apiResultbwq?.jsonBody ?? ''),
-        r'''$[:]''',
-        true,
-      ),
-    );
-    FFAppState().update(() {
-      FFAppState().Team = dTTeam!.toList().cast<TeamStruct>();
-    });
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
@@ -42,5 +32,15 @@ Future loadTeam(
         );
       },
     );
+    dTTeam = await actions.jsonDTTeam(
+      getJsonField(
+        (apiResultbwq?.jsonBody ?? ''),
+        r'''$[:]''',
+        true,
+      ),
+    );
+    FFAppState().update(() {
+      FFAppState().Team = dTTeam!.toList().cast<TeamStruct>();
+    });
   }
 }
