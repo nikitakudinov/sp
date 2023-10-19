@@ -56,7 +56,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
         setState(() {
           FFAppState().Team = _model.teamData!.toList().cast<TeamStruct>();
         });
-        await UserGroup.listuserbyidCall.call(
+        _model.jsonUsersData = await UserGroup.listuserbyidCall.call(
           idList: valueOrDefault<String>(
             functions.cleanResponse(getJsonField(
               (_model.apiResultkiz?.jsonBody ?? ''),
@@ -65,6 +65,17 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             '0',
           ),
         );
+        _model.dTUsersData = await actions.jsonDTUser(
+          getJsonField(
+            (_model.jsonUsersData?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
+        setState(() {
+          FFAppState().TeamMembers =
+              _model.dTUsersData!.toList().cast<UserStruct>();
+        });
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
