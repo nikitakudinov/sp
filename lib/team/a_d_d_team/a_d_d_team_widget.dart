@@ -98,13 +98,16 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                           borderRadius: BorderRadius.circular(5.0),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/490/600',
-                            width: 150.0,
-                            height: 150.0,
-                            fit: BoxFit.cover,
+                        child: Visibility(
+                          visible: _model.isDataUploading,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.network(
+                              _model.uploadedFileUrl,
+                              width: 150.0,
+                              height: 150.0,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
