@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -44,13 +45,16 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
         idList: widget.teamId?.toString(),
       );
       if ((_model.apiResultkiz?.succeeded ?? true)) {
-        await actions.jsonDTTeam(
+        _model.teamData = await actions.jsonDTTeam(
           getJsonField(
             (_model.apiResultkiz?.jsonBody ?? ''),
             r'''$[:]''',
             true,
           ),
         );
+        setState(() {
+          FFAppState().Team = _model.teamData!.toList().cast<TeamStruct>();
+        });
         await showDialog(
           context: context,
           builder: (alertDialogContext) {

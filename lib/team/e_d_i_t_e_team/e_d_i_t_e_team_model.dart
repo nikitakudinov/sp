@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -23,6 +24,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (LISTTEAMBYID)] action in EDITE_team widget.
   ApiCallResponse? apiResultkiz;
+  // Stores action output result for [Custom Action - jsonDTTeam] action in EDITE_team widget.
+  List<TeamStruct>? teamData;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
