@@ -80,13 +80,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           idList:
               functions.newCustomFunction(FFAppState().Team.members.toList()),
         );
-        _model.dTUsersData = await actions.jsonDTUser(
-          getJsonField(
-            (_model.jsonUsersData?.jsonBody ?? ''),
-            r'''$[:]''',
-            true,
-          ),
-        );
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
@@ -100,6 +93,13 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
               ],
             );
           },
+        );
+        _model.dTUsersData = await actions.jsonDTUser(
+          getJsonField(
+            (_model.jsonUsersData?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
         );
         setState(() {
           FFAppState().TeamMembers =
