@@ -4,7 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -35,15 +35,12 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.apiResult0sy = await TeamGroup.listteamCall.call();
       if ((_model.apiResult0sy?.succeeded ?? true)) {
-        _model.dTTeams = await actions.jsonDTTeam(
-          getJsonField(
-            (_model.apiResult0sy?.jsonBody ?? ''),
-            r'''$[:]''',
-            true,
-          ),
-        );
         setState(() {
-          FFAppState().Teams = _model.dTTeams!.toList().cast<TeamStruct>();
+          FFAppState().Teams =
+              ListTeamsStruct.fromMap((_model.apiResult0sy?.jsonBody ?? ''))
+                  .teams
+                  .toList()
+                  .cast<TeamStruct>();
         });
       }
     });
