@@ -165,8 +165,8 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: Container(
-                                      width: 35.0,
-                                      height: 35.0,
+                                      width: 50.0,
+                                      height: 50.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
@@ -179,8 +179,8 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                             messageUserRow?.avatar,
                                             'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
                                           ),
-                                          width: 35.0,
-                                          height: 35.0,
+                                          width: 50.0,
+                                          height: 50.0,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -402,43 +402,54 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                     itemCount: membersUserRowList.length,
                     itemBuilder: (context, membersIndex) {
                       final membersUserRow = membersUserRowList[membersIndex];
-                      return Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 45.0,
-                            height: 45.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(5.0),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  membersUserRow.avatar,
-                                  'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                      return Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 50.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5.0),
+                                child: Image.network(
+                                  valueOrDefault<String>(
+                                    membersUserRow.avatar,
+                                    'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                                  ),
+                                  width: 50.0,
+                                  height: 50.0,
+                                  fit: BoxFit.cover,
                                 ),
-                                width: 45.0,
-                                height: 45.0,
-                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                membersUserRow.nickname!,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    membersUserRow.nickname!,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    'Hello World',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'Hello World',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );
