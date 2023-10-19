@@ -28,4 +28,10 @@ class UserRow extends SupabaseDataRow {
 
   String? get avatar => getField<String>('Avatar');
   set avatar(String? value) => setField<String>('Avatar', value);
+
+  String? get tag => getField<String>('Tag');
+  set tag(String? value) => setField<String>('Tag', value);
+
+  String? get uid => getField<String>('UID');
+  set uid(String? value) => setField<String>('UID', value);
 }
