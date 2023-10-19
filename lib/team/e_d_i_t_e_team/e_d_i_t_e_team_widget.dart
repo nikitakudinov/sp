@@ -1,10 +1,10 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -194,13 +194,31 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  await action_blocks.loadTeam(
-                    context,
-                    teamId: widget.teamId,
+                  _model.apiResultcpe = await TeamGroup.listteambyidCall.call(
+                    idList: widget.teamId?.toString(),
                   );
+                  if ((_model.apiResultcpe?.succeeded ?? true)) {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: Text('1'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+
+                  setState(() {});
                 },
                 child: Text(
-                  'Hello World',
+                  FFAppState().Team.first.name,
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
