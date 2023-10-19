@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,9 +18,11 @@ class EDITETeamWidget extends StatefulWidget {
   const EDITETeamWidget({
     Key? key,
     required this.teamId,
+    this.teamIndex,
   }) : super(key: key);
 
   final int? teamId;
+  final int? teamIndex;
 
   @override
   _EDITETeamWidgetState createState() => _EDITETeamWidgetState();
@@ -41,6 +44,13 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
         idList: widget.teamId?.toString(),
       );
       if ((_model.apiResultkiz?.succeeded ?? true)) {
+        await actions.jsonDTTeam(
+          getJsonField(
+            (_model.apiResultkiz?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
         await showDialog(
           context: context,
           builder: (alertDialogContext) {

@@ -118,6 +118,10 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                         teamsListItem.id,
                                         ParamType.int,
                                       ),
+                                      'teamIndex': serializeParam(
+                                        teamsListIndex,
+                                        ParamType.int,
+                                      ),
                                     }.withoutNulls,
                                   );
                                 },
