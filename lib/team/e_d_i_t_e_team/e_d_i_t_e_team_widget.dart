@@ -64,20 +64,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             '0',
           ),
         );
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('1'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
         _model.dTUsersData = await actions.jsonDTUser(
           getJsonField(
             (_model.jsonUsersData?.jsonBody ?? ''),
@@ -89,7 +75,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           context: context,
           builder: (alertDialogContext) {
             return AlertDialog(
-              title: Text('2'),
+              title: Text('1'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
