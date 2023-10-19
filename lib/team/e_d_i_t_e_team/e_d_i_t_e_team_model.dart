@@ -1,12 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'e_d_i_t_e_team_widget.dart' show EDITETeamWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -18,15 +16,13 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
   String? imagePath = 'false';
 
+  String members = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (LISTTEAMBYID)] action in EDITE_team widget.
-  ApiCallResponse? apiResultkiz;
-  // Stores action output result for [Backend Call - API (LISTUSERBYID)] action in EDITE_team widget.
-  ApiCallResponse? jsonUsersData;
-  // Stores action output result for [Custom Action - jsonDTUser] action in EDITE_team widget.
-  List<UserStruct>? dTUsersData;
+  ApiCallResponse? apiResult3ba;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));

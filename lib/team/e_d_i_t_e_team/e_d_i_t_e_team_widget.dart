@@ -1,12 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,68 +38,15 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultkiz = await TeamGroup.listteambyidCall.call(
+      _model.apiResult3ba = await TeamGroup.listteambyidCall.call(
         idList: widget.teamId?.toString(),
       );
-      if ((_model.apiResultkiz?.succeeded ?? true)) {
+      if ((_model.apiResult3ba?.succeeded ?? true)) {
         setState(() {
-          FFAppState().updateTeamStruct(
-            (e) => e
-              ..id = getJsonField(
-                (_model.apiResultkiz?.jsonBody ?? ''),
-                r'''$[:].id''',
-              )
-              ..createdAt = getJsonField(
-                (_model.apiResultkiz?.jsonBody ?? ''),
-                r'''$[:].created_at''',
-              ).toString().toString()
-              ..name = getJsonField(
-                (_model.apiResultkiz?.jsonBody ?? ''),
-                r'''$[:].Name''',
-              ).toString().toString()
-              ..members = getJsonField(
-                (_model.apiResultkiz?.jsonBody ?? ''),
-                r'''$[:].Members''',
-                true,
-              )!
-                  .toList()
-              ..tag = getJsonField(
-                (_model.apiResultkiz?.jsonBody ?? ''),
-                r'''$[:].Tag''',
-              ).toString().toString()
-              ..logo = getJsonField(
-                (_model.apiResultkiz?.jsonBody ?? ''),
-                r'''$[:].Logo''',
-              ),
-          );
-        });
-        _model.jsonUsersData = await UserGroup.listuserbyidCall.call(
-          idList: '1,2',
-        );
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('1'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-        _model.dTUsersData = await actions.jsonDTUser(
-          getJsonField(
-            (_model.jsonUsersData?.jsonBody ?? ''),
-            r'''$[:]''',
-            true,
-          ),
-        );
-        setState(() {
-          FFAppState().TeamMembers =
-              _model.dTUsersData!.toList().cast<UserStruct>();
+          _model.members = getJsonField(
+            (_model.apiResult3ba?.jsonBody ?? ''),
+            r'''$[:].Members''',
+          ).toString().toString();
         });
       }
     });
@@ -260,6 +205,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                     ),
                   ),
                 ),
+              ),
+              Text(
+                _model.members,
+                style: FlutterFlowTheme.of(context).bodyMedium,
               ),
             ],
           ),
