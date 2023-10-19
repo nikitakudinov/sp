@@ -1,8 +1,12 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'team_member_picker_model.dart';
@@ -12,9 +16,11 @@ class TeamMemberPickerWidget extends StatefulWidget {
   const TeamMemberPickerWidget({
     Key? key,
     required this.docId,
+    this.members,
   }) : super(key: key);
 
   final int? docId;
+  final String? members;
 
   @override
   _TeamMemberPickerWidgetState createState() => _TeamMemberPickerWidgetState();
@@ -33,6 +39,25 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TeamMemberPickerModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.jesonMembersData = await UserGroup.listuserbyidCall.call(
+        idList: widget.members,
+      );
+      if ((_model.jesonMembersData?.succeeded ?? true)) {
+        _model.dTMembers = await actions.jsonDTUser(
+          getJsonField(
+            (_model.jesonMembersData?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
+        setState(() {
+          _model.members = _model.dTMembers!.toList().cast<UserStruct>();
+        });
+      }
+    });
 
     _model.textController ??= TextEditingController();
   }
@@ -374,7 +399,7 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
             if (_model.membersVISIBILITY)
               Builder(
                 builder: (context) {
-                  final membersList = FFAppState().TeamMembers.toList();
+                  final membersList = _model.members.toList();
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
