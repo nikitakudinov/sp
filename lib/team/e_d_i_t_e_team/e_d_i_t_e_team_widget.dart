@@ -222,17 +222,14 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
-                  child: wrapWithModel(
-                    model: _model.teamMemberPickerModel,
-                    updateCallback: () => setState(() {}),
-                    child: TeamMemberPickerWidget(
-                      docId: widget.teamId!,
-                      members: _model.members,
-                    ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                child: wrapWithModel(
+                  model: _model.teamMemberPickerModel,
+                  updateCallback: () => setState(() {}),
+                  child: TeamMemberPickerWidget(
+                    docId: widget.teamId!,
+                    members: _model.members,
                   ),
                 ),
               ),
