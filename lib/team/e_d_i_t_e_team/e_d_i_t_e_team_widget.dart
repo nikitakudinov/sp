@@ -76,7 +76,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           );
         });
         _model.jsonUsersData = await UserGroup.listuserbyidCall.call(
-          idList: '1,2,3',
+          idList: '1,2',
         );
         await showDialog(
           context: context,
