@@ -347,23 +347,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                         returnRows: true,
                                                       );
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text('done'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
+                                                      _model.deliteRequest =
+                                                          await RequestTable()
+                                                              .delete(
+                                                        matchingRows: (rows) =>
+                                                            rows.eq(
+                                                          'id',
+                                                          listViewRequestRow.id,
+                                                        ),
+                                                        returnRows: true,
                                                       );
 
                                                       setState(() {});

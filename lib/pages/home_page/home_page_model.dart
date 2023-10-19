@@ -21,6 +21,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ApiCallResponse? userData;
   // Stores action output result for [Backend Call - Update Row] action in Button widget.
   List<TeamRow>? apiResultxsb;
+  // Stores action output result for [Backend Call - Delete Row] action in Button widget.
+  List<RequestRow>? deliteRequest;
 
   /// Initialization and disposal methods.
 
