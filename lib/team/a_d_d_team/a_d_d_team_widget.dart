@@ -298,6 +298,8 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                               'Members': FFAppState().Team.members,
                             });
 
+                            context.pushNamed('LIST_team');
+
                             setState(() {});
                           },
                           text: 'Создать',
