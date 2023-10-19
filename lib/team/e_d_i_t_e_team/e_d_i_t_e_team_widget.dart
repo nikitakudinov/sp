@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -185,6 +186,22 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       docId: widget.teamId!,
                     ),
                   ),
+                ),
+              ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await action_blocks.loadTeam(
+                    context,
+                    teamId: widget.teamId,
+                  );
+                },
+                child: Text(
+                  'Hello World',
+                  style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
             ],
