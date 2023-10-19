@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -279,12 +280,22 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
+                            setState(() {
+                              FFAppState().updateTeamStruct(
+                                (e) => e
+                                  ..updateMembers(
+                                    (e) => e
+                                        .add(FFAppState().authenticatedUser.id),
+                                  ),
+                              );
+                            });
                             _model.addTeam = await TeamTable().insert({
                               'created_at':
                                   supaSerialize<DateTime>(getCurrentTimestamp),
                               'Name': _model.textController1.text,
                               'Tag': _model.textController2.text,
                               'Logo': _model.uploadedFileUrl,
+                              'Members': FFAppState().Team.members,
                             });
 
                             setState(() {});
