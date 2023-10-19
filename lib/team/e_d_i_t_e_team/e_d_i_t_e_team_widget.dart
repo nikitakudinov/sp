@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -186,40 +185,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       docId: widget.teamId!,
                     ),
                   ),
-                ),
-              ),
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  _model.apiResultcpe = await TeamGroup.listteambyidCall.call(
-                    idList: widget.teamId?.toString(),
-                  );
-                  if ((_model.apiResultcpe?.succeeded ?? true)) {
-                    await showDialog(
-                      context: context,
-                      builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('1'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Ok'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-
-                  setState(() {});
-                },
-                child: Text(
-                  FFAppState().Team.first.name,
-                  style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
             ],

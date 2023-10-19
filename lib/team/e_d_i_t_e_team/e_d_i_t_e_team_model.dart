@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/team_member_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -25,8 +24,6 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
   // Model for TeamMemberPicker component.
   late TeamMemberPickerModel teamMemberPickerModel;
-  // Stores action output result for [Backend Call - API (LISTTEAMBYID)] action in Text widget.
-  ApiCallResponse? apiResultcpe;
 
   /// Initialization and disposal methods.
 
