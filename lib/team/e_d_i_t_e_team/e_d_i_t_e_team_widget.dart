@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,11 +55,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
           FFAppState().Team = _model.teamData!.toList().cast<TeamStruct>();
         });
         _model.jsonUsersData = await UserGroup.listuserbyidCall.call(
-          idList: functions.newCustomFunction(getJsonField(
-            (_model.apiResultkiz?.jsonBody ?? ''),
-            r'''$[:].Members''',
-            true,
-          )),
+          idList: '1,2,3',
         );
         _model.dTUsersData = await actions.jsonDTUser(
           getJsonField(
