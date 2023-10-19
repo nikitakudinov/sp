@@ -50,6 +50,25 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             true,
           ))!;
         });
+        _model.apiResultmrr = await UserGroup.listuserbyidCall.call(
+          idList: _model.members,
+        );
+        if ((_model.apiResultmrr?.succeeded ?? true)) {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: Text('12'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+        }
       }
     });
   }
