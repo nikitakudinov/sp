@@ -260,7 +260,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   );
                 },
                 child: Text(
-                  'Hello World',
+                  FFAppState().TeamMembers.first.nickname,
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
