@@ -284,6 +284,7 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                                   supaSerialize<DateTime>(getCurrentTimestamp),
                               'Name': _model.textController1.text,
                               'Tag': _model.textController2.text,
+                              'Logo': _model.uploadedFileUrl,
                             });
 
                             setState(() {});
