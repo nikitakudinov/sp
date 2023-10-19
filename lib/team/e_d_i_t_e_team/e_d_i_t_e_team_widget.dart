@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,10 +44,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       );
       if ((_model.apiResult3ba?.succeeded ?? true)) {
         setState(() {
-          _model.members = getJsonField(
+          _model.members = functions.cleanResponse(getJsonField(
             (_model.apiResult3ba?.jsonBody ?? ''),
             r'''$[:].Members''',
-          ).toString().toString();
+          ).toString().toString())!;
         });
       }
     });
