@@ -372,36 +372,16 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                 ],
               ),
             if (_model.membersVISIBILITY)
-              FutureBuilder<List<UserRow>>(
-                future: UserTable().queryRows(
-                  queryFn: (q) => q.in_(
-                    'id',
-                    columnTeamRow!.members,
-                  ),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                  List<UserRow> membersUserRowList = snapshot.data!;
+              Builder(
+                builder: (context) {
+                  final membersList = FFAppState().TeamMembers.toList();
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: membersUserRowList.length,
-                    itemBuilder: (context, membersIndex) {
-                      final membersUserRow = membersUserRowList[membersIndex];
+                    itemCount: membersList.length,
+                    itemBuilder: (context, membersListIndex) {
+                      final membersListItem = membersList[membersListIndex];
                       return Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
@@ -418,10 +398,7 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(5.0),
                                 child: Image.network(
-                                  valueOrDefault<String>(
-                                    membersUserRow.avatar,
-                                    'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
-                                  ),
+                                  membersListItem.avatar,
                                   width: 50.0,
                                   height: 50.0,
                                   fit: BoxFit.cover,
@@ -436,7 +413,7 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    membersUserRow.nickname!,
+                                    membersListItem.nickname,
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
