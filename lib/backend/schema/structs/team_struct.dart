@@ -11,7 +11,7 @@ class TeamStruct extends BaseStruct {
     String? createdAt,
     String? name,
     String? tag,
-    List<int>? members,
+    String? members,
     String? logo,
   })  : _id = id,
         _createdAt = createdAt,
@@ -46,10 +46,9 @@ class TeamStruct extends BaseStruct {
   bool hasTag() => _tag != null;
 
   // "Members" field.
-  List<int>? _members;
-  List<int> get members => _members ?? const [];
-  set members(List<int>? val) => _members = val;
-  void updateMembers(Function(List<int>) updateFn) => updateFn(_members ??= []);
+  String? _members;
+  String get members => _members ?? '';
+  set members(String? val) => _members = val;
   bool hasMembers() => _members != null;
 
   // "Logo" field.
@@ -63,7 +62,7 @@ class TeamStruct extends BaseStruct {
         createdAt: data['created_at'] as String?,
         name: data['Name'] as String?,
         tag: data['Tag'] as String?,
-        members: getDataList(data['Members']),
+        members: data['Members'] as String?,
         logo: data['Logo'] as String?,
       );
 
@@ -99,8 +98,7 @@ class TeamStruct extends BaseStruct {
         ),
         'Members': serializeParam(
           _members,
-          ParamType.int,
-          true,
+          ParamType.String,
         ),
         'Logo': serializeParam(
           _logo,
@@ -130,10 +128,10 @@ class TeamStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        members: deserializeParam<int>(
+        members: deserializeParam(
           data['Members'],
-          ParamType.int,
-          true,
+          ParamType.String,
+          false,
         ),
         logo: deserializeParam(
           data['Logo'],
@@ -147,13 +145,12 @@ class TeamStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    const listEquality = ListEquality();
     return other is TeamStruct &&
         id == other.id &&
         createdAt == other.createdAt &&
         name == other.name &&
         tag == other.tag &&
-        listEquality.equals(members, other.members) &&
+        members == other.members &&
         logo == other.logo;
   }
 
@@ -167,6 +164,7 @@ TeamStruct createTeamStruct({
   String? createdAt,
   String? name,
   String? tag,
+  String? members,
   String? logo,
 }) =>
     TeamStruct(
@@ -174,5 +172,6 @@ TeamStruct createTeamStruct({
       createdAt: createdAt,
       name: name,
       tag: tag,
+      members: members,
       logo: logo,
     );
