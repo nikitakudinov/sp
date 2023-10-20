@@ -5,7 +5,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/backend/schema/structs/index.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 
@@ -32,40 +31,35 @@ Future loadTeamMembers(
   BuildContext context, {
   required int? teamId,
 }) async {
-  ApiCallResponse? apiResultsxr;
-  List<UserStruct>? dTUser;
+  ApiCallResponse? apiResultoxb;
+  ApiCallResponse? apiResultj3d;
 
-  apiResultsxr = await UserGroup.listuserbyidCall.call(
-    idList: functions.cleanResponse(getJsonField(
-      FFAppState().Team.toMap(),
-      r'''$.Members''',
-      true,
-    )),
+  apiResultoxb = await TeamGroup.listteambyidCall.call(
+    idList: teamId?.toString(),
   );
-  if ((apiResultsxr?.succeeded ?? true)) {
-    dTUser = await actions.jsonDTUser(
-      getJsonField(
-        (apiResultsxr?.jsonBody ?? ''),
-        r'''$[:]''',
+  if ((apiResultoxb?.succeeded ?? true)) {
+    apiResultj3d = await UserGroup.listuserbyidintCall.call(
+      idList: functions.cleanResponse(getJsonField(
+        (apiResultoxb?.jsonBody ?? ''),
+        r'''$[:].Members''',
         true,
-      ),
+      )),
     );
-    FFAppState().update(() {
-      FFAppState().TeamMembers = dTUser!.toList().cast<UserStruct>();
-    });
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('1'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
-    );
+    if ((apiResultj3d?.succeeded ?? true)) {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('22123'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
