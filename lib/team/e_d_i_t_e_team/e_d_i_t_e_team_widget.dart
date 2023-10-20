@@ -324,7 +324,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           FlutterFlowTheme.of(context).tertiary,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              3.0, 3.0, 3.0, 3.0),
+                                              5.0, 5.0, 5.0, 5.0),
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
@@ -382,7 +382,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                         FlutterFlowTheme.of(context).tertiary,
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
-                                            3.0, 3.0, 3.0, 3.0),
+                                            5.0, 5.0, 5.0, 5.0),
                                   ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
