@@ -68,7 +68,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 5.0, 5.0, 5.0),
+                                10.0, 8.0, 5.0, 8.0),
                             child: Container(
                               width: 24.0,
                               height: 16.0,
@@ -91,7 +91,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                           ),
                           Text(
                             countrysListItem.ruName,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context).titleSmall,
                           ),
                         ],
                       );
