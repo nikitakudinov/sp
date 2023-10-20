@@ -141,6 +141,35 @@ class FFAppState extends ChangeNotifier {
   void updateAuthenticatedUserStruct(Function(UserStruct) updateFn) {
     updateFn(_authenticatedUser);
   }
+
+  List<CountryStruct> _Countrys = [];
+  List<CountryStruct> get Countrys => _Countrys;
+  set Countrys(List<CountryStruct> _value) {
+    _Countrys = _value;
+  }
+
+  void addToCountrys(CountryStruct _value) {
+    _Countrys.add(_value);
+  }
+
+  void removeFromCountrys(CountryStruct _value) {
+    _Countrys.remove(_value);
+  }
+
+  void removeAtIndexFromCountrys(int _index) {
+    _Countrys.removeAt(_index);
+  }
+
+  void updateCountrysAtIndex(
+    int _index,
+    CountryStruct Function(CountryStruct) updateFn,
+  ) {
+    _Countrys[_index] = updateFn(_Countrys[_index]);
+  }
+
+  void insertAtIndexInCountrys(int _index, CountryStruct _value) {
+    _Countrys.insert(_index, _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

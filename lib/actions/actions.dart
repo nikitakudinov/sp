@@ -57,3 +57,22 @@ Future loadTeamMembers(
     }
   }
 }
+
+Future loadCountrys(BuildContext context) async {
+  ApiCallResponse? apiResultfco;
+  List<CountryStruct>? dTCountry;
+
+  apiResultfco = await CountryGroup.listcountrysCall.call();
+  if ((apiResultfco?.succeeded ?? true)) {
+    dTCountry = await actions.jsonDTCountry(
+      getJsonField(
+        (apiResultfco?.jsonBody ?? ''),
+        r'''$[:]''',
+        true,
+      ),
+    );
+    FFAppState().update(() {
+      FFAppState().Countrys = dTCountry!.toList().cast<CountryStruct>();
+    });
+  }
+}
