@@ -148,8 +148,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 10.0),
                                 child: Container(
-                                  width: 115.0,
-                                  height: 115.0,
+                                  width: 113.0,
+                                  height: 113.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -164,8 +164,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           _model.imagePath,
                                           '0',
                                         ),
-                                        width: 115.0,
-                                        height: 115.0,
+                                        width: 113.0,
+                                        height: 113.0,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -324,7 +324,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           FlutterFlowTheme.of(context).tertiary,
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
-                                              5.0, 5.0, 5.0, 5.0),
+                                              10.0, 5.0, 10.0, 5.0),
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
@@ -382,7 +382,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                         FlutterFlowTheme.of(context).tertiary,
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 5.0, 5.0, 5.0),
+                                            10.0, 5.0, 10.0, 5.0),
                                   ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
