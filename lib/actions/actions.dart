@@ -51,6 +51,9 @@ Future loadTeamMembers(
           true,
         ),
       );
+      FFAppState().update(() {
+        FFAppState().TeamMembers = dTMembers!.toList().cast<UserStruct>();
+      });
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
