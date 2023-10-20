@@ -294,6 +294,22 @@ class RegisterCall {
   }
 }
 
+class PbteamslistCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'PBTEAMSLIST',
+      apiUrl: 'http://31.28.27.82:8090/api/collections/Team/records',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
