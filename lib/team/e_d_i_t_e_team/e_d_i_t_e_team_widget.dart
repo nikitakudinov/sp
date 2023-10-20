@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/country_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -501,6 +502,11 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       ),
                     ),
                   ],
+                ),
+                wrapWithModel(
+                  model: _model.countryPickerModel,
+                  updateCallback: () => setState(() {}),
+                  child: CountryPickerWidget(),
                 ),
               ],
             ),

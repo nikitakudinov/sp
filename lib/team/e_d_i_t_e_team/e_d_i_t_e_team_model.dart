@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/country_picker_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -53,10 +54,14 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Model for countryPicker component.
+  late CountryPickerModel countryPickerModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    countryPickerModel = createModel(context, () => CountryPickerModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
@@ -65,6 +70,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+
+    countryPickerModel.dispose();
   }
 
   /// Action blocks are added here.
