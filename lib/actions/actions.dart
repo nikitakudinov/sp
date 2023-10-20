@@ -5,6 +5,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,7 @@ Future loadTeamMembers(
 }) async {
   ApiCallResponse? apiResultoxb;
   ApiCallResponse? apiResultj3d;
+  List<UserStruct>? dTMembers;
 
   apiResultoxb = await TeamGroup.listteambyidCall.call(
     idList: teamId?.toString(),
@@ -46,20 +48,16 @@ Future loadTeamMembers(
       )),
     );
     if ((apiResultj3d?.succeeded ?? true)) {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('22123'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
+      dTMembers = await actions.jsonDTUser(
+        getJsonField(
+          (apiResultj3d?.jsonBody ?? ''),
+          r'''$[:]''',
+          true,
+        ),
       );
+      FFAppState().update(() {
+        FFAppState().TeamMembers = dTMembers!.toList().cast<UserStruct>();
+      });
     }
   }
 }
