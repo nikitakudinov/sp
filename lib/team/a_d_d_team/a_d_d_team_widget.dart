@@ -99,7 +99,7 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: Visibility(
-                          visible: _model.isDataUploading,
+                          visible: !_model.isDataUploading,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5.0),
                             child: Image.network(
@@ -327,7 +327,7 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
                       ),
