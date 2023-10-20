@@ -39,6 +39,10 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
         teamId: widget.teamId,
       );
       setState(() {});
+      await action_blocks.loadTeamMembers(
+        context,
+        teamId: widget.teamId,
+      );
     });
   }
 
