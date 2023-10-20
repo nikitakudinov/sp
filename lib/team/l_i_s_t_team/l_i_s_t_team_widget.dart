@@ -156,16 +156,16 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Container(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 7.0, 15.0, 7.0),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 7.0, 15.0, 7.0),
+                                      child: Container(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(5.0),
