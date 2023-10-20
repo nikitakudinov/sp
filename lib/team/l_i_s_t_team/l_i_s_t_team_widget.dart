@@ -36,14 +36,11 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
       _model.apiResult0sy = await TeamGroup.listteamCall.call();
       if ((_model.apiResult0sy?.succeeded ?? true)) {
         setState(() {
-          FFAppState().Teams = ListTeamsStruct.fromMap(getJsonField(
-            (_model.apiResult0sy?.jsonBody ?? ''),
-            r'''$[:]''',
-            true,
-          )!)
-              .teams
-              .toList()
-              .cast<TeamStruct>();
+          FFAppState().Teams =
+              ListTeamsStruct.fromMap((_model.apiResult0sy?.jsonBody ?? ''))
+                  .teams
+                  .toList()
+                  .cast<TeamStruct>();
         });
       }
     });
