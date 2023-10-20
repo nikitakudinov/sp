@@ -76,7 +76,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           title: Text(
             'Профиль команды',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
