@@ -20,3 +20,11 @@ String? cleanResponse(List<dynamic>? input) {
   final List<String> stringList = input.map((e) => e.toString()).toList();
   return stringList.join(',');
 }
+
+String? listINTtoSTRING(List<int>? input) {
+  // input list of int to string by comma
+  if (input == null || input.isEmpty) {
+    return null;
+  }
+  return input.join(',');
+}
