@@ -146,10 +146,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                             if (_model.imagePath != 'false')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 15.0),
+                                    0.0, 0.0, 10.0, 10.0),
                                 child: Container(
-                                  width: 110.0,
-                                  height: 110.0,
+                                  width: 115.0,
+                                  height: 115.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -164,8 +164,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           _model.imagePath,
                                           '0',
                                         ),
-                                        width: 105.0,
-                                        height: 105.0,
+                                        width: 110.0,
+                                        height: 110.0,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -335,7 +335,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 child: TextFormField(
                                   controller: _model.textController2,
                                   focusNode: _model.textFieldFocusNode2,
-                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'TAG',
