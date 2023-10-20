@@ -68,7 +68,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 5.0),
+                                10.0, 5.0, 5.0, 5.0),
                             child: Container(
                               width: 24.0,
                               height: 16.0,
