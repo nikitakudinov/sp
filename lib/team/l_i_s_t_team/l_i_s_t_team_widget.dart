@@ -156,17 +156,25 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          15.0, 7.0, 15.0, 7.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
-                                        child: Image.network(
-                                          teamsListItem.logo,
-                                          width: 50.0,
-                                          height: 50.0,
-                                          fit: BoxFit.cover,
+                                    Container(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 7.0, 15.0, 7.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          child: Image.network(
+                                            teamsListItem.logo,
+                                            width: 50.0,
+                                            height: 50.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
