@@ -129,6 +129,10 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                         FFAppState().Team.name,
                         style: FlutterFlowTheme.of(context).bodyMedium,
                       ),
+                      Text(
+                        'Hello World',
+                        style: FlutterFlowTheme.of(context).bodyMedium,
+                      ),
                     ],
                   ),
                 ],

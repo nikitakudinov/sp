@@ -219,10 +219,8 @@ class ListuserbyuidCall {
 
 class ListuserbyidintCall {
   Future<ApiCallResponse> call({
-    List<int>? idListList,
+    String? idList = '',
   }) async {
-    final idList = _serializeList(idListList);
-
     return ApiManager.instance.makeApiCall(
       callName: 'LISTUSERBYIDINT',
       apiUrl: '${UserGroup.baseUrl}User?id=in.%28${idList}%29',

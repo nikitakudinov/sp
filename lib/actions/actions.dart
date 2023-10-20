@@ -38,7 +38,7 @@ Future loadTeamMembers(
   );
   if ((apiResultoxb?.succeeded ?? true)) {
     apiResultj3d = await UserGroup.listuserbyidintCall.call(
-      idListList: FFAppState().Team.members,
+      idList: '1,2',
     );
     if ((apiResultj3d?.succeeded ?? true)) {
       await showDialog(
