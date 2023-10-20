@@ -5,6 +5,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 
 Future loadTeam(
@@ -38,7 +39,7 @@ Future loadTeamMembers(
   );
   if ((apiResultoxb?.succeeded ?? true)) {
     apiResultj3d = await UserGroup.listuserbyidintCall.call(
-      idList: '1,2',
+      idList: functions.listINTtoSTRING(FFAppState().Team.members.toList()),
     );
     if ((apiResultj3d?.succeeded ?? true)) {
       await showDialog(
