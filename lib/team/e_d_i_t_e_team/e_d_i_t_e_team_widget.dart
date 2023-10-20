@@ -238,7 +238,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 },
                                 text: 'Загрузить',
                                 options: FFButtonOptions(
-                                  width: 110.0,
+                                  width: 115.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
