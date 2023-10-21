@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -46,20 +47,16 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
         idList: functions.listINTtoSTRING(FFAppState().Team.members.toList()),
       );
       if ((_model.apiResultz22?.succeeded ?? true)) {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('1'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
+        _model.dTUser = await actions.jsonDTUser(
+          getJsonField(
+            (_model.apiResultz22?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
         );
+        setState(() {
+          FFAppState().TeamMembers = _model.dTUser!.toList().cast<UserStruct>();
+        });
       }
     });
   }
