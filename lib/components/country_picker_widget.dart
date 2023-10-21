@@ -72,7 +72,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                       if (_model.selectedFlag == 'false')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
+                              10.0, 0.0, 0.0, 0.0),
                           child: Container(
                             width: 30.0,
                             height: 20.0,
@@ -87,9 +87,13 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                           ),
                         ),
                       Expanded(
-                        child: Text(
-                          _model.selectedCountry,
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            _model.selectedCountry,
+                            style: FlutterFlowTheme.of(context).titleSmall,
+                          ),
                         ),
                       ),
                     ],
