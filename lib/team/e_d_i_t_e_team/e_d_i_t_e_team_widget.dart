@@ -167,8 +167,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           _model.imagePath,
                                           '0',
                                         ),
-                                        width: 108.0,
-                                        height: 108.0,
+                                        width: 1085.0,
+                                        height: 105.0,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -177,7 +177,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                               ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 10.0),
+                                  0.0, 0.0, 5.0, 10.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   final selectedMedia = await selectMedia(
@@ -242,7 +242,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 text: 'Загрузить',
                                 options: FFButtonOptions(
                                   width: 115.0,
-                                  height: 45.0,
+                                  height: 47.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
