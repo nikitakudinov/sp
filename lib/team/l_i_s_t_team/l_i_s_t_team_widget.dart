@@ -210,10 +210,22 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      teamsListItem.name,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          teamsListItem.tag,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge,
+                                        ),
+                                        Text(
+                                          teamsListItem.name,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
