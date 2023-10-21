@@ -158,7 +158,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'MESSAGES',
           path: '/messages',
-          builder: (context, params) => MessagesWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MESSAGES')
+              : MessagesWidget(),
         ),
         FFRoute(
           name: 'CHAT',
