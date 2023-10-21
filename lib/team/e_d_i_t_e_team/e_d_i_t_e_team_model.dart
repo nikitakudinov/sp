@@ -55,6 +55,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  List<TeamRow>? updateLogo;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;

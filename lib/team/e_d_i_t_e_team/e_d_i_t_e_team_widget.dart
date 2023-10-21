@@ -324,6 +324,61 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 ),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 6.0, 10.0, 10.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  await deleteSupabaseFileFromPublicUrl(
+                                      _model.imagePath!);
+                                  setState(() {
+                                    _model.imagePath =
+                                        'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png';
+                                  });
+                                  await TeamTable().update(
+                                    data: {
+                                      'Logo':
+                                          'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                                    },
+                                    matchingRows: (rows) => rows.eq(
+                                      'id',
+                                      widget.teamId,
+                                    ),
+                                  );
+
+                                  setState(() {});
+                                },
+                                text: 'Удалить',
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 20.0,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 115.0,
+                                  height: 50.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 0.0, 10.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily:
+                                            'Encode Sans Semi Condensed',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         Expanded(
