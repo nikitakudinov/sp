@@ -119,6 +119,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             teamId: params.getParam('teamId', ParamType.int),
             teamIndex: params.getParam('teamIndex', ParamType.int),
             name: params.getParam('name', ParamType.String),
+            tag: params.getParam('tag', ParamType.String),
+            country: params.getParam('country', ParamType.String),
+            flag: params.getParam('flag', ParamType.String),
           ),
         ),
         FFRoute(

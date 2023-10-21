@@ -23,12 +23,18 @@ class EDITETeamWidget extends StatefulWidget {
     Key? key,
     required this.teamId,
     this.teamIndex,
-    this.name,
+    required this.name,
+    required this.tag,
+    required this.country,
+    required this.flag,
   }) : super(key: key);
 
   final int? teamId;
   final int? teamIndex;
   final String? name;
+  final String? tag;
+  final String? country;
+  final String? flag;
 
   @override
   _EDITETeamWidgetState createState() => _EDITETeamWidgetState();
@@ -478,14 +484,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 model: _model.countryPickerModel,
                                 updateCallback: () => setState(() {}),
                                 child: CountryPickerWidget(
-                                  country: valueOrDefault<String>(
-                                    _model.team?.country,
-                                    '0',
-                                  ),
-                                  flag: valueOrDefault<String>(
-                                    _model.team?.flag,
-                                    '0',
-                                  ),
+                                  country: widget.country,
+                                  flag: widget.flag!,
                                 ),
                               ),
                             ],
