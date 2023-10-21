@@ -587,7 +587,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ],
                 ),
                 Text(
-                  'Hello World',
+                  valueOrDefault<String>(
+                    _model.team?.name,
+                    '0',
+                  ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ],
