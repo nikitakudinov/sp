@@ -556,8 +556,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                           onPressed: () async {
                             await TeamTable().update(
                               data: {
-                                'Name': _model.textController1.text,
-                                'Tag': _model.textController2.text,
+                                'Name': _model.name,
+                                'Tag': _model.tag,
                                 'Logo': _model.imagePath,
                                 'Country':
                                     _model.countryPickerModel.selectedCountry,
