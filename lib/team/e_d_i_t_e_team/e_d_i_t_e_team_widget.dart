@@ -1079,6 +1079,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
+                                                          fontSize: 10.0,
                                                           lineHeight: 0.8,
                                                         ),
                                               ),
@@ -1095,6 +1096,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .accent1,
+                                                        fontSize: 10.0,
                                                         lineHeight: 0.8,
                                                       ),
                                             ),
