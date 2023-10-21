@@ -41,6 +41,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
   String? tag = '';
 
+  bool membersSettingsVISIBILITY = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

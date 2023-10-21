@@ -73,7 +73,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: Container(
-                height: 50.0,
+                height: 40.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(5.0),
