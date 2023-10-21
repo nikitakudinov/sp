@@ -154,6 +154,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => VIEWTeamWidget(
             teamId: params.getParam('teamId', ParamType.int),
           ),
+        ),
+        FFRoute(
+          name: 'MESSAGES',
+          path: '/messages',
+          builder: (context, params) => MessagesWidget(),
+        ),
+        FFRoute(
+          name: 'CHAT',
+          path: '/chat',
+          builder: (context, params) => ChatWidget(
+            chatId: params.getParam('chatId', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -44,4 +44,10 @@ class UserRow extends SupabaseDataRow {
 
   bool? get lineUp => getField<bool>('LineUp');
   set lineUp(bool? value) => setField<bool>('LineUp', value);
+
+  String? get country => getField<String>('Country');
+  set country(String? value) => setField<String>('Country', value);
+
+  String? get flag => getField<String>('Flag');
+  set flag(String? value) => setField<String>('Flag', value);
 }
