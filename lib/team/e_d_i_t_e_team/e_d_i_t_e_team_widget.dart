@@ -415,8 +415,20 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ),
                 ),
                 Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Состав команыды',
+                        style: FlutterFlowTheme.of(context).titleMedium,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                      EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 15.0),
                   child: Builder(
                     builder: (context) {
                       final membersList = _model.membersList1.toList();

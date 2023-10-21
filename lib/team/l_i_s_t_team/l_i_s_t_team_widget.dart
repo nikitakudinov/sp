@@ -35,6 +35,13 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.apiResult0sy = await TeamGroup.listteamCall.call();
       if ((_model.apiResult0sy?.succeeded ?? true)) {
+        _model.dTUsers = await actions.jsonDTUser(
+          getJsonField(
+            (_model.apiResult0sy?.jsonBody ?? ''),
+            r'''$[:].User''',
+            true,
+          ),
+        );
         _model.dTteams = await actions.jsonDTTeam(
           getJsonField(
             (_model.apiResult0sy?.jsonBody ?? ''),

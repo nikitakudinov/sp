@@ -27,7 +27,8 @@ class ListteamCall {
   Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'LISTTEAM',
-      apiUrl: '${TeamGroup.baseUrl}Team?',
+      apiUrl:
+          '${TeamGroup.baseUrl}Team?select=id,created_at,Name,Tag,Members,Logo,Creator,User(id,created_at,Nickname,MemberOfTeam,Avatar,Tag,UID)',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
