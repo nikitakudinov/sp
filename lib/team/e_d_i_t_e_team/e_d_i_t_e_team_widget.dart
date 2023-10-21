@@ -393,6 +393,11 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                       .asValidator(context),
                                 ),
                               ),
+                              wrapWithModel(
+                                model: _model.countryPickerModel,
+                                updateCallback: () => setState(() {}),
+                                child: CountryPickerWidget(),
+                              ),
                             ],
                           ),
                         ),
@@ -502,11 +507,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                       ),
                     ),
                   ],
-                ),
-                wrapWithModel(
-                  model: _model.countryPickerModel,
-                  updateCallback: () => setState(() {}),
-                  child: CountryPickerWidget(),
                 ),
               ],
             ),
