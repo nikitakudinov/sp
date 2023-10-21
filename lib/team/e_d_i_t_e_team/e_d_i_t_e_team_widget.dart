@@ -129,7 +129,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       }
     });
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??=
+        TextEditingController(text: FFAppState().Team.name);
     _model.textFieldFocusNode1 ??= FocusNode();
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
