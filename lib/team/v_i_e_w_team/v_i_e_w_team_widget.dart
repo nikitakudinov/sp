@@ -55,7 +55,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
           ),
         );
         setState(() {
-          FFAppState().TeamMembers = _model.dTUser!.toList().cast<UserStruct>();
+          _model.members = _model.dTUser!.toList().cast<UserStruct>();
         });
       }
     });
@@ -173,7 +173,7 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
                         EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                     child: Builder(
                       builder: (context) {
-                        final membersList = FFAppState().TeamMembers.toList();
+                        final membersList = _model.members.toList();
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
