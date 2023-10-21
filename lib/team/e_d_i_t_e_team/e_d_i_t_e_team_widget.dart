@@ -61,7 +61,12 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
             (e) => e
               ..logo = TeamGroup.listteambyidCall.logo(
                 (_model.apiResult3ba?.jsonBody ?? ''),
-              ),
+              )
+              ..name = TeamGroup.listteambyidCall
+                  .name(
+                    (_model.apiResult3ba?.jsonBody ?? ''),
+                  )
+                  .toString(),
           );
         });
         _model.apiResulttx2 = await UserGroup.listuserbyidCall.call(
