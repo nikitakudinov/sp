@@ -100,13 +100,9 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       }
     });
 
-    _model.textController1 ??= TextEditingController(
-        text: valueOrDefault<String>(
-      _model.name,
-      '0',
-    ));
+    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
-    _model.textController2 ??= TextEditingController(text: _model.team?.tag);
+    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
