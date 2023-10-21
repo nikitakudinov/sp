@@ -65,6 +65,44 @@ class ListteambyidCall {
       cache: false,
     );
   }
+
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$[:].id''',
+      );
+  dynamic createdat(dynamic response) => getJsonField(
+        response,
+        r'''$[:].created_at''',
+      );
+  dynamic name(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Name''',
+      );
+  dynamic tag(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Tag''',
+      );
+  dynamic members(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Members''',
+        true,
+      );
+  dynamic logo(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Logo''',
+      );
+  dynamic creator(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Creator''',
+      );
+  dynamic country(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Country''',
+      );
+  dynamic flag(dynamic response) => getJsonField(
+        response,
+        r'''$[:].Flag''',
+      );
 }
 
 class LISTTEAMBYIDCopyCall {

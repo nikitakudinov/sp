@@ -12,12 +12,14 @@ export 'country_picker_model.dart';
 class CountryPickerWidget extends StatefulWidget {
   const CountryPickerWidget({
     Key? key,
-    this.country,
-    required this.flag,
-  }) : super(key: key);
+    String? country,
+    String? flag,
+  })  : this.country = country ?? '0',
+        this.flag = flag ?? '0',
+        super(key: key);
 
-  final String? country;
-  final String? flag;
+  final String country;
+  final String flag;
 
   @override
   _CountryPickerWidgetState createState() => _CountryPickerWidgetState();
@@ -40,8 +42,8 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        _model.selectedFlag = widget.flag!;
-        _model.selectedCountry = widget.country!;
+        _model.selectedFlag = widget.flag;
+        _model.selectedCountry = widget.country;
       });
     });
   }

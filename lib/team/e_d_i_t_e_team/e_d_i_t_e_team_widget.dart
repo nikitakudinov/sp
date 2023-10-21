@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -49,10 +48,44 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       );
       if ((_model.apiResult3ba?.succeeded ?? true)) {
         setState(() {
-          _model.team = (_model.apiResult3ba?.jsonBody ?? '') != null &&
-                  (_model.apiResult3ba?.jsonBody ?? '') != ''
-              ? TeamStruct.fromMap((_model.apiResult3ba?.jsonBody ?? ''))
-              : null;
+          _model.updateTeamStruct(
+            (e) => e
+              ..id = TeamGroup.listteambyidCall.id(
+                (_model.apiResult3ba?.jsonBody ?? ''),
+              )
+              ..createdAt = TeamGroup.listteambyidCall
+                  .createdat(
+                    (_model.apiResult3ba?.jsonBody ?? ''),
+                  )
+                  .toString()
+              ..name = TeamGroup.listteambyidCall
+                  .name(
+                    (_model.apiResult3ba?.jsonBody ?? ''),
+                  )
+                  .toString()
+              ..members = TeamGroup.listteambyidCall
+                  .members(
+                    (_model.apiResult3ba?.jsonBody ?? ''),
+                  )!
+                  .toList()
+              ..tag = TeamGroup.listteambyidCall
+                  .tag(
+                    (_model.apiResult3ba?.jsonBody ?? ''),
+                  )
+                  .toString()
+              ..logo = TeamGroup.listteambyidCall.logo(
+                (_model.apiResult3ba?.jsonBody ?? ''),
+              )
+              ..country = TeamGroup.listteambyidCall
+                  .country(
+                    (_model.apiResult3ba?.jsonBody ?? ''),
+                  )
+                  .toString()
+                  .toString()
+              ..flag = TeamGroup.listteambyidCall.flag(
+                (_model.apiResult3ba?.jsonBody ?? ''),
+              ),
+          );
         });
         setState(() {
           _model.members = functions.cleanResponse(getJsonField(
