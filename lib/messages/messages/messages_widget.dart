@@ -146,89 +146,17 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            FutureBuilder<List<UserRow>>(
-                                              future:
-                                                  UserTable().querySingleRow(
-                                                queryFn: (q) => q.eq(
-                                                  'id',
-                                                  listViewChatRow.companion1[0],
-                                                ),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<UserRow> textUserRowList =
-                                                    snapshot.data!;
-                                                final textUserRow =
-                                                    textUserRowList.isNotEmpty
-                                                        ? textUserRowList.first
-                                                        : null;
-                                                return Text(
-                                                  textUserRow!.nickname!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                            Text(
+                                              'Hello World',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium,
-                                                );
-                                              },
                                             ),
-                                            FutureBuilder<List<UserRow>>(
-                                              future:
-                                                  UserTable().querySingleRow(
-                                                queryFn: (q) => q.eq(
-                                                  'id',
-                                                  listViewChatRow.companion2[0],
-                                                ),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<UserRow> textUserRowList =
-                                                    snapshot.data!;
-                                                final textUserRow =
-                                                    textUserRowList.isNotEmpty
-                                                        ? textUserRowList.first
-                                                        : null;
-                                                return Text(
-                                                  textUserRow!.nickname!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                            Text(
+                                              'Hello World',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium,
-                                                );
-                                              },
                                             ),
                                           ],
                                         ),
