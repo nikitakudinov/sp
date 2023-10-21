@@ -622,7 +622,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
                 Text(
-                  'Hello World',
+                  _model.name!,
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ],
