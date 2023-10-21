@@ -151,8 +151,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                   UserTable().querySingleRow(
                                                 queryFn: (q) => q.eq(
                                                   'id',
-                                                  listViewChatRow
-                                                      .companion1.first,
+                                                  listViewChatRow.companion1[0],
                                                 ),
                                               ),
                                               builder: (context, snapshot) {
@@ -194,8 +193,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                   UserTable().querySingleRow(
                                                 queryFn: (q) => q.eq(
                                                   'id',
-                                                  listViewChatRow
-                                                      .companion2.first,
+                                                  listViewChatRow.companion2[0],
                                                 ),
                                               ),
                                               builder: (context, snapshot) {
