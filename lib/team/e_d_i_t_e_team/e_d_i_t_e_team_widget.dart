@@ -918,6 +918,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                             ..lineUp =
                                                 _model.checkboxLinewUpValue,
                                         );
+                                        _model.membersSettingsVISIBILITY =
+                                            false;
                                       });
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
