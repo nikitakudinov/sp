@@ -147,30 +147,26 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (_model.imagePath != 'false')
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 0.0),
-                                child: Container(
-                                  width: 110.0,
-                                  height: 110.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                              Container(
+                                width: 110.0,
+                                height: 110.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: Visibility(
+                                  visible: _model.imagePath != 'false',
+                                  child: ClipRRect(
                                     borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  child: Visibility(
-                                    visible: _model.imagePath != 'false',
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5.0),
-                                      child: Image.network(
-                                        valueOrDefault<String>(
-                                          _model.imagePath,
-                                          '0',
-                                        ),
-                                        width: 1085.0,
-                                        height: 105.0,
-                                        fit: BoxFit.cover,
+                                    child: Image.network(
+                                      valueOrDefault<String>(
+                                        _model.imagePath,
+                                        '0',
                                       ),
+                                      width: 1085.0,
+                                      height: 105.0,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
