@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -40,10 +42,25 @@ class _VIEWTeamWidgetState extends State<VIEWTeamWidget> {
         teamId: widget.teamId,
       );
       setState(() {});
-      await action_blocks.loadTeamMembers(
-        context,
-        teamId: widget.teamId,
+      _model.apiResultz22 = await UserGroup.listuserbyidCall.call(
+        idList: functions.listINTtoSTRING(FFAppState().Team.members.toList()),
       );
+      if ((_model.apiResultz22?.succeeded ?? true)) {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('1'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+      }
     });
   }
 

@@ -51,9 +51,20 @@ Future loadTeamMembers(
           true,
         ),
       );
-      FFAppState().update(() {
-        FFAppState().TeamMembers = dTMembers!.toList().cast<UserStruct>();
-      });
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('1'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 }
