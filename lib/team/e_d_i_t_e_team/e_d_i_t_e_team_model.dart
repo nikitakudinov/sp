@@ -2,9 +2,12 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/country_picker_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -43,6 +46,29 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
   bool membersSettingsVISIBILITY = false;
 
+  bool titleSettingsVISIBILITY = false;
+
+  bool titleSquad = true;
+
+  int selectedUserId = 01;
+
+  String selectedUserLogo =
+      'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png';
+
+  String selectedUserTag = 'не выбран';
+
+  String selectedUserNickname = 'не выбран';
+
+  String selectedUserCountry = 'Не выбран';
+
+  String selectedUserFlag = '';
+
+  String? selectedUserIndex = '';
+
+  String selectedUserRole = 'не выбран';
+
+  String selectedUserPermissionsRole = 'не выбран';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -69,6 +95,14 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   // Model for countryPicker component.
   late CountryPickerModel countryPickerModel;
+  // State field(s) for DropDownRole widget.
+  String? dropDownRoleValue;
+  FormFieldController<String>? dropDownRoleValueController;
+  // State field(s) for DropDownPermissionsRole widget.
+  String? dropDownPermissionsRoleValue;
+  FormFieldController<String>? dropDownPermissionsRoleValueController;
+  // State field(s) for CheckboxLinewUp widget.
+  bool? checkboxLinewUpValue;
   // Stores action output result for [Backend Call - Update Row] action in Button widget.
   List<TeamRow>? updateTeam;
 

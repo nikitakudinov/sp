@@ -10,15 +10,23 @@ class UserStruct extends BaseStruct {
     int? id,
     String? createdAt,
     String? nickname,
+    String? tag,
     int? memberOfTeam,
     String? avatar,
     String? uid,
+    String? role,
+    String? permissionsRole,
+    bool? lineUp,
   })  : _id = id,
         _createdAt = createdAt,
         _nickname = nickname,
+        _tag = tag,
         _memberOfTeam = memberOfTeam,
         _avatar = avatar,
-        _uid = uid;
+        _uid = uid,
+        _role = role,
+        _permissionsRole = permissionsRole,
+        _lineUp = lineUp;
 
   // "id" field.
   int? _id;
@@ -38,6 +46,12 @@ class UserStruct extends BaseStruct {
   String get nickname => _nickname ?? '';
   set nickname(String? val) => _nickname = val;
   bool hasNickname() => _nickname != null;
+
+  // "Tag" field.
+  String? _tag;
+  String get tag => _tag ?? '';
+  set tag(String? val) => _tag = val;
+  bool hasTag() => _tag != null;
 
   // "MemberOfTeam" field.
   int? _memberOfTeam;
@@ -59,13 +73,35 @@ class UserStruct extends BaseStruct {
   set uid(String? val) => _uid = val;
   bool hasUid() => _uid != null;
 
+  // "Role" field.
+  String? _role;
+  String get role => _role ?? '';
+  set role(String? val) => _role = val;
+  bool hasRole() => _role != null;
+
+  // "PermissionsRole" field.
+  String? _permissionsRole;
+  String get permissionsRole => _permissionsRole ?? '';
+  set permissionsRole(String? val) => _permissionsRole = val;
+  bool hasPermissionsRole() => _permissionsRole != null;
+
+  // "LineUp" field.
+  bool? _lineUp;
+  bool get lineUp => _lineUp ?? false;
+  set lineUp(bool? val) => _lineUp = val;
+  bool hasLineUp() => _lineUp != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         id: castToType<int>(data['id']),
         createdAt: data['created_at'] as String?,
         nickname: data['Nickname'] as String?,
+        tag: data['Tag'] as String?,
         memberOfTeam: castToType<int>(data['MemberOfTeam']),
         avatar: data['Avatar'] as String?,
         uid: data['UID'] as String?,
+        role: data['Role'] as String?,
+        permissionsRole: data['PermissionsRole'] as String?,
+        lineUp: data['LineUp'] as bool?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -75,9 +111,13 @@ class UserStruct extends BaseStruct {
         'id': _id,
         'created_at': _createdAt,
         'Nickname': _nickname,
+        'Tag': _tag,
         'MemberOfTeam': _memberOfTeam,
         'Avatar': _avatar,
         'UID': _uid,
+        'Role': _role,
+        'PermissionsRole': _permissionsRole,
+        'LineUp': _lineUp,
       }.withoutNulls;
 
   @override
@@ -94,6 +134,10 @@ class UserStruct extends BaseStruct {
           _nickname,
           ParamType.String,
         ),
+        'Tag': serializeParam(
+          _tag,
+          ParamType.String,
+        ),
         'MemberOfTeam': serializeParam(
           _memberOfTeam,
           ParamType.int,
@@ -105,6 +149,18 @@ class UserStruct extends BaseStruct {
         'UID': serializeParam(
           _uid,
           ParamType.String,
+        ),
+        'Role': serializeParam(
+          _role,
+          ParamType.String,
+        ),
+        'PermissionsRole': serializeParam(
+          _permissionsRole,
+          ParamType.String,
+        ),
+        'LineUp': serializeParam(
+          _lineUp,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -125,6 +181,11 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        tag: deserializeParam(
+          data['Tag'],
+          ParamType.String,
+          false,
+        ),
         memberOfTeam: deserializeParam(
           data['MemberOfTeam'],
           ParamType.int,
@@ -140,6 +201,21 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        role: deserializeParam(
+          data['Role'],
+          ParamType.String,
+          false,
+        ),
+        permissionsRole: deserializeParam(
+          data['PermissionsRole'],
+          ParamType.String,
+          false,
+        ),
+        lineUp: deserializeParam(
+          data['LineUp'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -151,29 +227,51 @@ class UserStruct extends BaseStruct {
         id == other.id &&
         createdAt == other.createdAt &&
         nickname == other.nickname &&
+        tag == other.tag &&
         memberOfTeam == other.memberOfTeam &&
         avatar == other.avatar &&
-        uid == other.uid;
+        uid == other.uid &&
+        role == other.role &&
+        permissionsRole == other.permissionsRole &&
+        lineUp == other.lineUp;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([id, createdAt, nickname, memberOfTeam, avatar, uid]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        createdAt,
+        nickname,
+        tag,
+        memberOfTeam,
+        avatar,
+        uid,
+        role,
+        permissionsRole,
+        lineUp
+      ]);
 }
 
 UserStruct createUserStruct({
   int? id,
   String? createdAt,
   String? nickname,
+  String? tag,
   int? memberOfTeam,
   String? avatar,
   String? uid,
+  String? role,
+  String? permissionsRole,
+  bool? lineUp,
 }) =>
     UserStruct(
       id: id,
       createdAt: createdAt,
       nickname: nickname,
+      tag: tag,
       memberOfTeam: memberOfTeam,
       avatar: avatar,
       uid: uid,
+      role: role,
+      permissionsRole: permissionsRole,
+      lineUp: lineUp,
     );

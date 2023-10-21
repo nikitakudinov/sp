@@ -34,4 +34,11 @@ class UserRow extends SupabaseDataRow {
 
   String? get uid => getField<String>('UID');
   set uid(String? value) => setField<String>('UID', value);
+
+  String? get role => getField<String>('Role');
+  set role(String? value) => setField<String>('Role', value);
+
+  String? get permissionsRole => getField<String>('PermissionsRole');
+  set permissionsRole(String? value) =>
+      setField<String>('PermissionsRole', value);
 }
