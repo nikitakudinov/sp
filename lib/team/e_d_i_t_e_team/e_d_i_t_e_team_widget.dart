@@ -149,7 +149,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                             if (_model.imagePath != 'false')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 10.0),
+                                    0.0, 0.0, 10.0, 0.0),
                                 child: Container(
                                   width: 110.0,
                                   height: 110.0,
@@ -177,7 +177,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                               ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 5.0, 10.0),
+                                  0.0, 6.0, 5.0, 10.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   final selectedMedia = await selectMedia(
