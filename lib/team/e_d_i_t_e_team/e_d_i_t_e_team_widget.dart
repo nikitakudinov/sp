@@ -411,8 +411,14 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 model: _model.countryPickerModel,
                                 updateCallback: () => setState(() {}),
                                 child: CountryPickerWidget(
-                                  country: _model.team?.country,
-                                  flag: _model.team!.flag,
+                                  country: valueOrDefault<String>(
+                                    _model.team?.country,
+                                    '0',
+                                  ),
+                                  flag: valueOrDefault<String>(
+                                    _model.team?.flag,
+                                    '0',
+                                  ),
                                 ),
                               ),
                             ],
