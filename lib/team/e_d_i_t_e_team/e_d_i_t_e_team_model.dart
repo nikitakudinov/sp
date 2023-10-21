@@ -10,6 +10,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'e_d_i_t_e_team_widget.dart' show EDITETeamWidget;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +38,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
       updateFn(team ??= TeamStruct());
 
   String? name = '';
+
+  String? tag = '';
 
   ///  State fields for stateful widgets in this page.
 

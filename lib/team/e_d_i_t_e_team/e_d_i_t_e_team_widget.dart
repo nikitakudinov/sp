@@ -9,6 +9,7 @@ import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -69,6 +70,16 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                 (_model.apiResult3ba?.jsonBody ?? ''),
               ),
           );
+          _model.name = TeamGroup.listteambyidCall
+              .name(
+                (_model.apiResult3ba?.jsonBody ?? ''),
+              )
+              .toString();
+          _model.tag = TeamGroup.listteambyidCall
+              .tag(
+                (_model.apiResult3ba?.jsonBody ?? ''),
+              )
+              .toString();
         });
         _model.apiResulttx2 = await UserGroup.listuserbyidCall.call(
           idList: _model.members,
@@ -294,6 +305,16 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                   child: TextFormField(
                                     controller: _model.textController1,
                                     focusNode: _model.textFieldFocusNode1,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.textController1',
+                                      Duration(milliseconds: 2000),
+                                      () async {
+                                        setState(() {
+                                          _model.name =
+                                              _model.textController1.text;
+                                        });
+                                      },
+                                    ),
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'Название',
@@ -359,6 +380,16 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                   child: TextFormField(
                                     controller: _model.textController2,
                                     focusNode: _model.textFieldFocusNode2,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.textController2',
+                                      Duration(milliseconds: 2000),
+                                      () async {
+                                        setState(() {
+                                          _model.tag =
+                                              _model.textController2.text;
+                                        });
+                                      },
+                                    ),
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'TAG',
