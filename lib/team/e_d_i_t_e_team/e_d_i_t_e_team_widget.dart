@@ -68,6 +68,11 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   )
                   .toString(),
           );
+          _model.name = TeamGroup.listteambyidCall
+              .name(
+                (_model.apiResult3ba?.jsonBody ?? ''),
+              )
+              .toString();
         });
         _model.apiResulttx2 = await UserGroup.listuserbyidCall.call(
           idList: _model.members,
@@ -88,7 +93,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       }
     });
 
-    _model.textController1 ??= TextEditingController(text: _model.team?.name);
+    _model.textController1 ??= TextEditingController(text: _model.name);
     _model.textFieldFocusNode1 ??= FocusNode();
     _model.textController2 ??= TextEditingController(text: _model.team?.tag);
     _model.textFieldFocusNode2 ??= FocusNode();

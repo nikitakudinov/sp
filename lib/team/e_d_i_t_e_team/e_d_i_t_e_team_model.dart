@@ -36,6 +36,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   void updateTeamStruct(Function(TeamStruct) updateFn) =>
       updateFn(team ??= TeamStruct());
 
+  String? name = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
