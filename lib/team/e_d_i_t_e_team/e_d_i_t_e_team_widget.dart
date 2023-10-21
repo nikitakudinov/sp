@@ -331,10 +331,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 onPressed: () async {
                                   await deleteSupabaseFileFromPublicUrl(
                                       _model.imagePath!);
-                                  setState(() {
-                                    _model.imagePath =
-                                        'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png';
-                                  });
                                   await TeamTable().update(
                                     data: {
                                       'Logo':
@@ -345,6 +341,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                       widget.teamId,
                                     ),
                                   );
+                                  setState(() {
+                                    _model.imagePath =
+                                        'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png';
+                                  });
 
                                   setState(() {});
                                 },
