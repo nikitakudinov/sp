@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'e_d_i_t_e_team_widget.dart' show EDITETeamWidget;
@@ -31,6 +32,10 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
       membersList1.insert(index, item);
   void updateMembersList1AtIndex(int index, Function(UserStruct) updateFn) =>
       membersList1[index] = updateFn(membersList1[index]);
+
+  TeamStruct? team;
+  void updateTeamStruct(Function(TeamStruct) updateFn) =>
+      updateFn(team ??= TeamStruct());
 
   ///  State fields for stateful widgets in this page.
 

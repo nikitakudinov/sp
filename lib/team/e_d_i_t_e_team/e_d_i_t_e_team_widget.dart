@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -48,6 +49,12 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       );
       if ((_model.apiResult3ba?.succeeded ?? true)) {
         setState(() {
+          _model.team = (_model.apiResult3ba?.jsonBody ?? '') != null &&
+                  (_model.apiResult3ba?.jsonBody ?? '') != ''
+              ? TeamStruct.fromMap((_model.apiResult3ba?.jsonBody ?? ''))
+              : null;
+        });
+        setState(() {
           _model.members = functions.cleanResponse(getJsonField(
             (_model.apiResult3ba?.jsonBody ?? ''),
             r'''$[:].Members''',
@@ -77,11 +84,9 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       }
     });
 
-    _model.textController1 ??=
-        TextEditingController(text: FFAppState().Team.name);
+    _model.textController1 ??= TextEditingController(text: _model.team?.name);
     _model.textFieldFocusNode1 ??= FocusNode();
-    _model.textController2 ??=
-        TextEditingController(text: FFAppState().Team.tag);
+    _model.textController2 ??= TextEditingController(text: _model.team?.tag);
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
@@ -405,7 +410,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                               wrapWithModel(
                                 model: _model.countryPickerModel,
                                 updateCallback: () => setState(() {}),
-                                child: CountryPickerWidget(),
+                                child: CountryPickerWidget(
+                                  country: _model.team?.country,
+                                  flag: _model.team!.flag,
+                                ),
                               ),
                             ],
                           ),
