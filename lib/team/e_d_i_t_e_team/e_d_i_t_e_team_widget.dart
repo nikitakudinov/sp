@@ -334,7 +334,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                   await TeamTable().update(
                                     data: {
                                       'Logo':
-                                          'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
+                                          'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png',
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'id',
@@ -343,7 +343,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                   );
                                   setState(() {
                                     _model.imagePath =
-                                        'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png';
+                                        'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png';
                                   });
 
                                   setState(() {});
