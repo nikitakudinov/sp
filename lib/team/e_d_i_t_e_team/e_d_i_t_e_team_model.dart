@@ -63,7 +63,7 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
   String selectedUserFlag = '';
 
-  String? selectedUserIndex = '';
+  int? selectedUserIndex;
 
   String selectedUserRole = 'не выбран';
 
@@ -105,6 +105,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   FormFieldController<String>? dropDownPermissionsRoleValueController;
   // State field(s) for CheckboxLinewUp widget.
   bool? checkboxLinewUpValue;
+  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  List<UserRow>? updateMember;
   // Stores action output result for [Backend Call - Update Row] action in Button widget.
   List<TeamRow>? updateTeam;
 

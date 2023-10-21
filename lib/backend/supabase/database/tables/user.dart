@@ -41,4 +41,7 @@ class UserRow extends SupabaseDataRow {
   String? get permissionsRole => getField<String>('PermissionsRole');
   set permissionsRole(String? value) =>
       setField<String>('PermissionsRole', value);
+
+  bool? get lineUp => getField<bool>('LineUp');
+  set lineUp(bool? value) => setField<bool>('LineUp', value);
 }

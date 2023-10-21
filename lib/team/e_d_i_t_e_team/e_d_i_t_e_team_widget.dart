@@ -894,8 +894,51 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 ),
                                 Expanded(
                                   child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
+                                    onPressed: () async {
+                                      await UserTable().update(
+                                        data: {
+                                          'Role': _model.dropDownRoleValue,
+                                          'PermissionsRole': _model
+                                              .dropDownPermissionsRoleValue,
+                                          'LineUp': _model
+                                              .selectedUserPermissionsLineUp,
+                                        },
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          _model.selectedUserId,
+                                        ),
+                                      );
+                                      setState(() {
+                                        _model.updateMembersList1AtIndex(
+                                          _model.selectedUserIndex!,
+                                          (e) => e
+                                            ..role = _model.dropDownRoleValue
+                                            ..permissionsRole = _model
+                                                .dropDownPermissionsRoleValue
+                                            ..lineUp =
+                                                _model.checkboxLinewUpValue,
+                                        );
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Данные обновлены',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+
+                                      setState(() {});
                                     },
                                     text: 'Сохранить',
                                     options: FFButtonOptions(
@@ -1020,6 +1063,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.permissionsRole;
                                       _model.selectedUserPermissionsLineUp =
                                           membersListItem.lineUp;
+                                      _model.selectedUserIndex =
+                                          membersListIndex;
                                     });
                                     setState(() {
                                       _model.dropDownRoleValueController
