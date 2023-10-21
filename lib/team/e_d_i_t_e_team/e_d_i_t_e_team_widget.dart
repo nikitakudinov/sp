@@ -338,59 +338,67 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                               ),
                               Container(
                                 decoration: BoxDecoration(),
-                                child: TextFormField(
-                                  controller: _model.textController2,
-                                  focusNode: _model.textFieldFocusNode2,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'TAG',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        width: 1.0,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 10.0),
+                                  child: TextFormField(
+                                    controller: _model.textController2,
+                                    focusNode: _model.textFieldFocusNode2,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'TAG',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        width: 1.0,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(5.0),
+                                      filled: true,
+                                      fillColor:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              10.0, 5.0, 10.0, 5.0),
                                     ),
-                                    filled: true,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 5.0, 10.0, 5.0),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    validator: _model.textController2Validator
+                                        .asValidator(context),
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  validator: _model.textController2Validator
-                                      .asValidator(context),
                                 ),
                               ),
                               wrapWithModel(
