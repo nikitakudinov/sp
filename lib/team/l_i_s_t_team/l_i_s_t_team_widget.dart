@@ -232,8 +232,8 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Container(
-                                                width: 24.0,
-                                                height: 16.0,
+                                                width: 16.0,
+                                                height: 12.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -242,7 +242,7 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          8.0),
+                                                          0.0),
                                                   child: Image.network(
                                                     teamsListItem.flag,
                                                     fit: BoxFit.cover,
