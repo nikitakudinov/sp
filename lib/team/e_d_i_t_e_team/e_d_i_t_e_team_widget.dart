@@ -1007,7 +1007,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.tag;
                                       _model.selectedUserNickname =
                                           membersListItem.nickname;
-                                      _model.selectedUserCountry = '';
+                                      _model.selectedUserRole =
+                                          membersListItem.role;
+                                      _model.selectedUserPermissionsRole =
+                                          membersListItem.permissionsRole;
                                     });
                                     setState(() {
                                       _model.dropDownRoleValueController
