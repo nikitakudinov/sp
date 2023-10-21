@@ -177,7 +177,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                               ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 6.0, 5.0, 10.0),
+                                  0.0, 6.0, 10.0, 10.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   final selectedMedia = await selectMedia(
@@ -240,6 +240,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                   });
                                 },
                                 text: 'Загрузить',
+                                icon: Icon(
+                                  Icons.upload_file,
+                                  size: 20.0,
+                                ),
                                 options: FFButtonOptions(
                                   width: 115.0,
                                   height: 50.0,
@@ -262,7 +266,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(3.0),
+                                  borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
                             ),
