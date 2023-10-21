@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 class CountryPickerModel extends FlutterFlowModel<CountryPickerWidget> {
   ///  Local state fields for this component.
 
-  String selectedFlag = 'Не выбран';
+  String selectedFlag = 'false';
 
-  String selectedCountry = 'Не выбрано';
+  String selectedCountry = 'Не выбран';
 
   bool listVISIBILITY = false;
 
