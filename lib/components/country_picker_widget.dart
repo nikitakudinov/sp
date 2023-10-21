@@ -41,120 +41,128 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return SingleChildScrollView(
-      primary: false,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
-            height: 50.0,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                setState(() {
-                  _model.listVISIBILITY = true;
-                });
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  if (_model.selectedFlag != 'false')
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                      child: Container(
-                        width: 30.0,
-                        height: 20.0,
-                        decoration: BoxDecoration(),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: Image.network(
-                            _model.selectedFlag,
-                            fit: BoxFit.cover,
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+      child: SingleChildScrollView(
+        primary: false,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              height: 50.0,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  setState(() {
+                    _model.listVISIBILITY = true;
+                  });
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    if (_model.selectedFlag != 'false')
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 10.0, 0.0),
+                        child: Container(
+                          width: 30.0,
+                          height: 20.0,
+                          decoration: BoxDecoration(),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0.0),
+                            child: Image.network(
+                              _model.selectedFlag,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
+                    Expanded(
+                      child: Text(
+                        _model.selectedCountry,
+                        style: FlutterFlowTheme.of(context).titleSmall,
+                      ),
                     ),
-                  Expanded(
-                    child: Text(
-                      _model.selectedCountry,
-                      style: FlutterFlowTheme.of(context).titleSmall,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Builder(
-              builder: (context) {
-                final countrysList = FFAppState().Countrys.toList();
-                return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: countrysList.length,
-                  itemBuilder: (context, countrysListIndex) {
-                    final countrysListItem = countrysList[countrysListIndex];
-                    return InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        setState(() {
-                          _model.selectedFlag = countrysListItem.flagLink48x36;
-                          _model.selectedCountry = countrysListItem.ruName;
-                          _model.listVISIBILITY = false;
-                        });
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 8.0, 10.0, 8.0),
-                            child: Container(
-                              width: 30.0,
-                              height: 20.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0.0),
-                                child: CachedNetworkImage(
-                                  fadeInDuration: Duration(milliseconds: 3000),
-                                  fadeOutDuration: Duration(milliseconds: 3000),
-                                  imageUrl: countrysListItem.flagLinkH24,
-                                  fit: BoxFit.cover,
+            if (_model.listVISIBILITY)
+              Container(
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Builder(
+                  builder: (context) {
+                    final countrysList = FFAppState().Countrys.toList();
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: countrysList.length,
+                      itemBuilder: (context, countrysListIndex) {
+                        final countrysListItem =
+                            countrysList[countrysListIndex];
+                        return InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            setState(() {
+                              _model.selectedFlag =
+                                  countrysListItem.flagLink48x36;
+                              _model.selectedCountry = countrysListItem.ruName;
+                              _model.listVISIBILITY = false;
+                            });
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 8.0, 10.0, 8.0),
+                                child: Container(
+                                  width: 30.0,
+                                  height: 20.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                    child: CachedNetworkImage(
+                                      fadeInDuration:
+                                          Duration(milliseconds: 3000),
+                                      fadeOutDuration:
+                                          Duration(milliseconds: 3000),
+                                      imageUrl: countrysListItem.flagLinkH24,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              Text(
+                                countrysListItem.ruName,
+                                style: FlutterFlowTheme.of(context).titleSmall,
+                              ),
+                            ],
                           ),
-                          Text(
-                            countrysListItem.ruName,
-                            style: FlutterFlowTheme.of(context).titleSmall,
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     );
                   },
-                );
-              },
-            ),
-          ),
-        ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
