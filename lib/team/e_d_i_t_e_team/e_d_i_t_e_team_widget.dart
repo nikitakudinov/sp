@@ -583,15 +583,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                               ),
                             );
 
-                            context.pushNamed(
-                              'VIEW_team',
-                              queryParameters: {
-                                'teamId': serializeParam(
-                                  widget.teamId,
-                                  ParamType.int,
-                                ),
-                              }.withoutNulls,
-                            );
+                            context.pushNamed('LIST_team');
 
                             setState(() {});
                           },
@@ -624,9 +616,13 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    _model.team?.name,
+                    _model.team?.country,
                     '0',
                   ),
+                  style: FlutterFlowTheme.of(context).bodyMedium,
+                ),
+                Text(
+                  'Hello World',
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ],
