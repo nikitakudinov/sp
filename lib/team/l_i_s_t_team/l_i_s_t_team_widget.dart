@@ -218,12 +218,45 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
                                         Text(
                                           teamsListItem.tag,
                                           style: FlutterFlowTheme.of(context)
-                                              .titleLarge,
+                                              .titleSmall,
                                         ),
                                         Text(
                                           teamsListItem.name,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                              child: Container(
+                                                width: 24.0,
+                                                height: 16.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.network(
+                                                    teamsListItem.flag,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              teamsListItem.country,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall,
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
