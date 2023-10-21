@@ -14,13 +14,17 @@ class TeamStruct extends BaseStruct {
     String? tag,
     String? logo,
     String? creator,
+    String? country,
+    String? flag,
   })  : _id = id,
         _createdAt = createdAt,
         _name = name,
         _members = members,
         _tag = tag,
         _logo = logo,
-        _creator = creator;
+        _creator = creator,
+        _country = country,
+        _flag = flag;
 
   // "id" field.
   int? _id;
@@ -66,6 +70,18 @@ class TeamStruct extends BaseStruct {
   set creator(String? val) => _creator = val;
   bool hasCreator() => _creator != null;
 
+  // "Country" field.
+  String? _country;
+  String get country => _country ?? '';
+  set country(String? val) => _country = val;
+  bool hasCountry() => _country != null;
+
+  // "Flag" field.
+  String? _flag;
+  String get flag => _flag ?? '';
+  set flag(String? val) => _flag = val;
+  bool hasFlag() => _flag != null;
+
   static TeamStruct fromMap(Map<String, dynamic> data) => TeamStruct(
         id: castToType<int>(data['id']),
         createdAt: data['created_at'] as String?,
@@ -74,6 +90,8 @@ class TeamStruct extends BaseStruct {
         tag: data['Tag'] as String?,
         logo: data['Logo'] as String?,
         creator: data['Creator'] as String?,
+        country: data['Country'] as String?,
+        flag: data['Flag'] as String?,
       );
 
   static TeamStruct? maybeFromMap(dynamic data) =>
@@ -87,6 +105,8 @@ class TeamStruct extends BaseStruct {
         'Tag': _tag,
         'Logo': _logo,
         'Creator': _creator,
+        'Country': _country,
+        'Flag': _flag,
       }.withoutNulls;
 
   @override
@@ -118,6 +138,14 @@ class TeamStruct extends BaseStruct {
         ),
         'Creator': serializeParam(
           _creator,
+          ParamType.String,
+        ),
+        'Country': serializeParam(
+          _country,
+          ParamType.String,
+        ),
+        'Flag': serializeParam(
+          _flag,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -159,6 +187,16 @@ class TeamStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        country: deserializeParam(
+          data['Country'],
+          ParamType.String,
+          false,
+        ),
+        flag: deserializeParam(
+          data['Flag'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -174,12 +212,14 @@ class TeamStruct extends BaseStruct {
         listEquality.equals(members, other.members) &&
         tag == other.tag &&
         logo == other.logo &&
-        creator == other.creator;
+        creator == other.creator &&
+        country == other.country &&
+        flag == other.flag;
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([id, createdAt, name, members, tag, logo, creator]);
+      .hash([id, createdAt, name, members, tag, logo, creator, country, flag]);
 }
 
 TeamStruct createTeamStruct({
@@ -189,6 +229,8 @@ TeamStruct createTeamStruct({
   String? tag,
   String? logo,
   String? creator,
+  String? country,
+  String? flag,
 }) =>
     TeamStruct(
       id: id,
@@ -197,4 +239,6 @@ TeamStruct createTeamStruct({
       tag: tag,
       logo: logo,
       creator: creator,
+      country: country,
+      flag: flag,
     );

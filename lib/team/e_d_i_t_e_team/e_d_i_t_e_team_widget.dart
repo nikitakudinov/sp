@@ -505,6 +505,9 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 'Name': _model.textController1.text,
                                 'Tag': _model.textController2.text,
                                 'Logo': _model.imagePath,
+                                'Country':
+                                    _model.countryPickerModel.selectedCountry,
+                                'Flag': _model.countryPickerModel.selectedFlag,
                               },
                               matchingRows: (rows) => rows.eq(
                                 'id',

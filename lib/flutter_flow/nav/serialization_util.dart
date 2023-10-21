@@ -216,6 +216,8 @@ dynamic deserializeParam<T>(
         switch (T) {
           case CountryRow:
             return CountryRow(data);
+          case TeamMembersRow:
+            return TeamMembersRow(data);
           case UserRow:
             return UserRow(data);
           case RequestRow:

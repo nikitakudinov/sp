@@ -34,4 +34,10 @@ class TeamRow extends SupabaseDataRow {
 
   String? get creator => getField<String>('Creator');
   set creator(String? value) => setField<String>('Creator', value);
+
+  String? get country => getField<String>('Country');
+  set country(String? value) => setField<String>('Country', value);
+
+  String? get flag => getField<String>('Flag');
+  set flag(String? value) => setField<String>('Flag', value);
 }
