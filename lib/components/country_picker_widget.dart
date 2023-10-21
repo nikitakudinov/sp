@@ -148,8 +148,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           setState(() {
-                            _model.selectedFlag =
-                                countrysListItem.flagLink48x36;
+                            _model.selectedFlag = countrysListItem.flagLinkH24;
                             _model.selectedCountry = countrysListItem.ruName;
                             _model.listVISIBILITY = false;
                           });
