@@ -229,156 +229,160 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                   ),
                                 ),
                               ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 6.0, 10.0, 10.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  final selectedMedia = await selectMedia(
-                                    storageFolderPath: 'logos',
-                                    maxWidth: 150.00,
-                                    maxHeight: 150.00,
-                                    imageQuality: 100,
-                                    mediaSource: MediaSource.photoGallery,
-                                    multiImage: false,
-                                  );
-                                  if (selectedMedia != null &&
-                                      selectedMedia.every((m) =>
-                                          validateFileFormat(
-                                              m.storagePath, context))) {
-                                    setState(
-                                        () => _model.isDataUploading = true);
-                                    var selectedUploadedFiles =
-                                        <FFUploadedFile>[];
+                            if (_model.imagePath ==
+                                'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png')
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 6.0, 10.0, 10.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final selectedMedia = await selectMedia(
+                                      storageFolderPath: 'logos',
+                                      maxWidth: 150.00,
+                                      maxHeight: 150.00,
+                                      imageQuality: 100,
+                                      mediaSource: MediaSource.photoGallery,
+                                      multiImage: false,
+                                    );
+                                    if (selectedMedia != null &&
+                                        selectedMedia.every((m) =>
+                                            validateFileFormat(
+                                                m.storagePath, context))) {
+                                      setState(
+                                          () => _model.isDataUploading = true);
+                                      var selectedUploadedFiles =
+                                          <FFUploadedFile>[];
 
-                                    var downloadUrls = <String>[];
-                                    try {
-                                      selectedUploadedFiles = selectedMedia
-                                          .map((m) => FFUploadedFile(
-                                                name: m.storagePath
-                                                    .split('/')
-                                                    .last,
-                                                bytes: m.bytes,
-                                                height: m.dimensions?.height,
-                                                width: m.dimensions?.width,
-                                                blurHash: m.blurHash,
-                                              ))
-                                          .toList();
+                                      var downloadUrls = <String>[];
+                                      try {
+                                        selectedUploadedFiles = selectedMedia
+                                            .map((m) => FFUploadedFile(
+                                                  name: m.storagePath
+                                                      .split('/')
+                                                      .last,
+                                                  bytes: m.bytes,
+                                                  height: m.dimensions?.height,
+                                                  width: m.dimensions?.width,
+                                                  blurHash: m.blurHash,
+                                                ))
+                                            .toList();
 
-                                      downloadUrls =
-                                          await uploadSupabaseStorageFiles(
-                                        bucketName: 'playground',
-                                        selectedFiles: selectedMedia,
-                                      );
-                                    } finally {
-                                      _model.isDataUploading = false;
+                                        downloadUrls =
+                                            await uploadSupabaseStorageFiles(
+                                          bucketName: 'playground',
+                                          selectedFiles: selectedMedia,
+                                        );
+                                      } finally {
+                                        _model.isDataUploading = false;
+                                      }
+                                      if (selectedUploadedFiles.length ==
+                                              selectedMedia.length &&
+                                          downloadUrls.length ==
+                                              selectedMedia.length) {
+                                        setState(() {
+                                          _model.uploadedLocalFile =
+                                              selectedUploadedFiles.first;
+                                          _model.uploadedFileUrl =
+                                              downloadUrls.first;
+                                        });
+                                      } else {
+                                        setState(() {});
+                                        return;
+                                      }
                                     }
-                                    if (selectedUploadedFiles.length ==
-                                            selectedMedia.length &&
-                                        downloadUrls.length ==
-                                            selectedMedia.length) {
-                                      setState(() {
-                                        _model.uploadedLocalFile =
-                                            selectedUploadedFiles.first;
-                                        _model.uploadedFileUrl =
-                                            downloadUrls.first;
-                                      });
-                                    } else {
-                                      setState(() {});
-                                      return;
-                                    }
-                                  }
 
-                                  setState(() {
-                                    _model.imagePath = _model.uploadedFileUrl;
-                                  });
-                                },
-                                text: 'Загрузить',
-                                icon: Icon(
-                                  Icons.upload_file,
-                                  size: 20.0,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 115.0,
-                                  height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily:
-                                            'Encode Sans Semi Condensed',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                    setState(() {
+                                      _model.imagePath = _model.uploadedFileUrl;
+                                    });
+                                  },
+                                  text: 'Загрузить',
+                                  icon: Icon(
+                                    Icons.upload_file,
+                                    size: 20.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 6.0, 10.0, 10.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  await deleteSupabaseFileFromPublicUrl(
-                                      _model.imagePath!);
-                                  await TeamTable().update(
-                                    data: {
-                                      'Logo':
-                                          'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png',
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'id',
-                                      widget.teamId,
+                                  options: FFButtonOptions(
+                                    width: 115.0,
+                                    height: 50.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              'Encode Sans Semi Condensed',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
                                     ),
-                                  );
-                                  setState(() {
-                                    _model.imagePath =
-                                        'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png';
-                                  });
-
-                                  setState(() {});
-                                },
-                                text: 'Удалить',
-                                icon: Icon(
-                                  Icons.delete,
-                                  size: 20.0,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 115.0,
-                                  height: 50.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily:
-                                            'Encode Sans Semi Condensed',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                    borderRadius: BorderRadius.circular(5.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(5.0),
                                 ),
                               ),
-                            ),
+                            if (_model.imagePath !=
+                                'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png')
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 6.0, 10.0, 10.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    await deleteSupabaseFileFromPublicUrl(
+                                        _model.imagePath!);
+                                    await TeamTable().update(
+                                      data: {
+                                        'Logo':
+                                            'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png',
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'id',
+                                        widget.teamId,
+                                      ),
+                                    );
+                                    setState(() {
+                                      _model.imagePath =
+                                          'https://supabase.proplayclub.ru/storage/v1/object/public/playground/logos/placeholder.png';
+                                    });
+
+                                    setState(() {});
+                                  },
+                                  text: 'Удалить',
+                                  icon: Icon(
+                                    Icons.delete,
+                                    size: 20.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: 115.0,
+                                    height: 50.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              'Encode Sans Semi Condensed',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                         Expanded(
