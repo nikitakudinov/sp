@@ -151,8 +151,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 10.0, 10.0),
                                 child: Container(
-                                  width: 113.0,
-                                  height: 113.0,
+                                  width: 110.0,
+                                  height: 110.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
