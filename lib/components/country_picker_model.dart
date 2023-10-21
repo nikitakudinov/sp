@@ -8,6 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CountryPickerModel extends FlutterFlowModel<CountryPickerWidget> {
+  ///  Local state fields for this component.
+
+  String selectedFlag = 'Не выбран';
+
+  String selectedCountry = 'Не выбрано';
+
+  bool listVISIBILITY = false;
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
