@@ -999,6 +999,15 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                       _model.membersSettingsVISIBILITY = true;
                                       _model.titleSettingsVISIBILITY = true;
                                       _model.titleSquad = false;
+                                      _model.selectedUserId =
+                                          membersListItem.id;
+                                      _model.selectedUserLogo =
+                                          membersListItem.avatar;
+                                      _model.selectedUserTag =
+                                          membersListItem.tag;
+                                      _model.selectedUserNickname =
+                                          membersListItem.nickname;
+                                      _model.selectedUserCountry = '';
                                     });
                                     setState(() {
                                       _model.dropDownRoleValueController
