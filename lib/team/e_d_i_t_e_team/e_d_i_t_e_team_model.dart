@@ -56,6 +56,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
   String? Function(BuildContext, String?)? textController2Validator;
   // Model for countryPicker component.
   late CountryPickerModel countryPickerModel;
+  // Stores action output result for [Backend Call - Update Row] action in Button widget.
+  List<TeamRow>? updateTeam;
 
   /// Initialization and disposal methods.
 

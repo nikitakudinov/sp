@@ -499,8 +499,44 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 30.0, 15.0, 0.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            await TeamTable().update(
+                              data: {
+                                'Name': _model.textController1.text,
+                                'Tag': _model.textController2.text,
+                                'Logo': _model.imagePath,
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                widget.teamId,
+                              ),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Изменения сохранены',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+
+                            context.pushNamed(
+                              'VIEW_team',
+                              queryParameters: {
+                                'teamId': serializeParam(
+                                  widget.teamId,
+                                  ParamType.int,
+                                ),
+                              }.withoutNulls,
+                            );
+
+                            setState(() {});
                           },
                           text: 'Сохранить',
                           options: FFButtonOptions(
