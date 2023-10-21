@@ -139,7 +139,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
 
     _model.textController1 ??= TextEditingController(text: widget.name);
     _model.textFieldFocusNode1 ??= FocusNode();
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController(text: widget.tag);
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 
