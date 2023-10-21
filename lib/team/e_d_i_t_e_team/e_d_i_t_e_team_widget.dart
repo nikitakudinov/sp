@@ -81,6 +81,35 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
               )
               .toString();
         });
+        setState(() {
+          FFAppState().Team = TeamStruct(
+            id: TeamGroup.listteambyidCall.id(
+              (_model.apiResult3ba?.jsonBody ?? ''),
+            ),
+            name: TeamGroup.listteambyidCall
+                .name(
+                  (_model.apiResult3ba?.jsonBody ?? ''),
+                )
+                .toString(),
+            tag: TeamGroup.listteambyidCall
+                .tag(
+                  (_model.apiResult3ba?.jsonBody ?? ''),
+                )
+                .toString(),
+            country: TeamGroup.listteambyidCall
+                .country(
+                  (_model.apiResult3ba?.jsonBody ?? ''),
+                )
+                .toString()
+                .toString(),
+            flag: TeamGroup.listteambyidCall.flag(
+              (_model.apiResult3ba?.jsonBody ?? ''),
+            ),
+            logo: TeamGroup.listteambyidCall.logo(
+              (_model.apiResult3ba?.jsonBody ?? ''),
+            ),
+          );
+        });
         _model.apiResulttx2 = await UserGroup.listuserbyidCall.call(
           idList: _model.members,
         );
@@ -611,14 +640,11 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                   ],
                 ),
                 Text(
-                  valueOrDefault<String>(
-                    _model.team?.country,
-                    '0',
-                  ),
+                  FFAppState().Team.name,
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
                 Text(
-                  _model.name!,
+                  FFAppState().Team.tag,
                   style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ],
