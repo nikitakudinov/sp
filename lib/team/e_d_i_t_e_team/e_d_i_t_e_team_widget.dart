@@ -704,7 +704,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                         FlutterFlowDropDown<String>(
                                           controller: _model
                                                   .dropDownRoleValueController ??=
-                                              FormFieldController<String>(null),
+                                              FormFieldController<String>(
+                                            _model.dropDownRoleValue ??=
+                                                _model.selectedUserRole,
+                                          ),
                                           options: [
                                             'Лидер',
                                             'Модератор',
@@ -747,7 +750,10 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                             controller: _model
                                                     .dropDownPermissionsRoleValueController ??=
                                                 FormFieldController<String>(
-                                                    null),
+                                              _model.dropDownPermissionsRoleValue ??=
+                                                  _model
+                                                      .selectedUserPermissionsRole,
+                                            ),
                                             options: [
                                               'Модератор',
                                               'Администратор'
@@ -816,7 +822,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                               child: Checkbox(
                                                 value: _model
                                                         .checkboxLinewUpValue ??=
-                                                    true,
+                                                    _model
+                                                        .selectedUserPermissionsLineUp,
                                                 onChanged: (newValue) async {
                                                   setState(() => _model
                                                           .checkboxLinewUpValue =
@@ -1011,6 +1018,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.role;
                                       _model.selectedUserPermissionsRole =
                                           membersListItem.permissionsRole;
+                                      _model.selectedUserPermissionsLineUp =
+                                          membersListItem.lineUp;
                                     });
                                     setState(() {
                                       _model.dropDownRoleValueController

@@ -69,6 +69,8 @@ class EDITETeamModel extends FlutterFlowModel<EDITETeamWidget> {
 
   String selectedUserPermissionsRole = 'не выбран';
 
+  bool selectedUserPermissionsLineUp = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
