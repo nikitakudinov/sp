@@ -220,7 +220,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                     child: Image.network(
                                       valueOrDefault<String>(
                                         _model.imagePath,
-                                        '0',
+                                        'https://supabase.proplayclub.ru:8000/storage/v1/object/public/playground/logos/placeholder.png',
                                       ),
                                       width: 1085.0,
                                       height: 105.0,
