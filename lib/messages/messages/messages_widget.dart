@@ -78,15 +78,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                 child: FutureBuilder<List<ChatRow>>(
                   future: ChatTable().queryRows(
-                    queryFn: (q) => q
-                        .contains(
-                          ' companion1',
-                          '{' + FFAppState().authenticatedUser.id + '}',
-                        )
-                        .contains(
-                          ' companion2',
-                          '{' + FFAppState().authenticatedUser.id + '}',
-                        ),
+                    queryFn: (q) => q,
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
