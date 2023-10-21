@@ -48,48 +48,52 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  setState(() {
-                    _model.listVISIBILITY = true;
-                  });
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (_model.selectedFlag != 'false')
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 0.0, 10.0, 0.0),
-                        child: Container(
-                          width: 30.0,
-                          height: 20.0,
-                          decoration: BoxDecoration(),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(0.0),
-                            child: Image.network(
-                              _model.selectedFlag,
-                              fit: BoxFit.cover,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+              child: Container(
+                height: 50.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    setState(() {
+                      _model.listVISIBILITY = true;
+                    });
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (_model.selectedFlag != 'false')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 10.0, 0.0),
+                          child: Container(
+                            width: 30.0,
+                            height: 20.0,
+                            decoration: BoxDecoration(),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: Image.network(
+                                _model.selectedFlag,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
+                      Expanded(
+                        child: Text(
+                          _model.selectedCountry,
+                          style: FlutterFlowTheme.of(context).titleSmall,
+                        ),
                       ),
-                    Expanded(
-                      child: Text(
-                        _model.selectedCountry,
-                        style: FlutterFlowTheme.of(context).titleSmall,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -97,6 +101,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
               Container(
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Builder(
                   builder: (context) {
