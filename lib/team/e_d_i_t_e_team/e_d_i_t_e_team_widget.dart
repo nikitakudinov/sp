@@ -1023,14 +1023,80 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          membersListItem.nickname,
+                                          '[${membersListItem.tag}] ${membersListItem.nickname}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
-                                        Text(
-                                          'Hello World',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                              child: Container(
+                                                width: 16.0,
+                                                height: 12.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                  child: Image.network(
+                                                    membersListItem.flag,
+                                                    width: 16.0,
+                                                    height: 12.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              membersListItem.country,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                              child: Text(
+                                                membersListItem.role,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Encode Sans Semi Condensed',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                              ),
+                                            ),
+                                            Text(
+                                              membersListItem.permissionsRole,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Encode Sans Semi Condensed',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .accent1,
+                                                      ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

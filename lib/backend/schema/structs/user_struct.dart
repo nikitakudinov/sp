@@ -17,6 +17,8 @@ class UserStruct extends BaseStruct {
     String? role,
     String? permissionsRole,
     bool? lineUp,
+    String? country,
+    String? flag,
   })  : _id = id,
         _createdAt = createdAt,
         _nickname = nickname,
@@ -26,7 +28,9 @@ class UserStruct extends BaseStruct {
         _uid = uid,
         _role = role,
         _permissionsRole = permissionsRole,
-        _lineUp = lineUp;
+        _lineUp = lineUp,
+        _country = country,
+        _flag = flag;
 
   // "id" field.
   int? _id;
@@ -91,6 +95,18 @@ class UserStruct extends BaseStruct {
   set lineUp(bool? val) => _lineUp = val;
   bool hasLineUp() => _lineUp != null;
 
+  // "Country" field.
+  String? _country;
+  String get country => _country ?? '';
+  set country(String? val) => _country = val;
+  bool hasCountry() => _country != null;
+
+  // "Flag" field.
+  String? _flag;
+  String get flag => _flag ?? '';
+  set flag(String? val) => _flag = val;
+  bool hasFlag() => _flag != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         id: castToType<int>(data['id']),
         createdAt: data['created_at'] as String?,
@@ -102,6 +118,8 @@ class UserStruct extends BaseStruct {
         role: data['Role'] as String?,
         permissionsRole: data['PermissionsRole'] as String?,
         lineUp: data['LineUp'] as bool?,
+        country: data['Country'] as String?,
+        flag: data['Flag'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -118,6 +136,8 @@ class UserStruct extends BaseStruct {
         'Role': _role,
         'PermissionsRole': _permissionsRole,
         'LineUp': _lineUp,
+        'Country': _country,
+        'Flag': _flag,
       }.withoutNulls;
 
   @override
@@ -161,6 +181,14 @@ class UserStruct extends BaseStruct {
         'LineUp': serializeParam(
           _lineUp,
           ParamType.bool,
+        ),
+        'Country': serializeParam(
+          _country,
+          ParamType.String,
+        ),
+        'Flag': serializeParam(
+          _flag,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -216,6 +244,16 @@ class UserStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        country: deserializeParam(
+          data['Country'],
+          ParamType.String,
+          false,
+        ),
+        flag: deserializeParam(
+          data['Flag'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -233,7 +271,9 @@ class UserStruct extends BaseStruct {
         uid == other.uid &&
         role == other.role &&
         permissionsRole == other.permissionsRole &&
-        lineUp == other.lineUp;
+        lineUp == other.lineUp &&
+        country == other.country &&
+        flag == other.flag;
   }
 
   @override
@@ -247,7 +287,9 @@ class UserStruct extends BaseStruct {
         uid,
         role,
         permissionsRole,
-        lineUp
+        lineUp,
+        country,
+        flag
       ]);
 }
 
@@ -262,6 +304,8 @@ UserStruct createUserStruct({
   String? role,
   String? permissionsRole,
   bool? lineUp,
+  String? country,
+  String? flag,
 }) =>
     UserStruct(
       id: id,
@@ -274,4 +318,6 @@ UserStruct createUserStruct({
       role: role,
       permissionsRole: permissionsRole,
       lineUp: lineUp,
+      country: country,
+      flag: flag,
     );
