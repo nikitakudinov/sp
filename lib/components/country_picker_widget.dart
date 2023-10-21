@@ -69,7 +69,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if (_model.selectedFlag != 'false')
+                      if (_model.selectedFlag == 'false')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
