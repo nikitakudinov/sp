@@ -23,10 +23,12 @@ class EDITETeamWidget extends StatefulWidget {
     Key? key,
     required this.teamId,
     this.teamIndex,
+    this.name,
   }) : super(key: key);
 
   final int? teamId;
   final int? teamIndex;
+  final String? name;
 
   @override
   _EDITETeamWidgetState createState() => _EDITETeamWidgetState();
@@ -129,8 +131,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
       }
     });
 
-    _model.textController1 ??=
-        TextEditingController(text: FFAppState().Team.name);
+    _model.textController1 ??= TextEditingController(text: widget.name);
     _model.textFieldFocusNode1 ??= FocusNode();
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();

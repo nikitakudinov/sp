@@ -118,6 +118,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EDITETeamWidget(
             teamId: params.getParam('teamId', ParamType.int),
             teamIndex: params.getParam('teamIndex', ParamType.int),
+            name: params.getParam('name', ParamType.String),
           ),
         ),
         FFRoute(
