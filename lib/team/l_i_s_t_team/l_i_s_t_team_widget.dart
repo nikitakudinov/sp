@@ -33,6 +33,9 @@ class _LISTTeamWidgetState extends State<LISTTeamWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().TeamMembers = [];
+      });
       _model.apiResult0sy = await TeamGroup.listteamCall.call();
       if ((_model.apiResult0sy?.succeeded ?? true)) {
         _model.dTteams = await actions.jsonDTTeam(
