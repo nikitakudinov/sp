@@ -62,7 +62,7 @@ class _LISTMessageWidgetState extends State<LISTMessageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           title: Text(
             'Сообщения',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
