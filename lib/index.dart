@@ -10,4 +10,4 @@ export '/user/a_d_d_user/a_d_d_user_widget.dart' show ADDUserWidget;
 export '/team/a_d_d_team/a_d_d_team_widget.dart' show ADDTeamWidget;
 export '/team/v_i_e_w_team/v_i_e_w_team_widget.dart' show VIEWTeamWidget;
 export '/messages/messages/messages_widget.dart' show MessagesWidget;
-export '/messages/chat/chat_widget.dart' show ChatWidget;
+export '/messages/l_i_s_t_chat/l_i_s_t_chat_widget.dart' show LISTChatWidget;

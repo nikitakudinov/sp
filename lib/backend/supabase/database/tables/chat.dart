@@ -31,10 +31,4 @@ class ChatRow extends SupabaseDataRow {
       getField<PostgresTime>('LastMessageTime');
   set lastMessageTime(PostgresTime? value) =>
       setField<PostgresTime>('LastMessageTime', value);
-
-  List<int> get companion1 => getListField<int>(' companion1');
-  set companion1(List<int>? value) => setListField<int>(' companion1', value);
-
-  List<int> get companion2 => getListField<int>(' companion2');
-  set companion2(List<int>? value) => setListField<int>(' companion2', value);
 }

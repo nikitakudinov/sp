@@ -163,9 +163,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : MessagesWidget(),
         ),
         FFRoute(
-          name: 'CHAT',
-          path: '/chat',
-          builder: (context, params) => ChatWidget(
+          name: 'LIST_chat',
+          path: '/lISTChat',
+          builder: (context, params) => LISTChatWidget(
             chatId: params.getParam('chatId', ParamType.int),
           ),
         )

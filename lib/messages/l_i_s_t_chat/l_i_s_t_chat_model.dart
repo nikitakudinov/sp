@@ -1,13 +1,14 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'chat_widget.dart' show ChatWidget;
+import 'l_i_s_t_chat_widget.dart' show LISTChatWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ChatModel extends FlutterFlowModel<ChatWidget> {
+class LISTChatModel extends FlutterFlowModel<LISTChatWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

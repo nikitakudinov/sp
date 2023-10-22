@@ -166,9 +166,9 @@ class ListcountrysCall {
 
 /// End COUNTRY Group Code
 
-/// Start COUNTRY Copy Group Code
+/// Start MESSAGES Group Code
 
-class COUNTRYCopyGroup {
+class MessagesGroup {
   static String baseUrl = 'https://supabase.proplayclub.ru/rest/v1/';
   static Map<String, String> headers = {
     'apikey':
@@ -176,14 +176,15 @@ class COUNTRYCopyGroup {
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
   };
-  static LISTCOUNTRYSCopyCall lISTCOUNTRYSCopyCall = LISTCOUNTRYSCopyCall();
+  static ChatsCall chatsCall = ChatsCall();
 }
 
-class LISTCOUNTRYSCopyCall {
+class ChatsCall {
   Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
-      callName: 'LISTCOUNTRYS Copy',
-      apiUrl: '${COUNTRYCopyGroup.baseUrl}Country?',
+      callName: 'CHATS',
+      apiUrl:
+          '${MessagesGroup.baseUrl}Chat?select=id,User(id,Tag,Nickname,Avatar,Role)',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -200,7 +201,7 @@ class LISTCOUNTRYSCopyCall {
   }
 }
 
-/// End COUNTRY Copy Group Code
+/// End MESSAGES Group Code
 
 /// Start USER Group Code
 
