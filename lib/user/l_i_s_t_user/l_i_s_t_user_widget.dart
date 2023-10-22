@@ -172,15 +172,10 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                           0.0, 0.0, 5.0, 0.0),
                                       child: FutureBuilder<List<ChatRow>>(
                                         future: ChatTable().queryRows(
-                                          queryFn: (q) => q
-                                              .contains(
-                                                'Companions',
-                                                '{' + listViewUserRow.uid + '}',
-                                              )
-                                              .contains(
-                                                'Companions',
-                                                '{' + currentUserUid + '}',
-                                              ),
+                                          queryFn: (q) => q.contains(
+                                            'Companions',
+                                            '{' + currentUserUid + '}',
+                                          ),
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
