@@ -53,8 +53,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ..memberOfTeam = UserGroup.listuserbyuidCall.memberOfTeam(
                 (_model.apiResulta5r?.jsonBody ?? ''),
               )
-              ..avatar = UserGroup.listuserbyuidCall.avatar(
+              ..avatar = getJsonField(
                 (_model.apiResulta5r?.jsonBody ?? ''),
+                r'''$[:].Avatar''',
               )
               ..id = UserGroup.listuserbyuidCall.id(
                 (_model.apiResulta5r?.jsonBody ?? ''),
@@ -315,7 +316,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5.0),
                     child: Image.network(
-                      FFAppState().authenticatedUser.avatar,
+                      valueOrDefault<String>(
+                        FFAppState().authenticatedUser.avatar,
+                        '90',
+                      ),
                       width: 55.0,
                       height: 55.0,
                       fit: BoxFit.cover,
