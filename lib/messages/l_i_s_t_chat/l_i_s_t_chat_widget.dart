@@ -101,7 +101,12 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                     requestFn: () => ChatTable().queryRows(
                       queryFn: (q) => q.contains(
                         'Companions',
-                        '{' + FFAppState().authenticatedUser.id + '}',
+                        '{' +
+                            valueOrDefault<int>(
+                              FFAppState().User.id,
+                              0,
+                            ) +
+                            '}',
                       ),
                     ),
                   )

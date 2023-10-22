@@ -55,6 +55,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               )
               ..avatar = UserGroup.listuserbyuidCall.avatar(
                 (_model.apiResulta5r?.jsonBody ?? ''),
+              )
+              ..id = UserGroup.listuserbyuidCall.id(
+                (_model.apiResulta5r?.jsonBody ?? ''),
               ),
           );
         });
