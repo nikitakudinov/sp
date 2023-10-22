@@ -35,7 +35,10 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
       _model.instantTimer = InstantTimer.periodic(
         duration: Duration(milliseconds: 1000),
         callback: (timer) async {
-          setState(() => _model.requestCompleter = null);
+          setState(() {
+            _model.clearChatsCache();
+            _model.requestCompleted = false;
+          });
           await _model.waitForRequestCompleted();
         },
         startImmediately: true,
@@ -93,15 +96,19 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                 child: FutureBuilder<List<ChatRow>>(
-                  future:
-                      (_model.requestCompleter ??= Completer<List<ChatRow>>()
-                            ..complete(ChatTable().queryRows(
-                              queryFn: (q) => q.contains(
-                                'Companions',
-                                '{' + currentUserUid + '}',
-                              ),
-                            )))
-                          .future,
+                  future: _model
+                      .chats(
+                    requestFn: () => ChatTable().queryRows(
+                      queryFn: (q) => q.contains(
+                        'Companions',
+                        '{' + currentUserUid + '}',
+                      ),
+                    ),
+                  )
+                      .then((result) {
+                    _model.requestCompleted = true;
+                    return result;
+                  }),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
