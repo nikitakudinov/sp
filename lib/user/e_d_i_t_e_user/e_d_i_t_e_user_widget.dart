@@ -165,7 +165,6 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                                   storageFolderPath: 'avatars',
                                   maxWidth: 150.00,
                                   maxHeight: 150.00,
-                                  imageQuality: 100,
                                   mediaSource: MediaSource.photoGallery,
                                   multiImage: false,
                                 );
