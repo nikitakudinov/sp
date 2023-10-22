@@ -1,9 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +35,13 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.apiResultoi8 = await UserGroup.listuserCall.call();
       if ((_model.apiResultoi8?.succeeded ?? true)) {
+        _model.drusr = await actions.jsonDTUser(
+          getJsonField(
+            (_model.apiResultoi8?.jsonBody ?? ''),
+            r'''$[:]''',
+            true,
+          ),
+        );
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
@@ -47,6 +56,9 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
             );
           },
         );
+        FFAppState().update(() {
+          FFAppState().Users = _model.drusr!.toList().cast<UserStruct>();
+        });
       }
     });
   }
