@@ -240,7 +240,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final selectedMedia = await selectMedia(
-                                      storageFolderPath: 'logos',
+                                      storageFolderPath: 'team_logos',
                                       maxWidth: 150.00,
                                       maxHeight: 150.00,
                                       imageQuality: 100,
