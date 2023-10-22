@@ -216,16 +216,12 @@ dynamic deserializeParam<T>(
         switch (T) {
           case CountryRow:
             return CountryRow(data);
-          case ChatInterlocutorsRow:
-            return ChatInterlocutorsRow(data);
-          case ChatRow:
-            return ChatRow(data);
-          case MessageRow:
-            return MessageRow(data);
           case TeamMembersRow:
             return TeamMembersRow(data);
           case UserRow:
             return UserRow(data);
+          case RequestRow:
+            return RequestRow(data);
           case TeamRow:
             return TeamRow(data);
           default:

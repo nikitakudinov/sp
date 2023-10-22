@@ -154,20 +154,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => VIEWTeamWidget(
             teamId: params.getParam('teamId', ParamType.int),
           ),
-        ),
-        FFRoute(
-          name: 'LIST_message',
-          path: '/lISTMessage',
-          builder: (context, params) => LISTMessageWidget(
-            chatId: params.getParam('chatId', ParamType.int),
-          ),
-        ),
-        FFRoute(
-          name: 'LIST_chat',
-          path: '/lISTChat',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'LIST_chat')
-              : LISTChatWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

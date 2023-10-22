@@ -9,6 +9,3 @@ export '/user/l_i_s_t_user/l_i_s_t_user_widget.dart' show LISTUserWidget;
 export '/user/a_d_d_user/a_d_d_user_widget.dart' show ADDUserWidget;
 export '/team/a_d_d_team/a_d_d_team_widget.dart' show ADDTeamWidget;
 export '/team/v_i_e_w_team/v_i_e_w_team_widget.dart' show VIEWTeamWidget;
-export '/messages/l_i_s_t_message/l_i_s_t_message_widget.dart'
-    show LISTMessageWidget;
-export '/messages/l_i_s_t_chat/l_i_s_t_chat_widget.dart' show LISTChatWidget;

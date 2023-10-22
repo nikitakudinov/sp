@@ -87,25 +87,3 @@ Future loadCountrys(BuildContext context) async {
     });
   }
 }
-
-Future loadUsers(BuildContext context) async {
-  ApiCallResponse? apiResult5hz;
-
-  apiResult5hz = await UserGroup.listuserCall.call();
-  if ((apiResult5hz?.succeeded ?? true)) {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('1'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}

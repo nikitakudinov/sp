@@ -17,8 +17,8 @@ class TeamRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  DateTime? get createdAt => getField<DateTime>('created_at');
-  set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
+  DateTime get createdAt => getField<DateTime>('created_at')!;
+  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
 
   String? get name => getField<String>('Name');
   set name(String? value) => setField<String>('Name', value);
@@ -26,8 +26,8 @@ class TeamRow extends SupabaseDataRow {
   String? get tag => getField<String>('Tag');
   set tag(String? value) => setField<String>('Tag', value);
 
-  dynamic? get members => getField<dynamic>('Members');
-  set members(dynamic? value) => setField<dynamic>('Members', value);
+  List<int> get members => getListField<int>('Members');
+  set members(List<int>? value) => setListField<int>('Members', value);
 
   String? get logo => getField<String>('Logo');
   set logo(String? value) => setField<String>('Logo', value);

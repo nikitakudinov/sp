@@ -223,7 +223,7 @@ class _AuthPageWidgetState extends State<AuthPageWidget> {
                                     }
 
                                     context.goNamedAuth(
-                                        'HomePage', context.mounted);
+                                        'LIST_team', context.mounted);
                                   },
                                   text: 'Войти',
                                   options: FFButtonOptions(

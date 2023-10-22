@@ -1,7 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -18,9 +16,9 @@ class LISTUserModel extends FlutterFlowModel<LISTUserWidget> {
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (LISTUSER)] action in LIST_user widget.
-  ApiCallResponse? apiResultoi8;
+  ApiCallResponse? jsonUsersData;
   // Stores action output result for [Custom Action - jsonDTUser] action in LIST_user widget.
-  List<UserStruct>? drusr;
+  List<UserStruct>? dTUsers;
 
   /// Initialization and disposal methods.
 

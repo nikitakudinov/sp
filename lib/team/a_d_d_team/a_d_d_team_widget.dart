@@ -118,7 +118,7 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           final selectedMedia = await selectMedia(
-                            storageFolderPath: 'team_logos',
+                            storageFolderPath: 'logos',
                             maxWidth: 150.00,
                             maxHeight: 150.00,
                             imageQuality: 100,
@@ -299,6 +299,7 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                               'Name': _model.textController1.text,
                               'Tag': _model.textController2.text,
                               'Logo': _model.uploadedFileUrl,
+                              'Members': FFAppState().Team.members,
                               'Creator': currentUserUid,
                             });
 

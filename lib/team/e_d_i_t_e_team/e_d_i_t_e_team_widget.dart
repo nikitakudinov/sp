@@ -240,7 +240,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final selectedMedia = await selectMedia(
-                                      storageFolderPath: 'team_logos',
+                                      storageFolderPath: 'logos',
                                       maxWidth: 150.00,
                                       maxHeight: 150.00,
                                       imageQuality: 100,
@@ -914,7 +914,9 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           (e) => e
                                             ..role = _model.dropDownRoleValue
                                             ..permissionsRole = _model
-                                                .dropDownPermissionsRoleValue,
+                                                .dropDownPermissionsRoleValue
+                                            ..lineUp =
+                                                _model.checkboxLinewUpValue,
                                         );
                                         _model.membersSettingsVISIBILITY =
                                             false;
@@ -1131,6 +1133,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.role;
                                       _model.selectedUserPermissionsRole =
                                           membersListItem.permissionsRole;
+                                      _model.selectedUserPermissionsLineUp =
+                                          membersListItem.lineUp;
                                       _model.selectedUserIndex =
                                           membersListIndex;
                                     });
@@ -1144,7 +1148,8 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.permissionsRole;
                                     });
                                     setState(() {
-                                      _model.checkboxLinewUpValue = true;
+                                      _model.checkboxLinewUpValue =
+                                          membersListItem.lineUp;
                                     });
                                   },
                                 ),

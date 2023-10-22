@@ -6,9 +6,7 @@ export 'row.dart';
 export 'table.dart';
 
 export 'tables/country.dart';
-export 'tables/chat_interlocutors.dart';
-export 'tables/chat.dart';
-export 'tables/message.dart';
 export 'tables/team_members.dart';
 export 'tables/user.dart';
+export 'tables/request.dart';
 export 'tables/team.dart';
