@@ -156,9 +156,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'MESSAGES',
-          path: '/messages',
-          builder: (context, params) => MessagesWidget(),
+          name: 'LIST_message',
+          path: '/lISTMessage',
+          builder: (context, params) => LISTMessageWidget(
+            chatId: params.getParam('chatId', ParamType.int),
+          ),
         ),
         FFRoute(
           name: 'LIST_chat',
