@@ -203,10 +203,15 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                       children: [
                                         FutureBuilder<List<UserRow>>(
                                           future: UserTable().queryRows(
-                                            queryFn: (q) => q.in_(
-                                              'UID',
-                                              listViewChatRow.companions,
-                                            ),
+                                            queryFn: (q) => q
+                                                .in_(
+                                                  'UID',
+                                                  listViewChatRow.companions,
+                                                )
+                                                .neq(
+                                                  'UID',
+                                                  currentUserUid,
+                                                ),
                                           ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
