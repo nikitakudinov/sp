@@ -200,7 +200,11 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Hello World',
+                                                  valueOrDefault<String>(
+                                                    containerUserRowList
+                                                        .first.nickname,
+                                                    '0',
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium,
