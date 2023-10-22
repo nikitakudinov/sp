@@ -31,7 +31,6 @@ class ChatRow extends SupabaseDataRow {
   set lastMessageTime(String? value) =>
       setField<String>('LastMessageTime', value);
 
-  List<String> get companions => getListField<String>('Companions');
-  set companions(List<String>? value) =>
-      setListField<String>('Companions', value);
+  List<int> get companions => getListField<int>('Companions');
+  set companions(List<int>? value) => setListField<int>('Companions', value);
 }

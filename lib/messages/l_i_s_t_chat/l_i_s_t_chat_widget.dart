@@ -101,7 +101,7 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                     requestFn: () => ChatTable().queryRows(
                       queryFn: (q) => q.contains(
                         'Companions',
-                        '{' + currentUserUid + '}',
+                        '{' + FFAppState().authenticatedUser.id + '}',
                       ),
                     ),
                   )
@@ -164,7 +164,7 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                   child: FutureBuilder<List<UserRow>>(
                                     future: UserTable().queryRows(
                                       queryFn: (q) => q.in_(
-                                        'UID',
+                                        'id',
                                         listViewChatRow.companions,
                                       ),
                                     ),
@@ -221,7 +221,7 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                             future: UserTable().queryRows(
                                               queryFn: (q) => q
                                                   .in_(
-                                                    'UID',
+                                                    'id',
                                                     listViewChatRow.companions,
                                                   )
                                                   .neq(

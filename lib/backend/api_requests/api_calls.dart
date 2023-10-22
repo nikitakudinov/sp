@@ -180,11 +180,13 @@ class MessagesGroup {
 }
 
 class ChatsCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    String? companions = '',
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'CHATS',
       apiUrl:
-          '${MessagesGroup.baseUrl}Chat?select=id,created_at,LastMessage,LastMessageDate,LastMessageTime,User(id,Tag,Nickname,Avatar,Role)',
+          '${MessagesGroup.baseUrl}Chat?Companions=like.%28${companions}%290444e}&select=Companions',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -192,7 +194,9 @@ class ChatsCall {
         'Authorization':
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.ewogICJyb2xlIjogImFub24iLAogICJpc3MiOiAic3VwYWJhc2UiLAogICJpYXQiOiAxNjk3NDkwMDAwLAogICJleHAiOiAxODU1MzQyODAwCn0.GstXS2E-MRDa21g3c-jN67PbXZG9Cz8spj2pjoHheJA',
       },
-      params: {},
+      params: {
+        'Companions': companions,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
