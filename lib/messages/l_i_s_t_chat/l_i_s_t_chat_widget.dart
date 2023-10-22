@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -166,51 +165,21 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 10.0),
-                                  child: FutureBuilder<List<UserRow>>(
-                                    future: UserTable().queryRows(
-                                      queryFn: (q) => q.in_(
-                                        'id',
-                                        listViewChatRow.companions,
+                                  child: Container(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/951/600',
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<UserRow> containerUserRowList =
-                                          snapshot.data!;
-                                      return Container(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(5.0),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.network(
-                                            containerUserRowList.first.avatar!,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      );
-                                    },
                                   ),
                                 ),
                                 Expanded(
@@ -222,56 +191,16 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          FutureBuilder<List<UserRow>>(
-                                            future: UserTable().queryRows(
-                                              queryFn: (q) => q
-                                                  .in_(
-                                                    'id',
-                                                    listViewChatRow.companions,
-                                                  )
-                                                  .neq(
-                                                    'UID',
-                                                    currentUserUid,
-                                                  ),
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<UserRow> rowUserRowList =
-                                                  snapshot.data!;
-                                              return Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: List.generate(
-                                                    rowUserRowList.length,
-                                                    (rowIndex) {
-                                                  final rowUserRow =
-                                                      rowUserRowList[rowIndex];
-                                                  return Text(
-                                                    rowUserRow.nickname!,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Hello World',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
                                                         .bodyMedium,
-                                                  );
-                                                }),
-                                              );
-                                            },
+                                              ),
+                                            ],
                                           ),
                                           Padding(
                                             padding:
