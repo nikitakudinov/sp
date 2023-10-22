@@ -34,6 +34,20 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.jsonUsersData = await UserGroup.listuserCall.call();
       if ((_model.jsonUsersData?.succeeded ?? true)) {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('1'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
         _model.dTUsers = await actions.jsonDTUser(
           getJsonField(
             (_model.jsonUsersData?.jsonBody ?? ''),
