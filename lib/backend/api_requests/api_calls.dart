@@ -184,7 +184,7 @@ class ChatsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'CHATS',
       apiUrl:
-          '${MessagesGroup.baseUrl}Chat?select=id,User(id,Tag,Nickname,Avatar,Role)',
+          '${MessagesGroup.baseUrl}Chat?select=id,created_at,LastMessage,LastMessageDate,LastMessageTime,User(id,Tag,Nickname,Avatar,Role)',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
