@@ -3,9 +3,11 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import 'l_i_s_t_chat_widget.dart' show LISTChatWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +16,7 @@ class LISTChatModel extends FlutterFlowModel<LISTChatWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  InstantTimer? instantTimer;
   Completer<List<ChatRow>>? requestCompleter;
 
   /// Initialization and disposal methods.
@@ -22,6 +25,7 @@ class LISTChatModel extends FlutterFlowModel<LISTChatWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    instantTimer?.cancel();
   }
 
   /// Action blocks are added here.
