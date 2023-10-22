@@ -915,8 +915,9 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                             ..role = _model.dropDownRoleValue
                                             ..permissionsRole = _model
                                                 .dropDownPermissionsRoleValue
-                                            ..lineUp =
-                                                _model.checkboxLinewUpValue,
+                                            ..lineUp = _model
+                                                .checkboxLinewUpValue
+                                                ?.toString(),
                                         );
                                         _model.membersSettingsVISIBILITY =
                                             false;
@@ -1133,8 +1134,6 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.role;
                                       _model.selectedUserPermissionsRole =
                                           membersListItem.permissionsRole;
-                                      _model.selectedUserPermissionsLineUp =
-                                          membersListItem.lineUp;
                                       _model.selectedUserIndex =
                                           membersListIndex;
                                     });
@@ -1148,8 +1147,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           membersListItem.permissionsRole;
                                     });
                                     setState(() {
-                                      _model.checkboxLinewUpValue =
-                                          membersListItem.lineUp;
+                                      _model.checkboxLinewUpValue = true;
                                     });
                                   },
                                 ),
