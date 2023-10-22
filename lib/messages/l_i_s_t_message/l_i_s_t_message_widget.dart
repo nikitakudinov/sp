@@ -84,7 +84,10 @@ class _LISTMessageWidgetState extends State<LISTMessageWidget> {
                 future: MessageTable().queryRows(
                   queryFn: (q) => q.eq(
                     'Chat',
-                    widget.chatId,
+                    valueOrDefault<int>(
+                      widget.chatId,
+                      0,
+                    ),
                   ),
                 ),
                 builder: (context, snapshot) {
