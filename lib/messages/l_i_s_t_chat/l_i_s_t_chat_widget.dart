@@ -145,21 +145,51 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 10.0),
-                                child: Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: Image.network(
-                                      'https://picsum.photos/seed/951/600',
-                                      fit: BoxFit.cover,
+                                child: FutureBuilder<List<UserRow>>(
+                                  future: UserTable().queryRows(
+                                    queryFn: (q) => q.in_(
+                                      'UID',
+                                      listViewChatRow.companions,
                                     ),
                                   ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    List<UserRow> containerUserRowList =
+                                        snapshot.data!;
+                                    return Container(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                        child: Image.network(
+                                          containerUserRowList.first.avatar!,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                               Expanded(
