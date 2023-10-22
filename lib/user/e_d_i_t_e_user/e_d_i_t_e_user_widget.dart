@@ -162,7 +162,7 @@ class _EDITEUserWidgetState extends State<EDITEUserWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 final selectedMedia = await selectMedia(
-                                  storageFolderPath: 'user_avatar',
+                                  storageFolderPath: 'avatars',
                                   maxWidth: 150.00,
                                   maxHeight: 150.00,
                                   imageQuality: 100,
