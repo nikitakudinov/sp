@@ -914,10 +914,7 @@ class _EDITETeamWidgetState extends State<EDITETeamWidget> {
                                           (e) => e
                                             ..role = _model.dropDownRoleValue
                                             ..permissionsRole = _model
-                                                .dropDownPermissionsRoleValue
-                                            ..lineUp = _model
-                                                .checkboxLinewUpValue
-                                                ?.toString(),
+                                                .dropDownPermissionsRoleValue,
                                         );
                                         _model.membersSettingsVISIBILITY =
                                             false;
