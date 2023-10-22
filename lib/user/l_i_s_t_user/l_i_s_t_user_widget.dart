@@ -58,6 +58,20 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
         setState(() {
           FFAppState().Users = _model.dTUsers!.toList().cast<UserStruct>();
         });
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('2'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
       }
     });
   }
