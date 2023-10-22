@@ -38,9 +38,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         setState(() {
           FFAppState().updateAuthenticatedUserStruct(
             (e) => e
-              ..id = UserGroup.listuserbyuidCall.id(
-                (_model.apiResulta5r?.jsonBody ?? ''),
-              )
               ..createdAt = UserGroup.listuserbyuidCall
                   .createdat(
                     (_model.apiResulta5r?.jsonBody ?? ''),
