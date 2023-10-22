@@ -115,10 +115,16 @@ class _LISTMessageWidgetState extends State<LISTMessageWidget> {
                       final listViewMessageRow =
                           listViewMessageRowList[listViewIndex];
                       return FutureBuilder<List<UserRow>>(
-                        future: UserTable().querySingleRow(
-                          queryFn: (q) => q.eq(
-                            'id',
-                            listViewMessageRow.sender,
+                        future: _model.message(
+                          uniqueQueryKey: valueOrDefault<String>(
+                            listViewMessageRow.sender?.toString(),
+                            '0',
+                          ),
+                          requestFn: () => UserTable().querySingleRow(
+                            queryFn: (q) => q.eq(
+                              'id',
+                              listViewMessageRow.sender,
+                            ),
                           ),
                         ),
                         builder: (context, snapshot) {
