@@ -293,7 +293,7 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                                 .secondaryBackground,
                                           ),
                                           child: Text(
-                                            listViewChatRow.lastMessage!,
+                                            'Hello World',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
