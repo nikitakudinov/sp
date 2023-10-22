@@ -104,12 +104,8 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                       );
                     }
                     List<ChatRow> listViewChatRowList = snapshot.data!;
-                    return InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
+                    return RefreshIndicator(
+                      onRefresh: () async {
                         setState(() => _model.requestCompleter = null);
                         await _model.waitForRequestCompleted();
                       },
