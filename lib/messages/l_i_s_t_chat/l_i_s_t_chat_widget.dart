@@ -10,12 +10,7 @@ import 'l_i_s_t_chat_model.dart';
 export 'l_i_s_t_chat_model.dart';
 
 class LISTChatWidget extends StatefulWidget {
-  const LISTChatWidget({
-    Key? key,
-    required this.chatId,
-  }) : super(key: key);
-
-  final int? chatId;
+  const LISTChatWidget({Key? key}) : super(key: key);
 
   @override
   _LISTChatWidgetState createState() => _LISTChatWidgetState();

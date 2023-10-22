@@ -131,7 +131,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'LIST_team': LISTTeamWidget(),
       'LIST_user': LISTUserWidget(),
-      'MESSAGES': MessagesWidget(),
+      'LIST_chat': LISTChatWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -238,7 +238,7 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.local_post_office_outlined,
+                  Icons.local_post_office_rounded,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).primary
                       : FlutterFlowTheme.of(context).tertiary,
