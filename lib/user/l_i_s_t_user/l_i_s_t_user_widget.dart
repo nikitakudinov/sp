@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -130,16 +131,34 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
-                  child: Builder(
-                    builder: (context) {
-                      final usersList = FFAppState().Users.toList();
+                  child: FutureBuilder<List<UserRow>>(
+                    future: UserTable().queryRows(
+                      queryFn: (q) => q,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<UserRow> listViewUserRowList = snapshot.data!;
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: usersList.length,
-                        itemBuilder: (context, usersListIndex) {
-                          final usersListItem = usersList[usersListIndex];
+                        itemCount: listViewUserRowList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewUserRow =
+                              listViewUserRowList[listViewIndex];
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -156,7 +175,7 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                     'EDITE_User',
                                     queryParameters: {
                                       'userId': serializeParam(
-                                        usersListItem.id,
+                                        listViewUserRow.id,
                                         ParamType.int,
                                       ),
                                     }.withoutNulls,
@@ -181,7 +200,7 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                           borderRadius:
                                               BorderRadius.circular(5.0),
                                           child: Image.network(
-                                            usersListItem.avatar,
+                                            listViewUserRow.avatar!,
                                             width: 50.0,
                                             height: 50.0,
                                             fit: BoxFit.cover,
@@ -191,7 +210,7 @@ class _LISTUserWidgetState extends State<LISTUserWidget> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        usersListItem.nickname,
+                                        listViewUserRow.nickname!,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
                                       ),
