@@ -181,7 +181,7 @@ class _LISTChatWidgetState extends State<LISTChatWidget> {
                                         borderRadius:
                                             BorderRadius.circular(0.0),
                                         child: Image.network(
-                                          'https://picsum.photos/seed/951/600',
+                                          containerUserRowList.first.avatar!,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
