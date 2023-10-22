@@ -35,7 +35,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         idList: currentUserUid,
       );
       if ((_model.apiResulta5r?.succeeded ?? true)) {
-        setState(() {
+        FFAppState().update(() {
           FFAppState().updateAuthenticatedUserStruct(
             (e) => e
               ..createdAt = UserGroup.listuserbyuidCall
