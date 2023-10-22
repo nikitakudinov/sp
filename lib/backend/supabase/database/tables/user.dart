@@ -17,14 +17,14 @@ class UserRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  DateTime get createdAt => getField<DateTime>('created_at')!;
-  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
+  DateTime? get createdAt => getField<DateTime>('created_at');
+  set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
 
   String? get nickname => getField<String>('Nickname');
   set nickname(String? value) => setField<String>('Nickname', value);
 
-  int? get memberOfTeam => getField<int>('MemberOfTeam');
-  set memberOfTeam(int? value) => setField<int>('MemberOfTeam', value);
+  String? get memberOfTeam => getField<String>('MemberOfTeam');
+  set memberOfTeam(String? value) => setField<String>('MemberOfTeam', value);
 
   String? get avatar => getField<String>('Avatar');
   set avatar(String? value) => setField<String>('Avatar', value);

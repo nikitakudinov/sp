@@ -278,22 +278,8 @@ class _TeamMemberPickerWidgetState extends State<TeamMemberPickerWidget> {
                                   ),
                                   Expanded(
                                     child: FFButtonWidget(
-                                      onPressed: () async {
-                                        _model.creatRequest =
-                                            await RequestTable().insert({
-                                          'Type': 'Приглашение в команду',
-                                          'ToUser': messageUserRow?.uid,
-                                          'FromTeam': widget.docId,
-                                          'created_at': supaSerialize<DateTime>(
-                                              getCurrentTimestamp),
-                                        });
-                                        setState(() {
-                                          _model.messageVISIBILITY = false;
-                                          _model.searchVISIBILITY = false;
-                                          _model.addbuttonVISIBILITY = true;
-                                        });
-
-                                        setState(() {});
+                                      onPressed: () {
+                                        print('Button pressed ...');
                                       },
                                       text: 'ДА',
                                       options: FFButtonOptions(

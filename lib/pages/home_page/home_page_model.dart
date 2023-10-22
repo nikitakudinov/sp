@@ -1,7 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -18,14 +17,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (LISTUSERBYUID)] action in HomePage widget.
   ApiCallResponse? apiResulta5r;
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
-  List<UserRow>? updateUserData;
-  // Stores action output result for [Backend Call - API (LISTUSERBYUID)] action in Button widget.
-  ApiCallResponse? userData;
-  // Stores action output result for [Backend Call - Update Row] action in Button widget.
-  List<TeamRow>? apiResultxsb;
-  // Stores action output result for [Backend Call - Delete Row] action in Button widget.
-  List<RequestRow>? deliteRequest;
 
   /// Initialization and disposal methods.
 

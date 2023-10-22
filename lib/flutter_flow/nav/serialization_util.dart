@@ -226,8 +226,6 @@ dynamic deserializeParam<T>(
             return TeamMembersRow(data);
           case UserRow:
             return UserRow(data);
-          case RequestRow:
-            return RequestRow(data);
           case TeamRow:
             return TeamRow(data);
           default:

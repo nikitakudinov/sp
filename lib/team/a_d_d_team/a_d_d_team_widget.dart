@@ -299,7 +299,6 @@ class _ADDTeamWidgetState extends State<ADDTeamWidget> {
                               'Name': _model.textController1.text,
                               'Tag': _model.textController2.text,
                               'Logo': _model.uploadedFileUrl,
-                              'Members': FFAppState().Team.members,
                               'Creator': currentUserUid,
                             });
 

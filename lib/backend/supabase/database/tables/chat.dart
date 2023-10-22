@@ -17,18 +17,17 @@ class ChatRow extends SupabaseDataRow {
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
 
-  DateTime get createdAt => getField<DateTime>('created_at')!;
-  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
+  DateTime? get createdAt => getField<DateTime>('created_at');
+  set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
 
   String? get lastMessage => getField<String>('LastMessage');
   set lastMessage(String? value) => setField<String>('LastMessage', value);
 
-  DateTime? get lastMessageDate => getField<DateTime>('LastMessageDate');
-  set lastMessageDate(DateTime? value) =>
-      setField<DateTime>('LastMessageDate', value);
+  String? get lastMessageDate => getField<String>('LastMessageDate');
+  set lastMessageDate(String? value) =>
+      setField<String>('LastMessageDate', value);
 
-  PostgresTime? get lastMessageTime =>
-      getField<PostgresTime>('LastMessageTime');
-  set lastMessageTime(PostgresTime? value) =>
-      setField<PostgresTime>('LastMessageTime', value);
+  String? get lastMessageTime => getField<String>('LastMessageTime');
+  set lastMessageTime(String? value) =>
+      setField<String>('LastMessageTime', value);
 }
